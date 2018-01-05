@@ -5,6 +5,7 @@
   "license": "MIT",
   "flat": false,
   "scripts": {
+    "preinstall": "test -d \"../../../source/serverSide/node_modules/appscript/.git\" && echo SZN - Warning ! .git file detected, prevent wipping new changes ! && exit 1 || echo .git does not exist, safe to proceed... ",
     "postinstall": "(cd ../../../source/serverSide/node_modules/appscript && yarn install --pure-lockfile --production=true)"
   },
   "dependencies": {

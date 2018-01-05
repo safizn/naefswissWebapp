@@ -22,7 +22,7 @@ const FileSource = [
 	// 		]
     //     }
     // },
-    { 
+    {
         key: 'serverSide',
         gulpTaskFunction: {
             path: path.join(config.TaskModulePath, 'rsync.js'),
@@ -34,7 +34,7 @@ const FileSource = [
 			]
         }
     },
-    { 
+    {
         key: 'javascript:serverSide',
         gulpTaskFunction: {
             path: path.join(config.TaskModulePath, 'javascript.js'),

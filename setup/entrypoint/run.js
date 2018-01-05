@@ -26,7 +26,7 @@ switch (process.argv[0]) {
         console.log('• Running application in livereload mode.')    
         
         let additionalEnvironmentVariable = {}
-        if(process.argv[1] == 'distribution') {
+        if(process.argv[0] == 'distribution' || process.argv[1] == 'distribution') {
             additionalEnvironmentVariable.SZN_OPTION_ENTRYPOINT_NAME = "entrypoint.js"
             additionalEnvironmentVariable.SZN_OPTION_ENTRYPOINT_PATH = "/project/application/distribution/serverSide/"
         }
@@ -49,7 +49,8 @@ switch (process.argv[0]) {
     break;
     default:
         debug = (process.argv[1] == 'debug' || process.argv[2] == 'debug') ? '--inspect=localhost:9229 --debug-brk' : '';
-        let appEntrypointPath = (process.argv[1] == 'distribution') ? `${applicationPath}/distribution/serverSide/entrypoint.js`: `${applicationPath}/source/serverSide/entrypoint.js`;
+        let appEntrypointPath = (process.argv[0] == 'distribution' || process.argv[1] == 'distribution') ? `${applicationPath}/distribution/serverSide/entrypoint.js`: `${applicationPath}/source/serverSide/entrypoint.js`;
+        console.log(`App enrypoint path: ${appEntrypointPath}`)
         command = (process.argv[0] == 'sleep' || process.argv[1] == 'sleep') ? 'sleep 100000' : `node ${debug} ${appEntrypointPath}`;
         environmentVariable = {
             DEPLOYMENT: "development",

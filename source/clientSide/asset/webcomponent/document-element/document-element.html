@@ -14,9 +14,7 @@
 <dom-module id="document-element">
     <template>
         <custom-style>
-            <style include="shared-styles">
-                {%=`${argument.css}` %}
-            </style>
+            <style include="shared-styles">  {%= `${argument.css}` %} </style>
         </custom-style>
         {%=`${argument.html}` %}
     </template>
