@@ -1,0 +1,29 @@
+{
+  "name": "yarn",
+  "version": "1.0.0",
+  "main": "entrypoint.js",
+  "license": "MIT",
+  "flat": false,
+  "scripts": {
+    "postinstall": "(cd ../../../source/serverSide/node_modules/appscript && yarn install --pure-lockfile --production=true)"
+  },
+  "dependencies": {
+    "appscript": "git+https://github.com/AppScriptIO/DecoupledCMS.git",
+    "babel-runtime": "^6.26.0",
+    "underscore": "^1.8.3",
+    "engine.io": "^3.1.0",
+    "koa": "^2.0.0-alpha.8",
+    "koa-bodyparser": "^4.2.0",
+    "koa-compose": "^3.2.1",
+    "koa-router": "^7.0.1",
+    "koa-views": "^6.0.1",
+    "moment": "^2.19.2",
+    "oauth2-server": "^3.0.0",
+    "rethinkdb": "^2.3.3",
+    "socket.io": "^2.0.3",
+    "ws": "^3.1.0"
+  },
+  "devDependencies": {
+    "jsonfn": "*"
+  }
+}

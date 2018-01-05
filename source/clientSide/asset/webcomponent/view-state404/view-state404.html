@@ -1,0 +1,14 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="view-state404">
+  <template>
+    <style include="shared-styles">
+      {%=`${argument.css}` %}
+    </style>
+    {%=`${argument.html}` %}
+  </template>
+  <script>
+    {%=`${argument.js}` %}
+  </script>
+</dom-module>

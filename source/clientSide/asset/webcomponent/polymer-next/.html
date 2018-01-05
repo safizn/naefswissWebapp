@@ -1,0 +1,120 @@
+<base target="_top" href="{%= Application.extendedSubclass.static['StaticContent'].url %}">
+
+<!-- EXTERNAL ELEMENTS -->
+<script type="module" src="/asset/webcomponent/component.package/@polymer/iron-pages/iron-pages.js"></script>
+<script type="module" src="/asset/webcomponent/component.package/@polymer/app-route/app-location.js"></script>
+<script type="module" src="/asset/webcomponent/component.package/@polymer/app-route/app-route.js"></script>
+
+<!-- LAYOUT --> 
+<!-- <script type="module" src="/asset/webcomponent/{%= argument['layoutElement'] %}/{%= argument['layoutElement'] %}.js"></script> -->
+<script type="module" src="/asset/webcomponent/webapp-layout-toolbar/webapp-layout-toolbar.js"></script>
+<!-- <script type="module" src="/asset/webcomponent/webapp-layout-frontpage/webapp-layout-frontpage.js"></script> -->
+<!-- <script type="module" src="/asset/webcomponent/webapp-layout-step/webapp-layout-step.js"></script> -->
+
+<!-- CUSTOM STYLE --> 
+<link rel="stylesheet" href="/asset/stylesheet/default.css">
+<link rel="import" href="/asset/webcomponent/shared-styles.html">
+
+<custom-style>
+    <style include="shared-styles">
+        app-header > app-toolbar > paper-tab {
+        }
+        paper-tab[link] a {
+            /* These mixins (from iron-flex-layout) center the link text. */
+            @apply --layout-horizontal;
+            @apply --layout-center-center;
+            text-decoration: none;
+            padding: 0 24px;
+            display: var(--layout-horizontal_-_display);
+            -ms-flex-direction: var(--layout-horizontal_-_-ms-flex-direction);
+            -webkit-flex-direction: var(--layout-horizontal_-_-webkit-flex-direction);
+            flex-direction: var(--layout-horizontal_-_flex-direction);
+            -ms-flex-align: var(--layout-center-center_-_-ms-flex-align);
+            -webkit-align-items: var(--layout-center-center_-_-webkit-align-items);
+            align-items: var(--layout-center-center_-_align-items);
+            -ms-flex-pack: var(--layout-center-center_-_-ms-flex-pack);
+            -webkit-justify-content: var(--layout-center-center_-_-webkit-justify-content);
+            justify-content: var(--layout-center-center_-_justify-content);
+            text-decoration: none;
+            padding: 0 24px;]
+        }
+        paper-tab[link].iron-selected a {
+            font-weight: bold;
+            color: #fff;
+        }
+        paper-tab[link] a:focus, paper-tab[link] a:hover {
+            color: #fff;
+        }
+        paper-tab[link] a {
+            transition: color .2s;
+            color: rgba(255,255,255,.7);
+        }
+        .drawerlink {
+            display: block;
+            padding: 0 16px;
+            text-decoration: none;
+            color: var(--app-secondary-color);
+            line-height: 40px;
+        }
+
+        .drawerlink.iron-selected {
+            color: black;
+            font-weight: bold;
+        }
+        .drawerlink:hover, .drawerlink.iron-selected:hover {
+            color: black;
+            background: rgba(66, 133, 244, .1);
+            /*font-weight: bold;*/
+            text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.42);   
+        }
+    </style>
+</custom-style>
+
+<!-- Bind to URL - Proxy for window.location -->
+<app-location route="{{route}}"></app-location>
+<!-- Managing top-level routes -->
+<app-route
+    route="{{route}}"
+    pattern="/:pathTopLevel"
+    data="{{routeData}}"
+    tail="{{subroute}}"></app-route>
+<!-- main document element is placed in side the js main template entrypoint file to allow server-side manipulations. -->
+<!--<document-element layout="{{layout}}" page="{{page}}" subroute="{{subroute}}" app="{{app}}">-->
+    <iron-pages
+        selected="{{layout}}"
+        attr-for-selected="name"
+        fallback-selection="{%= argument['layoutElement'] %}"
+        role="main">
+        {%= `<${argument['layoutElement']}  name="layout-unused" page="{{page}}" route="{{subroute}}" app="[[app]]">` %}
+            <view-university-single slot="page" name="universitySingle"></view-university-single>
+            <view-university-multiple slot="page" name="universityMultiple"></view-university-multiple>
+            <view-country-single slot="page" name="countrySingle"></view-country-single>
+            <view-country-multiple slot="page" name="countryMultiple"></view-country-multiple>
+            <view-subject-single slot="page" name="subjectSingle"></view-subject-single>
+            <view-subject-multiple slot="page" name="subjectMultiple"></view-subject-multiple>
+            <view-degree-single slot="page" name="degreeSingle"></view-degree-single>
+            <view-degree-multiple slot="page" name="degreeMultiple"></view-degree-multiple>
+            <view-view1 slot="page" name="view-view1"></view-view1>
+            <view-view2 slot="page" name="view-view2"></view-view2>
+            <view-view3 slot="page" name="view-view3"></view-view3>
+            <view-state404 slot="page" name="view-state404"></view-state404>
+        {%=`</${argument['layoutElement']}>` %}
+        <!-- <webapp-layout-list name="webapp-layout-list" page="{{page}}" route="{{subroute}}" app="[[app]]">
+            <a slot="tab" name="view-view1" href$="{{app.setting.location.routeBasePath}}/view1">مقدمة عن التعليم في رومانيا</a>
+            <a slot="tab" name="view-view2" href$="{{app.setting.location.routeBasePath}}/view2">تسجيل فردي</a>
+            <a slot="tab" name="view-view3" href$="{{app.setting.location.routeBasePath}}/view3">تسجيل عن طريق وكيل</a>
+            <view-view1 slot="page" name="view-view1"></view-view1>
+            <view-view2 slot="page" name="view-view2"></view-view2>
+            <view-view3 slot="page" name="view-view3"></view-view3>
+            <view-state404 slot="page" name="view-state404"></view-state404>
+        </webapp-layout-list> -->
+        <webapp-layout-toolbar name="webapp-layout-toolbar" page="{{page}}" route="{{subroute}}" app="[[app]]">
+        </webapp-layout-toolbar>
+        <!--<webapp-layout-step name="webapp-layout-step" page="{{page}}" route="{{subroute}}" app="[[app]]">
+            
+        </webapp-layout-step>-->
+        <!--<webapp-layout-frontpage name="webapp-layout-frontpage" page="{{page}}" route="{{subroute}}" app="[[app]]">
+            
+        </webapp-layout-frontpage>-->
+    </iron-pages>
+<!--</document-element>-->

@@ -1,0 +1,52 @@
+<app-drawer-layout fullbleed>
+
+    <!-- Drawer content -->
+    <app-drawer id="drawer" slot="drawer" align="right">
+        <app-toolbar style="line-height: 20px;font-weight: inherit; min-height: 100px;display: grid;margin: 10px auto;">
+        <a style="margin: auto;" href$="{{app.setting.location.routeBasePath}}"><img style="max-width: 115px;" src="/asset/upload/Logo.png"></a>
+        <span style="text-align: center;margin-top: 9px;">גזית הנדסה בע"מ</span>
+        </app-toolbar>
+        <iron-selector selected="[[page.selectorName]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <slot name="drawertab"></slot>
+        </iron-selector>
+    </app-drawer>
+
+
+    <app-header-layout fullbleed>
+
+        <!-- Header toolbar -->
+        <app-header slot="header" condenses reveals effects="waterfall">
+            <app-toolbar dir="rtl">
+                <paper-icon-button class="menu-drawer-button" icon="view-state404:menu" drawer-toggle></paper-icon-button>
+                <div class="logo">
+                <a href$="{{app.setting.location.routeBasePath}}/">
+                    <iron-icon icon="communication:business"></iron-icon>
+                    <span main-title>Gazit Engineering Ltd</span>
+                </a>
+                </div>
+                <paper-tabs id="headertoolbar" selected="[[page.selectorName]]" attr-for-selected="name" scrollable autoselect autoselect-delay="400">
+                <slot name="toolbartab"></slot>
+                </paper-tabs>
+            </app-toolbar>
+        </app-header>
+
+        <!-- Main content --> 
+        <!--<paper-spinner id="spinner" active style="padding: 8px;border-radius: 22px; background: white;"></paper-spinner>        -->
+        <iron-pages selected="[[page.selectorName]]" attr-for-selected="name" fallback-selection="viewState404" role="main">
+            <view-frontpage name="frontPage" app="[[app]]"></view-frontpage>
+            <view-about name="about"></view-about>
+            <view-article name="studyfieldSingleArticle"></view-article>
+            <view-underconstruction name="universityPage" fullbleed></view-underconstruction>
+            <view-underconstruction name="studyfieldPage" fullbleed></view-underconstruction>
+            <div name="universityPage" fullbleed></div>
+            <div name="studyfieldPage" fullbleed></div>
+            <registration-single name="registration-single"></registration-single>
+            <registration-agency name="registration-agency" app="[[app]]" style="max-width: 800px; margin: 30px auto;"></registration-agency>
+            <view-list-item name="countryPage"  app="[[app]]"></view-list-item>
+            <view-state404 name="viewState404"></view-state404>
+            <slot name="page"></slot>
+        </iron-pages>
+
+    </app-header-layout>
+    
+</app-drawer-layout>

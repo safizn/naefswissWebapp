@@ -1,0 +1,1 @@
+Templates here defined as browser assets that are prerendered or manipulated by nodejs.

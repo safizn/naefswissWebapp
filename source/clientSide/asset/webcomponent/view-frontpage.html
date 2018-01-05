@@ -1,0 +1,177 @@
+<link rel="import" href="./bower_components/polymer/polymer.html">
+<link rel="import" href="./shared-styles.html">
+<link rel="import" href="./bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="./bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="view-frontpage">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        text-align: center;
+        padding: 10px;
+      }
+    .video {
+      max-height: 349px;
+      max-width: 620px;
+      width: 100%;
+      height: calc(70vw/1.78);
+      border-radius: 10px;
+    }
+    .card {
+      margin: 20px auto;
+      padding-right: 20px;
+    }
+    .list {
+      text-align: right;
+      padding-right: 40px;
+      padding-left: 10px;
+      /*max-width: 400px;*/
+    }
+
+
+    @import url(http://fonts.googleapis.com/css?family=Lato:900);
+    *, *:before, *:after{
+      box-sizing:border-box;
+    }
+    body{
+      font-family: 'Lato', sans-serif;
+      text-align: center;
+    }
+    div.foo{
+      white-space: nowrap;
+      width: 100%;
+      margin: 10px auto 0 auto;
+      text-align: center;
+    }
+    .letter{
+      line-height: 70px;
+      display: inline-block;
+      font-weight: 900;
+      font-size: 4em;
+      margin: 0.05em;
+      position: relative;
+      color: #00B4F1;
+      transform-style: preserve-3d;
+      perspective: 400;
+      z-index: 1;
+    }
+    .letter:before, .letter:after{
+      position:absolute;
+      content: attr(data-letter);
+      transform-origin: top left;
+      top:0;
+      left:0;
+    }
+    .letter, .letter:before, .letter:after{
+      transition: all 0.3s ease-in-out;
+    }
+    .letter:before{
+      color: #fff;
+      text-shadow: 
+        -1px 0px 1px rgba(255,255,255,.8),
+        1px 0px 1px rgba(0,0,0,.8);
+      z-index: 3;
+      transform:
+        rotateX(0deg)
+        rotateY(-15deg)
+        rotateZ(0deg);
+    }
+    .letter:after{
+      color: rgba(0,0,0,.11);
+      z-index:2;
+      transform:
+        scale(1.08,1)
+        rotateX(0deg)
+        rotateY(0deg)
+        rotateZ(0deg)
+        skew(0deg,1deg);
+    }
+    .letter:hover:before{
+      color: #fafafa;
+      transform:
+        rotateX(0deg)
+        rotateY(-40deg)
+        rotateZ(0deg);
+    }
+    .letter:hover:after{
+      transform:
+        scale(1.08,1)
+        rotateX(0deg)
+        rotateY(40deg)
+        rotateZ(0deg)
+        skew(0deg,22deg);
+    }
+    iron-icon {
+      position: absolute;
+      right: 30px;
+      margin-top: 2px;
+    }
+
+    @media only screen and (max-width: 768px) {
+      .foo {
+        z-index: -1;
+      }
+      .letter {
+        font-size: 3em;
+        margin: 0.02em;
+      }
+
+    }
+
+    </style>
+
+
+      <div id="title" class="foo" style="direction: ltr;">
+        <span class="letter" data-letter="G">G</span>
+        <span class="letter" data-letter="A">A</span>
+        <span class="letter" data-letter="Z">Z</span>
+        <span class="letter" data-letter="I">I</span>
+        <span class="letter" data-letter="T">T</span>
+      </div>
+
+    <div class="card" style="text-align: center; position: relative; max-width: 800px;">
+        <h1 style="text-align: center;">האתר בתחזוקה </h1>
+    </div>
+
+    <div class="card" style="text-align: center; position: relative; max-width: 800px;">
+
+      <h1 style="text-align: center;">חברת גזית הנדסה בע"מ </h1>
+      <p style="text-align: right; font-weight: bold;"></p>
+      <div class="list">
+        <p><iron-icon icon="icons:chevron-left"></iron-icon>חברת בניה עם ניסיון עשיר בתכנון וביצוע עבודות הנדסאיות.</p>
+        <p><iron-icon icon="icons:chevron-left"></iron-icon>בדפי החברה רשומים עשרות פרויקטים גדולים הן למגורים, לתעשייה, מרכזים ליוגיסטים, מבנה תעשיה. מבנה משרדים, מבנה ציבור, שחזור מבנים, תוספות על גגות, ועוד...</p>
+        <p><iron-icon icon="icons:chevron-left"></iron-icon>החברה מתמחה בפרויקטים מסבוכים ומורכבים הן מבחינה הנדסית והן מבחינה ביצועית.</p>
+        <p><iron-icon icon="icons:chevron-left"></iron-icon>גזית הנדסה משלבת תכנון מוקדם של הפרויקט, מתן פתרונות הנדסאים ויכולות ביצוע, תוך עמידה על לוחות הזמנים ועמידה על איכות בצוע ללא פשרות.</p>
+        <p><iron-icon icon="icons:chevron-left"></iron-icon>גזית הנדסה עומדים לרשותה צוות מהנדסים מהמנוסים שיש בענף הן בתחום התכנון, והן מבחינה ביצועית. החברה מחזיקה מנהלי עבודה מהמעולים שיש בענף עם יכולות ביצוע גדולות אשר ביכולתם לבצע ולנהל כל אתר עם כל המורכבות שיש בו. גזית הנדסה מחזיקה בציוד הנדסי מהמתקדם שיש בענף (מנופי צריח, תבניות, מנופי הרמה, כלי עזר, מחסנים ועוד..).</p>
+        <p><iron-icon icon="icons:chevron-left"></iron-icon>גזית הנדסה מחזיקה בעובדים קבועים מיומנים בתחום השלד אשר אין מצב שהיא נתקעת ללא כמות כוח אדם מספיקה כך שביכולתה לבצע כל פרויקט גדול עם כמות עובדים גדולה.</p>
+        <!--<p><iron-icon icon="icons:chevron-left"></iron-icon> </p>-->
+      </div>
+    </div>
+
+    <div class="card" style="display:none; text-align: center; position: relative;">
+    </div>
+
+  </template>
+
+  <script>
+  {
+    class Element extends Polymer.Element {
+      static get is() { return 'view-frontpage'; }
+      static get properties() {
+        return {
+            app: Object,
+        }
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        if(this.app.instance.distribution == "es5") this.$.title.style.display = "none"
+      }
+      
+
+    }
+    customElements.define(Element.is, Element);
+  }
+  </script>
+</dom-module>

@@ -1,0 +1,16 @@
+* Documentation folder :
+To view all the documentation go to documentation folder and open index.html in your favourite browser.
+
+To directly go to a particular demo go to the respective demo folder and open index.html in your favourite browser.
+
+* html folder:
+	It contains all the html files and releted folders.
+	
+	-----------------------
+
+* Installation:
+Upload files from a folder 'html' to web server or local server to test.
+
+* Dependencies:
+For contact form to work, you will need php 5.3+ support on your server.
+
