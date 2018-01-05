@@ -156,3 +156,19 @@
       display: none;
     }
   }
+
+.image-cropper {
+  height: 100px;
+  width: 100px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
+  background:url("/asset/upload/profile-photo-2.jpg") center no-repeat;
+  background-size: cover;
+  
+
+}
+

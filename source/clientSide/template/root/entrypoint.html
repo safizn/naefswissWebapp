@@ -40,7 +40,7 @@
     <!-- NOTE: Loading Polymer on the main document, in addition to the elements causes issues for some reason.
       <link rel="import" href="/asset/webcomponent/bower_components/polymer/polymer-element.html"> 
     -->
-    <!-- <link rel="import" href="/asset/webcomponent/document-element/document-element.html$"> -->
+    <link rel="import" href="/asset/webcomponent/document-element/document-element.html$">
     
     <style>
     </style>
@@ -48,7 +48,7 @@
   <body>
 
     {% print(templateController.renderedContentString('body', view)) %}
-    kokokoo
+
     <document-element>
         <span id="loader" style="direction: ltr; text-align: center; width: 100%; display: block; margin: auto; margin-top: 20px;">⫷ 𝕃𝕠𝕒𝕕𝕚𝕟𝕘... ⫸</span>
         <script> setTimeout(function(){ document.getElementById('loader').style.display = "none"; }, 10000) </script>

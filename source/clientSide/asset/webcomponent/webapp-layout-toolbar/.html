@@ -3,8 +3,8 @@
     <!-- Drawer content -->
     <app-drawer id="drawer" slot="drawer" align="right">
         <app-toolbar style="line-height: 20px;font-weight: inherit; min-height: 100px;display: grid;margin: 10px auto;">
-        <a style="margin: auto;" href$="{{app.setting.location.routeBasePath}}"><img style="max-width: 115px;" src="/asset/upload/Logo.png"></a>
-        <span style="text-align: center;margin-top: 9px;">גזית הנדסה בע"מ</span>
+        <a style="margin: auto;" href$="{{app.setting.location.routeBasePath}}"><div class="image-cropper"></div></a>
+        <span style="text-align: center;margin-top: 9px;">Naef Abo Swiss</span>
         </app-toolbar>
         <iron-selector selected="[[page.selectorName]]" attr-for-selected="name" class="drawer-list" role="navigation">
         <slot name="drawertab"></slot>
@@ -20,8 +20,8 @@
                 <paper-icon-button class="menu-drawer-button" icon="view-state404:menu" drawer-toggle></paper-icon-button>
                 <div class="logo">
                 <a href$="{{app.setting.location.routeBasePath}}/">
-                    <iron-icon icon="communication:business"></iron-icon>
-                    <span main-title>Gazit Engineering Ltd</span>
+                    <iron-icon icon="account-circle"></iron-icon>
+                    <span main-title>نـايف أبو صويص </span>
                 </a>
                 </div>
                 <paper-tabs id="headertoolbar" selected="[[page.selectorName]]" attr-for-selected="name" scrollable autoselect autoselect-delay="400">

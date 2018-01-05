@@ -10,9 +10,9 @@
         <a class="drawerlink" slot="drawertab" name="frontPage" href$="{{app.setting.location.routeBasePath}}/">Home</a>
         <a class="drawerlink" slot="drawertab" name="about" href$="{{app.setting.location.routeBasePath}}/contact">Contact</a>
 
-        <paper-tab slot="toolbartab" link name="studyfieldPage"> <a class="link" href$="{{app.setting.location.routeBasePath}}/studyfield" tabindex="-1">X</a> </paper-tab>
-        <paper-tab slot="toolbartab" link name="countryPage"><a class="link" href$="{{app.setting.location.routeBasePath}}/country" tabindex="-1">Y</a></paper-tab>
+        <paper-tab slot="toolbartab" link name="studyfieldPage"> <a class="link" href$="{{app.setting.location.routeBasePath}}/studyfield" tabindex="-1">السيرة الذاتية</a> </paper-tab>
+        <paper-tab slot="toolbartab" link name="countryPage"><a class="link" href$="{{app.setting.location.routeBasePath}}/country/bucharest" tabindex="-1">المشاريع</a></paper-tab>
 
     </webapp-layout-toolbar>
-
+    <material-cv name="material-cv"  app="[[app]]"></material-cv>
 </iron-pages>
