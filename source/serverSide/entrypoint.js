@@ -1,6 +1,6 @@
 const moduleSystem = require('module')
 const path = require('path')
-const configuration = require('../../setup/configuration/configuration.json')
+const configuration = require('../../setup/configuration/configuration.js')
 
 const appRootPath = path.normalize(__dirname)
 // add root path (app base path) to the resolved module paths.
