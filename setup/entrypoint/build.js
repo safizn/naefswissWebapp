@@ -8,10 +8,11 @@ console.log(process.argv)
 /*
  * Usage:
  * • ./entrypoint.sh build 
+ * • ./entrypoint.sh build debug
  */
 let ymlFile = `${applicationPath}/setup/container/development.dockerCompose.yml`
 let serviceName = 'nodejs'
-let containerPrefix = 'talebwebapp'
+let containerPrefix = 'talebwebapp_distribution'
 let debug, command, environmentVariable
 switch (process.argv[0]) {
     default:
@@ -33,4 +34,3 @@ switch (process.argv[0]) {
             })
     break;
 }
-
