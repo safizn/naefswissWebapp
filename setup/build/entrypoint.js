@@ -28,6 +28,5 @@ babelJSCompiler({
     babelConfigurationFile: 'es2015.BabelConfig.js'
 })
 
-
 // run app code
 require('./gulpfile.js')

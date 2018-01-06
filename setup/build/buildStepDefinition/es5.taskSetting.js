@@ -124,6 +124,8 @@ const FileSource = [
             argument: [
 				[
 					source(`clientSide/asset/javascript/**/*.js`),
+					source(`clientSide/asset/webcomponent/**/*.js`),
+					'!'+ source(`clientSide/asset/webcomponent/bower_components/**/*.js`),
 					source('clientSide/jspm_packageManager/**/*.js'),
                     `!`+ source(`clientSide/asset/javascript/js.package/**/*.js`),
                     '!'+ source('**/node_modules/**/*.js'),                    

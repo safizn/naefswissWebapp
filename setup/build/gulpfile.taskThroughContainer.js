@@ -33,7 +33,7 @@ let GulpTaskDependency = Array.concat(
 	}]
 )
 
-gulpTaskExecution(FileSource, GulpTaskDependency)
+gulpTaskExecution(FileSource, GulpTaskDependency) // register tasks.
 
 // ⌚ Watch file changes from sources to destination folder.
 gulp.task('watch:source', ()=> {
