@@ -3,7 +3,7 @@
     "name": "webapp",
     "main": "app.js",
     "directories": {
-      "packages": "../../../source/clientSide/asset/javascript/js.package",
+      "packages": "../../clientSide/asset/javascript/js.package",
       "baseURL": "../.."
     },
     "configFiles": {
