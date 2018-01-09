@@ -1,21 +1,24 @@
-const projectPath = "/project"
+const projectPath = "/project",
+      appDeploymentLifecyclePath = `${projectPath}/application/dependency/appDeploymentLifecycle`
 
 module.exports = {
     projectPath, 
-    appDeploymentLifecyclePath: `${projectPath}/application/dependency/appDeploymentLifecycle`,
+    appDeploymentLifecyclePath,
     databaseVersion: 1,
     GulpPath: `${projectPath}/application/setup/build`, // TODO: is it actually needed. remove if possible.
     SourceCodePath: `${projectPath}/application/source`,
     DestinationPath: `${projectPath}/application/distribution`,
+    dockerImageName: 'naefswiss-webapp',
     entrypoint: {
         build: {
-            file: `${projectPath}/application/setup/entrypoint/build.js`,
+            file: `${appDeploymentLifecyclePath}/entrypoint/build/build.js`,
+            argument: {}
         },
         run: {
-            file: `${projectPath}/application/setup/entrypoint/run.js`,
+            file: `${appDeploymentLifecyclePath}/entrypoint/run/run.js`,
         },
         test: {
-            file: `${projectPath}/application/setup/entrypoint/test.js`,
+            file: `${appDeploymentLifecyclePath}/entrypoint/test/test.js`,
         },
     }
 }
