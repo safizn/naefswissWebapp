@@ -5,10 +5,11 @@ module.exports = function reverseProxy(proxy) {
 
     let email = process.env.EMAIL
     let domain = 'naefswiss.webapp.run'
-    
+    let containerGroupName = 'naefswisswebapp'
+
     proxy.register(
         domain, 
-        'http://naefswisswebapp_nodejs:80', {
+        `http://${containerGroupName}_nodejs:80`, {
         ssl: {
                 letsencrypt: {
                     email: email, // Domain owner/admin email
@@ -18,8 +19,8 @@ module.exports = function reverseProxy(proxy) {
         }
     );
     proxy.register(
-        'api.' + domain, 
-        'http://naefswisswebapp_nodejs:8082', 
+        `api.` + domain, 
+        `http://${containerGroupName}_nodejs:8082`, 
         {
             ssl: {
                 letsencrypt: {
@@ -30,8 +31,8 @@ module.exports = function reverseProxy(proxy) {
         }
     );
     proxy.register(
-        'cdn.' + domain, 
-        'http://naefswisswebapp_nodejs:8081', 
+        `cdn.` + domain, 
+        `http://${containerGroupName}_nodejs:8081`, 
         {
             ssl: {
                 letsencrypt: {
@@ -42,8 +43,8 @@ module.exports = function reverseProxy(proxy) {
         }
     );
     proxy.register(
-        'oauth.' + domain, 
-        'http://naefswisswebapp_nodejs:8088', 
+        `oauth.` + domain, 
+        `http://${containerGroupName}_nodejs:8088`, 
         {
             ssl: {
                 letsencrypt: {
@@ -55,8 +56,8 @@ module.exports = function reverseProxy(proxy) {
     );
     
     proxy.register(
-        'rethinkdb.' + domain, 
-        'http://naefswisswebapp_rethinkdb:8080'
+        `rethinkdb.` + domain, 
+        `http://${containerGroupName}_rethinkdb:8080`
     );
 
 }
