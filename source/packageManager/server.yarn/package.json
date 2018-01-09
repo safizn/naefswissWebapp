@@ -11,8 +11,5 @@
   "dependencies": {
     "appscript": "git+https://github.com/AppScriptIO/DecoupledCMS.git",
     "babel-runtime": "^6.26.0"
-  },
-  "devDependencies": {
-    "jsonfn": "*"
   }
 }
