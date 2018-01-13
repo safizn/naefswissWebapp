@@ -4,7 +4,7 @@
 module.exports = function reverseProxy(proxy) {
 
     let email = process.env.EMAIL
-    let domain = 'naefswiss.webapp.run'
+    let domain = 'naifaboswiss.com'
     let containerGroupName = 'naefswisswebapp'
 
     proxy.register(
