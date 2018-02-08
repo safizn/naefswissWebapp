@@ -1,23 +1,28 @@
 let data = [
     {
+        key: 'a1',
         type: 'aggregation',
         label: {
             name: 'grouped article x'
         },
         version: [
-            {
-                documentKey: '1',
-                localization: {
-                    language: 'Arabic'
-                },
-            },
-            {
-                documentKey: '2',
-                localization: {
-                    language: 'English'
-                },
-            }
+            '1', 
+            '2'
         ]
+        // version: [
+        //     {
+        //         referenceDocumentKey: '1',
+        //         localization: {
+        //             language: 'Arabic'
+        //         },
+        //     },
+        //     {
+        //         referenceDocumentKey: '2',
+        //         localization: {
+        //             language: 'English'
+        //         },
+        //     }
+        // ]
     },
     {
         type: 'version',
@@ -36,5 +41,6 @@ let data = [
 
 module.exports = {
     databaseTableName: 'article',
-    data: data
+    data: data,
+    index: ['key']
 }

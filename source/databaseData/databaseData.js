@@ -17,6 +17,7 @@ export default {
     webappContent: [
         require('./webappContent/article.js'),
         require('appscript/databaseData/content/language.js'),
+        require('appscript/databaseData/content/relationship.js'),
         require('appscript/databaseData/content/country.js')
     ]
 }
