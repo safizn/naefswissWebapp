@@ -8,19 +8,38 @@
 <script src="/asset/webcomponent/component.package/webcomponentsjs/webcomponents-loader.js"></script>-->
 
 <script>
+var params = {
+    language: 'English',
+    key: 't1'
+}
+let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&')
+fetch(`http://api.localhost/content/ui?${query}`, {
+    method: 'POST',
+    body: JSON.stringify({
+        extrafield: false
+    }), 
+    mode: 'cors',
+    cache: 'no-cache',
+    headers: new Headers({
+        'Content-Type': 'application/json'
+    })
+}).then(res => res.json())
+.then(json => console.log(json.ui))
+</script>
+<script>
 // SZN App global class
 {
     const AppFrontEnd = JSON.parse('{%= JSON.stringify(Application.frontend) %}')
     AppFrontEnd.instance = JSON.parse('{%= JSON.stringify(context.instance) %}')
+    console.log(AppFrontEnd.instance.context)
     // Initialize the window object 'App' That will contain all utility functions and behaviors for the app //
     // class AppClass {
     //     constructor() {
     //     }
     // } 
-    function AppClass() {
-    };
+    class AppClass {}
     // Global Object that handles the app and other stuff.
-    window.App = AppFrontEnd || new AppClass();
+    window.App = AppFrontEnd || new AppClass()
     const App = window.App
     App.module = App.module || {}; // polymer behaviors that include functions and properties.
 
@@ -28,14 +47,12 @@
         properties: {
             app: {
                 type: Object,
-                value: function() {
-                    return App
-                },
+                value: () => { return App },
                 notify: true,
                 reflectToAttribute: true,
             },
         },
-    };
+    }
     App.behavior = App.behavior || {}; // polymer behaviors that include functions and properties.
     App.behavior = behavior
     // System.import('setting.behavior.js').then(exports => window.App.behavior.setting = exports.default);

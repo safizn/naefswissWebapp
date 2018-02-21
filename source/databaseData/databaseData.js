@@ -15,6 +15,7 @@ let webappSetting = [].concat.apply([], [
 export default {
     webappSetting, 
     webappContent: [
+        require('./webappContent/ui.js'),
         require('./webappContent/article.js'),
         require('appscript/databaseData/content/language.js'),
         require('appscript/databaseData/content/relationship.js'),
