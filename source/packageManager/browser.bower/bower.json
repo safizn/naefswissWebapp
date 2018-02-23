@@ -37,11 +37,11 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs",
     
     
-    "google-code-prettify": "^1.0.5",
-    "web-animations-js": "^2.2.5"
+    "google-code-prettify": "*",
+    "web-animations-js": "*"
   },
   "devDependencies": {
-    "web-component-tester": "^4.0.0"
+    "web-component-tester": "*"
   },
   "private": true
 }

@@ -1,4 +1,4 @@
-<link rel="import" href="../component.package/polymer/polymer.html">
+<link rel="import" href="../component.package/polymer/polymer-element.html">
 <link rel="import" href="../component.package/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../component.package/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../component.package/app-layout/app-header/app-header.html">
@@ -15,18 +15,10 @@
 <link rel="import" href="../component.package/iron-icons/communication-icons.html">
 <link rel="import" href="../component.package/iron-icons/av-icons.html">
 <link rel="import" href="../view-state404/view-state404.html$">
-<!--<link rel="import" href="../component.package/paper-spinner/paper-spinner.html">-->
+<!-- <link rel="import" href="../component.package/paper-spinner/paper-spinner.html"> -->
 
-<dom-module id="webapp-layout-toolbar">
-  <template>
-    <custom-style>
-      <style>
-        {%=`${argument.css}` %}
-      </style>
-    </custom-style>
-    {%=`${argument.html}` %}
-  </template>
-  <script>
-    {%=`${argument.js}` %}
-  </script>
-</dom-module>
+<script>{
+    /* CSS */ const css = Polymer.htmlLiteral`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`
+    /* HTML */ const html = Polymer.htmlLiteral`{%= argument.html %}`
+    /* JS */ {%= argument.js %}
+}</script>

@@ -8,30 +8,31 @@
 <script src="/asset/webcomponent/component.package/webcomponentsjs/webcomponents-loader.js"></script>-->
 
 <script>
-var params = {
-    language: 'English',
-    key: 't1'
-}
-let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&')
-fetch(`http://api.localhost/content/ui?${query}`, {
-    method: 'POST',
-    body: JSON.stringify({
-        extrafield: false
-    }), 
-    mode: 'cors',
-    cache: 'no-cache',
-    headers: new Headers({
-        'Content-Type': 'application/json'
+    var params = {
+        language: 'English',
+        key: 't1'
+    }
+    let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&')
+    fetch(`http://api.localhost/content/ui?${query}`, {
+        method: 'POST',
+        body: JSON.stringify({
+            extrafield: false
+        }), 
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
     })
-}).then(res => res.json())
-.then(json => console.log(json.ui))
+        .then(res => res.json())
+        .then(json => console.log(json))
 </script>
 <script>
 // SZN App global class
 {
     const AppFrontEnd = JSON.parse('{%= JSON.stringify(Application.frontend) %}')
     AppFrontEnd.instance = JSON.parse('{%= JSON.stringify(context.instance) %}')
-    console.log(AppFrontEnd.instance.context)
+    console.log(AppFrontEnd)
     // Initialize the window object 'App' That will contain all utility functions and behaviors for the app //
     // class AppClass {
     //     constructor() {
@@ -41,20 +42,19 @@ fetch(`http://api.localhost/content/ui?${query}`, {
     // Global Object that handles the app and other stuff.
     window.App = AppFrontEnd || new AppClass()
     const App = window.App
-    App.module = App.module || {}; // polymer behaviors that include functions and properties.
 
-    const behavior = { // Setting behavior for the app.
-        properties: {
-            app: {
-                type: Object,
-                value: () => { return App },
-                notify: true,
-                reflectToAttribute: true,
-            },
-        },
+    App.mixin = Superclass => class extends Superclass {
+        static get properties() {
+            return {
+                app: {
+                    type: Object,
+                    value: () => { return App },
+                    notify: true,
+                    reflectToAttribute: true,
+                },
+            }
+        }
     }
-    App.behavior = App.behavior || {}; // polymer behaviors that include functions and properties.
-    App.behavior = behavior
     // System.import('setting.behavior.js').then(exports => window.App.behavior.setting = exports.default);
     // Mixins are not supported curretly by Polymer, and babel as a side effect of hacks created.
     // window.App.mixin = window.App.mixin || {};

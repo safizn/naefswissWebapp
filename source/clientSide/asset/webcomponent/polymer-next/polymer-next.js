@@ -1,5 +1,5 @@
 import { Element as PolymerElement } from '/asset/webcomponent/component.package/@polymer/polymer/polymer-element.js'
-import { mixinBehaviors } from '/asset/webcomponent/component.package/@polymer/polymer/lib/legacy/class.js';
+// import { mixinBehaviors } from '/asset/webcomponent/component.package/@polymer/polymer/lib/legacy/class.js';
 import css from './.css$convertTextToJSModule'
 import html from './.html$convertTextToJSModule'
 
@@ -9,7 +9,7 @@ const App = window.App || {};
 // class Element extends App.mixin.app.setting(Polymer.Element) {
 
 // class Element extends Polymer.mixinBehaviors([ App.behavior ], Polymer.Element) {}
-export class Element extends mixinBehaviors([ App.behavior ], PolymerElement) {
+export class Element extends App.mixin(PolymerElement) {
   static get is() { return 'polymer-next' }
   static get template() { return `<style>${css}</style>${html}` }
   static get properties() {

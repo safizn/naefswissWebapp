@@ -1,0 +1,15 @@
+<link rel="import" href="../component.package/polymer/polymer.html">
+<link rel="import" href="../component.package/iron-icons/iron-icons.html">
+<link rel="import" href="../component.package/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../component.package/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../component.package/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../component.package/app-layout/app-header/app-header.html">
+<link rel="import" href="../component.package/app-layout/app-header-layout/app-header-layout.html">
+
+<link rel="import" href="./shared-styles.html">
+
+<script>{
+    /* CSS */ const css = Polymer.htmlLiteral`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`
+    /* HTML */ const html = Polymer.htmlLiteral`{%= argument.html %}`
+    /* JS */ {%= argument.js %}
+}</script>

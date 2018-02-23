@@ -4,7 +4,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'registration-single',
-            file: 'registration-single.html'
+            file: 'registration-single/registration-single.html$'
         }
     },
     {
@@ -12,7 +12,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'registration-agency',
-            file: 'registration-agency.html'
+            file: 'registration-agency/registration-agency.html$'
         }
     },
     {
@@ -28,7 +28,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'universityPage',
-            file: 'view-underconstruction.html' 
+            file: 'view-underconstruction/view-underconstruction.html$' 
         }
     },
     {
@@ -36,7 +36,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'studyfieldPage',
-            file: 'view-underconstruction.html' 
+            file: 'view-underconstruction/view-underconstruction.html$' 
         }
     },
     {
@@ -44,7 +44,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'countryPage',
-            file: 'view-list-item.html' 
+            file: 'view-list-item/view-list-item.html$' 
         }
     },
     {
@@ -52,7 +52,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'studyfieldSingleArticle',
-            file: 'view-article.html' 
+            file: 'view-article/view-article.html$' 
         }
     },
     {
@@ -60,7 +60,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'studyfieldSingleArticle',
-            file: 'view-article.html' 
+            file: 'view-article/view-article.html$' 
         }
     },
     {
@@ -68,7 +68,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'frontPage',
-            file: 'view-frontpage.html' 
+            file: 'view-frontpage/view-frontpage.html$' 
         }
     },
     {
@@ -76,7 +76,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'about',
-            file: 'view-about.html' 
+            file: 'view-about/view-about.html$' 
         }
     },
 

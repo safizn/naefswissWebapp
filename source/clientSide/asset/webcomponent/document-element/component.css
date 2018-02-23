@@ -1,3 +1,5 @@
+/*Inheritable styles (background, color, font, line-height, etc.) continue to inherit in shadow DOM. use "all: initial" to reset them. */
+
 app-header > app-toolbar > paper-tab {
 }
 paper-tab[link] a {

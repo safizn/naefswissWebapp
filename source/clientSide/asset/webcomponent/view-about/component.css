@@ -1,0 +1,80 @@
+:host {
+    @apply --layout;
+    @apply --layout-flex-auto;
+    @apply --layout-center-center;
+    @apply --layout-horizontal;
+    @apply --layout-wrap;
+    padding: 10px;
+  }
+  paper-card { 
+    max-width: 400px;
+    min-width: 300px;
+    margin: auto;
+  }
+  .profile {
+    background-color: red;
+  }
+
+
+:host {
+}
+.rate {
+  min-height: 143.5px;
+}
+h1 {
+  text-align: center;
+}
+
+.rate-image {
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 120px;
+                  
+}
+paper-card {
+  margin: 10px;
+}
+.rate-header { 
+  @apply(--paper-font-headline);
+}
+.rate-name { 
+  color: var(--paper-grey-600); 
+  margin: 3px 0 10px 0; 
+}
+paper-icon-button.rate-icon {
+  --iron-icon-fill-color: white;
+  --iron-icon-stroke-color: var(--paper-grey-600);
+}
+a paper-button,
+a:active paper-button,
+a:visited paper-button {
+  color: #000;
+  line-height: 11px;
+  display: inline-block;
+}
+.container {
+  @apply --layout;
+  @apply --layout-flex-auto;
+  @apply --layout-center-center;
+  @apply --layout-horizontal;
+  @apply --layout-wrap;
+  text-align: center; 
+  margin: auto; 
+  width: 100%; 
+  text-align: right;
+}
+.card-content {
+  max-height: 130px;
+} 
+@media only screen and (max-width: 768px) {
+  .card {
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0;
+  }
+
+
+}
