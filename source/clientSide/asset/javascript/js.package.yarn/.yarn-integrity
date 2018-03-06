@@ -1,0 +1,20 @@
+{
+  "nodeVersion": "v9.3.0",
+  "modulesFolders": [
+    "../../clientSide/asset/javascript/js.package.yarn"
+  ],
+  "flags": [
+    "flat"
+  ],
+  "linkedModules": [],
+  "topLevelPatterns": [
+    "idb@^2.0.4",
+    "systemjs@^0.21.0"
+  ],
+  "lockfileEntries": {
+    "idb@^2.0.4": "https://registry.yarnpkg.com/idb/-/idb-2.0.4.tgz#cf6d4a9ab077a207ca6e62564d1552401f5cd458",
+    "systemjs@^0.21.0": "https://registry.yarnpkg.com/systemjs/-/systemjs-0.21.0.tgz#e3e61dd7beacaae421a52703c9679fb2543862f2"
+  },
+  "files": [],
+  "artifacts": {}
+}

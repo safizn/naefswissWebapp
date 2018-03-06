@@ -63,7 +63,7 @@ class Element extends App.mixin(Polymer.Element) {
     connectedCallback() {
         super.connectedCallback(); // to allow Polymer to hook into the element's lifecycle.
 
-        // TODO: Connect to IndexDB
+        console.log('connection to IndexDB....')
     }
     disconnectionCallback() {
         super.disconnectionCallback()

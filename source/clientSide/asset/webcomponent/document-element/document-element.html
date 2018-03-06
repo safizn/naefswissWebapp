@@ -1,6 +1,6 @@
 <!-- Problematic !! <base target="_top" href="{%= Application.extendedSubclass.static['StaticContent'].url %}"> -->
 
-<link rel="import" href="../component.package/polymer/polymer.html">
+<link rel="import" href="../component.package/polymer/polymer-element.html">
 
 <link rel="import" href="../component.package/iron-pages/iron-pages.html">
 <link rel="import" href="../component.package/app-route/app-location.html">
@@ -12,8 +12,12 @@
 <link rel="stylesheet" href="/asset/stylesheet/default.css">
 <link rel="import" href="../shared-styles.html">
 
-<script>{
+<script>;(async () => {
+    const SystemJS = window.SystemJS
+    let idb = await SystemJS.import('idb')
+
+    const Polymer = window.Polymer
     /* CSS */ const css = Polymer.htmlLiteral`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`
     /* HTML */ const html = Polymer.htmlLiteral`{%= argument.html %}`
     /* JS */ {%= argument.js %}
-}</script>
+})()</script>

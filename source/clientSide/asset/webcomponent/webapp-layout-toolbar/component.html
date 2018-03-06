@@ -3,9 +3,9 @@
     <!-- Drawer content -->
     <app-drawer id="drawer" slot="drawer" align="right">
         <app-toolbar style="line-height: 20px;font-weight: inherit; min-height: 100px;display: grid;margin: 10px auto;">
-        <a style="margin: auto;" href$="{{app.setting.location.routeBasePath}}"><div class="image-cropper"></div></a>
-        <span style="text-align: center;margin-top: 9px;">[[app.uiContent.title.long]]</span>
-        <span style="text-align: center;margin-top: 9px;">[[app.configuration.language]]</span>
+            <a style="margin: auto;" href$="{{app.setting.location.routeBasePath}}"><div class="image-cropper"></div></a>
+            <span style="text-align: center;margin-top: 9px;">[[app.uiContent.title.long]]</span>
+            <span style="text-align: center;margin-top: 9px;">[[app.configuration.language]]</span>
         </app-toolbar>
         <iron-selector selected="[[page.selectorName]]" attr-for-selected="name" class="drawer-list" role="navigation">
         <slot name="drawertab"></slot>
@@ -18,7 +18,7 @@
         <!-- Header toolbar -->
         <app-header slot="header" condenses reveals effects="waterfall">
             <app-toolbar dir="rtl">
-                <paper-icon-button class="menu-drawer-button" icon="view-state404:menu" drawer-toggle></paper-icon-button>
+                <paper-icon-button class="menu-drawer-button" icon="menu" drawer-toggle></paper-icon-button>
                 <div class="logo">
                 <a href$="{{app.setting.location.routeBasePath}}/">
                     <iron-icon icon="account-circle"></iron-icon>

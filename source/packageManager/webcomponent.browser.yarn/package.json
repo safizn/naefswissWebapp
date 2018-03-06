@@ -34,7 +34,7 @@
     "@polymer/paper-tabs": "*",
     "@polymer/polymer": "*",
     "@webcomponents/shadycss": "*",
-    "@webcomponents/webcomponentsjs": "*"
+    "@webcomponents/webcomponentsjs": "*",
   },
   "resolutions": {
     "@polymer/iron-flex-layout": "3.0.0-pre.10",

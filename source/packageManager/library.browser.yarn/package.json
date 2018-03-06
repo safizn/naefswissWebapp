@@ -1,0 +1,11 @@
+{
+  "name": "yarn",
+  "version": "1.0.0",
+  "main": "entrypoint.js",
+  "license": "MIT",
+  "flat": true,
+  "dependencies": {
+    "idb": "^2.0.4",
+    "systemjs": "^0.21.0"
+  }
+}
