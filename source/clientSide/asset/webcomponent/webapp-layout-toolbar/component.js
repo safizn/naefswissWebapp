@@ -5,16 +5,9 @@ class Element extends Polymer.Element {
     static get properties() {
         return { /* properties metadata */ 
             route: Object,
-            app: {
-                type: Object,
-                notify: true
-            },
-            page: {
-                type: Object,
-                notify: true,
-                reflectToAttribute: true,
-                observer: '_pageChanged',
-            },
+            app: { type: Object, notify: true },
+            page: { type: Object, notify: true, reflectToAttribute: true, observer: '_pageChanged', },
+            text: { type: String, notify: true, reflectToAttribute: true }     
             // showspinner: {
             //     type: Boolean,
             //     notify: true,
@@ -43,7 +36,7 @@ class Element extends Polymer.Element {
     _pageChanged(page, oldView) {
         // Load page import on demand. Show 404 page if fails
         if (page.selectorName != null) {
-            console.log(page.selectorName)
+            console.info(`📄 Page changed to: ${page.selectorName}`)
             // let callbackOnload = this.hideSpinner;
             // let resolvedPageUrl = this.resolveUrl(`../${page.file}`);
             let resolvedPageUrl = new URL(`${page.file}`,`${this.app.setting.location.cdnBasePath}/asset/webcomponent/`)

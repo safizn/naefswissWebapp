@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <base href="{%= Application.extendedSubclass.static['StaticContent'].url %}" target="_top"><!-- base url for all relative urls.  -->
+    <link rel="import" href="/asset/webcomponent/component.package/polymer/polymer-element.html"><!-- location of import is important, as it should be loaded before document-element -->
     {% print(templateController.renderedContentString('header', view)) %}
     <link rel="import" href="/asset/webcomponent/document-element/document-element.html$">
   </head>

@@ -1,23 +1,18 @@
 <!-- Problematic !! <base target="_top" href="{%= Application.extendedSubclass.static['StaticContent'].url %}"> -->
-
 <link rel="import" href="../component.package/polymer/polymer-element.html">
-
 <link rel="import" href="../component.package/iron-pages/iron-pages.html">
 <link rel="import" href="../component.package/app-route/app-location.html">
 <link rel="import" href="../component.package/app-route/app-route.html">
 <!-- LAYOUT --> 
 <link rel="import" href="../webapp-layout-toolbar/webapp-layout-toolbar.html$">
-
 <!-- CUSTOM STYLE --> 
 <link rel="stylesheet" href="/asset/stylesheet/default.css">
 <link rel="import" href="../shared-styles.html">
 
-<script>;(async () => {
-    const SystemJS = window.SystemJS
-    let idb = await SystemJS.import('idb')
-
+<script type="module" defer>
+    const SystemJS = window.SystemJS   
     const Polymer = window.Polymer
     /* CSS */ const css = Polymer.htmlLiteral`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`
     /* HTML */ const html = Polymer.htmlLiteral`{%= argument.html %}`
     /* JS */ {%= argument.js %}
-})()</script>
+</script>

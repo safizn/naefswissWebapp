@@ -22,7 +22,7 @@
                 <div class="logo">
                 <a href$="{{app.setting.location.routeBasePath}}/">
                     <iron-icon icon="account-circle"></iron-icon>
-                    <span main-title>[[app.uiContent.title.short]]</span>
+                    <span main-title>{{text}}</span>
                 </a>
                 </div>
                 <paper-tabs id="headertoolbar" selected="[[page.selectorName]]" attr-for-selected="name" scrollable autoselect autoselect-delay="400">
@@ -37,8 +37,8 @@
             <view-frontpage name="frontPage" app="[[app]]"></view-frontpage>
             <view-about name="about"></view-about>
             <view-article name="studyfieldSingleArticle"></view-article>
-            <view-underconstruction name="universityPage" fullbleed></view-underconstruction>
-            <view-underconstruction name="studyfieldPage" fullbleed></view-underconstruction>
+            <view-underconstruction name="universityPage" fullbleed app="[[app]]"></view-underconstruction>
+            <view-underconstruction name="studyfieldPage" fullbleed app="[[app]]"></view-underconstruction>
             <div name="universityPage" fullbleed></div>
             <div name="studyfieldPage" fullbleed></div>
             <registration-single name="registration-single"></registration-single>

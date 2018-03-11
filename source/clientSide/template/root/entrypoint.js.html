@@ -8,71 +8,14 @@
 <script src="/asset/webcomponent/component.package/webcomponentsjs/webcomponents-loader.js"></script>-->
 
 <script>
-    var params = {
-        language: 'English',
-        key: 't1'
-    }
-    let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&')
-    fetch(`http://api.localhost/content/ui?${query}`, {
-        method: 'POST',
-        body: JSON.stringify({
-            extrafield: false
-        }), 
-        mode: 'cors',
-        cache: 'no-cache',
-        headers: new Headers({
-            'Content-Type': 'application/json'
-        })
-    })
-        .then(res => res.json())
-        .then(json => console.log(json))
-</script>
-<script>
-// SZN App global class
-{
+// SZN App global class -  Initialize the window object 'App' That will contain all utility functions and behaviors for the app
+{    
     const AppFrontEnd = JSON.parse('{%= JSON.stringify(Application.frontend) %}')
     AppFrontEnd.instance = JSON.parse('{%= JSON.stringify(context.instance) %}')
-    console.log(AppFrontEnd)
-    // Initialize the window object 'App' That will contain all utility functions and behaviors for the app //
-    // class AppClass {
-    //     constructor() {
-    //     }
-    // } 
     class AppClass {}
-    // Global Object that handles the app and other stuff.
-    window.App = AppFrontEnd || new AppClass()
-    const App = window.App
-
-    App.mixin = Superclass => class extends Superclass {
-        static get properties() {
-            return {
-                app: {
-                    type: Object,
-                    value: () => { return App },
-                    notify: true,
-                    reflectToAttribute: true,
-                },
-            }
-        }
-    }
-    // System.import('setting.behavior.js').then(exports => window.App.behavior.setting = exports.default);
-    // Mixins are not supported curretly by Polymer, and babel as a side effect of hacks created.
-    // window.App.mixin = window.App.mixin || {};
-    // System.import('setting.mixin.js').then(exports => window.App.mixin.setting = exports.default);
-
-    // class MixinBuilder {  
-    //     constructor(superclass) {
-    //         this.superclass = superclass;
-    //     }
-
-    //     with(...mixins) { 
-    //         return mixins.reduce((c, mixin) => mixin(c), this.superclass);
-    //     }
-    // }
-    // window.App.module.Mixin = (superclass) => new MixinBuilder(superclass);   
+    window.App = AppFrontEnd || new AppClass() // Global Object that handles the app and other stuff.
 }
 </script>    
-
 
 <script>    
 // // Polymer settings, Polyfill
@@ -128,20 +71,6 @@
 // }
 </script>    
 
-<script>    
-// Service Worker
-{
-    var App = window.App
-    // Load pre-caching Service Worker
-    navigator.serviceWorker && window.addEventListener('load', function() {
-        navigator.serviceWorker.register(window.location.origin + '/serviceWorker.js', {scope: App.config.PROTOCOL + App.config.HOST }).then(function(registration) {
-            console.info('☕ Service Worker - registered with scope: ' + registration.scope)
-        })
-    });
-}
-</script>
-
-
 <!-- <script src="http://localhost:8087/socket.io/socket.io.js"></script>
 <script>
   var socket = io('http://localhost:8087');
@@ -155,29 +84,3 @@
   socket.on('disconnect', function(){});
 </script> -->
 
-<script>
-// Create a socket instance
-var socket = new WebSocket('{%= Application.extendedSubclass.static["WebSocket"].url %}');
-
-// Open the socket
-socket.onopen = function(event) {
-    console.log('☕ WebSocket connected.')
-    
-	// Send an initial message
-	// socket.send('I am the client and I\'m listening!');
-	
-	// Listen for messages
-	socket.onmessage = function(event) {
-		console.log('Client received a message',event);
-	};
-	
-	// Listen for socket closes
-	socket.onclose = function(event) {
-		console.log('Client notified socket has closed', event);
-	};
-	
-	// To close the socket....
-	//socket.close()
-	
-};
-</script>
