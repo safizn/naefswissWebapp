@@ -1,17 +1,19 @@
 import routeMixin from '/asset/webcomponent/document-element/routeMixin.js'
 import appMixin from '/asset/webcomponent/document-element/appMixin.js'
 import localization from '/asset/webcomponent/document-element/localizationMixin.js'
+import polymerSupportPromiseBinding from '/asset/webcomponent/document-element/polymerSupportPromiseBinding.js'
+polymerSupportPromiseBinding() // add support for async function properties.
 const App = window.App || {}; 
 
 // const waitForWebComponentsReady = new Promise(resolve => { window.addEventListener('WebComponentsReady', resolve) })
 
-; (async () => {
+;(async () => {
 
     const localizationMixin = await localization()
     const AppMixin = localizationMixin(appMixin(Polymer.ElementMixin(HTMLElement))) // Extend Polymer.Element base class
     const RouteMixin /* Class */ = routeMixin(AppMixin)
 
-    class Element extends RouteMixin { 
+    class Element extends RouteMixin {
 
         static get elementName() { return 'document-element'; }
         
@@ -21,6 +23,7 @@ const App = window.App || {};
         
         static get properties() {
             return { /* properties metadata */
+                
             }
         }
         

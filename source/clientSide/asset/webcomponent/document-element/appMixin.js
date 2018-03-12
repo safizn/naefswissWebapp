@@ -4,7 +4,7 @@ export default Superclass => class extends Superclass {
         return {
             app: {
                 type: Object,
-                value: () => { return App },
+                value: App,
                 notify: true,
                 reflectToAttribute: true,
             },

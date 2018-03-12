@@ -1,11 +1,7 @@
 const Polymer = window.Polymer
 const SystemJS = window.SystemJS
-
-const resolveObjectPath = function({ stringPath, object }) { // get object nested value by a string path.
-    return stringPath.split('.').reduce(function(prev, curr) {
-        return prev ? prev[curr] : undefined
-    }, object || this)
-}
+import resolveObjectPath from '/asset/javascript/resolveObjectPath.js'
+import convertParamsIntoURLEncodedQuery from '/asset/javascript/convertParamsIntoURLEncodedQuery.js'
 
 export default async function() {
     let idb = await SystemJS.import('idb')    
@@ -28,10 +24,10 @@ export default async function() {
 
     }
     
-    async function getIndexDB({ language}) {
+    async function getIndexDB({ indexdbTable, language}) {
         let databaseName = 'webappContent',
         databaseVersion = 1,
-        tableName = 'uiContent',
+        tableName = indexdbTable,
         transactionTableList = [ tableName ]
         let content = await idb
             .open(databaseName, databaseVersion, upgradeDB => { upgradeDB.createObjectStore(tableName) })
@@ -60,39 +56,35 @@ export default async function() {
             })
         })
     }
-  
+    
+    // TODO: structure data as object with keys in indexdb, such that data is configured per tem.
     return Superclass => class extends Superclass {
        
         static get properties() {
             return {
                 mode: { type: Object, notify: true, reflectToAttribute: true,
-                    value: () => {
-                        return {
-                            language: 'English',
-                            accesibility: {
-                                color: 'light'
-                            }
-                        }
-                    }  
-                },
-                // x: { type: Function, 
-                //     computed: 'computeLocalize(mode.language)'
-                // },
-                resource: { type: Object, notify: true, reflectToAttribute: true,
-                    value: {
-                        Arabic: { greeting: 'مرحباً', contact: 'تواصل'},
-                        English: { greeting: 'Hello', contact: 'contact' }
-                    }
+                    computed: '_mode(app)' 
                 },
                 localize: { // defining the function in the properties object of Polymer, allows for triggering re-rendering of its content in the template when the function value is set.
                     type: Function, notify: true,  
-                    value: () => async function (resourceKey) {
+                    value: () => async function (indexdbTable, resourceKey) {
                         let language = this.mode.language // current selected language
-                        let content = await getIndexDB({language: language })
+                        let content = await getIndexDB({ indexdbTable, language: language })
                         return resolveObjectPath({ stringPath: resourceKey, object: content })
                         // return this.resource[language][resourceKey]
                     }
                 },
+                // another solution instead of using observers.
+                // localize: { type: Function, 
+                //     computed: 'computeLocalize(mode.language)'
+                // },
+                // Memory based resource as opposed to requesting indexDB resource.
+                // resource: { type: Object, notify: true, reflectToAttribute: true,
+                //     value: {
+                //         Arabic: { greeting: 'مرحباً', contact: 'تواصل'},
+                //         English: { greeting: 'Hello', contact: 'contact' }
+                //     }
+                // },
             }
         }
 
@@ -106,30 +98,42 @@ export default async function() {
         }
         
         async ready() {
-            for (let language of ['Arabic', 'English']) {
-                let params = {
-                    language: language,
-                    key: 't1'
-                }
-                let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&')
-                let content = await fetch(`http://api.localhost/content/ui?${query}`, {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        extrafield: false
-                    }), 
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    headers: new Headers({
-                        'Content-Type': 'application/json'
-                    })
-                }).then(res => res.json())
-
-                await setIndexDB([{ keyname: params.language, value: content.ui }])
-                console.log('finished')
-            }
-
             super.ready()
+            
+            // Load language resources
+            await this.loadResource('English')
+            await this.loadResource('Arabic')
+        }
+        
+        _mode(app) {
+            return {
+                language: app.setting.mode.language,
+                accesibility: {
+                    color: 'light'
+                }
+            }
+        }
 
+        async loadResource(language) {
+            let params = {
+                language: language,
+                key: 't1'
+            }
+            let query = convertParamsIntoURLEncodedQuery(params)
+            let entrypointKey = 'ui'
+            let content = await fetch(`http://api.localhost/content/${entrypointKey}?${query}`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    extrafield: false
+                }), 
+                mode: 'cors',
+                cache: 'no-cache',
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
+            }).then(res => res.json())
+
+            await setIndexDB([{ keyname: params.language, value: content[entrypointKey] }])
         }
 
         rerenderLocalization(language) {
@@ -148,8 +152,8 @@ export default async function() {
 
         async connectedCallback() {
             super.connectedCallback(); // to allow Polymer to hook into the element's lifecycle.
-            
-            // this.mode.language = 'English'; this.notifyPath('mode.language')
+
+            // this.mode.language = 'English'; this.notifyPath('mode.language') // changing language should be followed by notification of the binding system in the default mode of dirty/shallow checking.
 
 
         }

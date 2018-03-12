@@ -7,14 +7,15 @@
 <!--<script src="/asset/webcomponent/component.package/webcomponentsjs/custom-elements-es5-adapter.js"></script>
 <script src="/asset/webcomponent/component.package/webcomponentsjs/webcomponents-loader.js"></script>-->
 
-<script>
+<script async type="module">
+  import deepObjectMerge from "/asset/javascript/deepObjectMerge.js"
 // SZN App global class -  Initialize the window object 'App' That will contain all utility functions and behaviors for the app
-{    
-    const AppFrontEnd = JSON.parse('{%= JSON.stringify(Application.frontend) %}')
+    const AppFrontEndStatic = JSON.parse('{%= JSON.stringify(Application.frontend) %}')
+    const AppFrontEndPerContext = JSON.parse('{%= JSON.stringify(context.frontendPerContext) %}')
+    const AppFrontEnd = deepObjectMerge(AppFrontEndStatic, AppFrontEndPerContext) // Deep merge - override static app level setting using/from local request context setting.
     AppFrontEnd.instance = JSON.parse('{%= JSON.stringify(context.instance) %}')
     class AppClass {}
     window.App = AppFrontEnd || new AppClass() // Global Object that handles the app and other stuff.
-}
 </script>    
 
 <script>    

@@ -3,8 +3,8 @@
 
     <webapp-layout-toolbar name="webapp-layout-toolbar" page="{{page}}" route="{{subroute}}" app="[[app]]" text="{{text}}">
 
-        <a class="drawerlink" slot="drawertab" name="frontPage" href$="{{app.setting.location.routeBasePath}}/">{{localize('title.short')}}</a>
-        <a class="drawerlink" slot="drawertab" name="about" href$="{{app.setting.location.routeBasePath}}/contact">{{localize('title.long')}}</a>
+        <a class="drawerlink" slot="drawertab" name="frontPage" href$="{{app.setting.location.routeBasePath}}/">[[localize('uiContent', 'title.short')]]</a>
+        <a class="drawerlink" slot="drawertab" name="about" href$="{{app.setting.location.routeBasePath}}/contact">[[localize('uiContent', 'title.long')]]</a>
 
         <paper-tab slot="toolbartab" link name="studyfieldPage"> <a class="link" href$="{{app.setting.location.routeBasePath}}/studyfield" tabindex="-1">السيرة الذاتية</a> </paper-tab>
         <paper-tab slot="toolbartab" link name="countryPage"><a class="link" href$="{{app.setting.location.routeBasePath}}/country/bucharest" tabindex="-1">المشاريع</a></paper-tab>
