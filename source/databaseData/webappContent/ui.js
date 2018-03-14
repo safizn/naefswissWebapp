@@ -17,6 +17,26 @@ let data = [
             long: 'صفحة نايف أبو صويص الشخصية'
         }
     },
+
+    {
+        key: 'description', type: 'aggregation', 
+        version: ['d1', 'd2']
+    },
+    {
+        key: 'd2', type: 'version',
+        description: {
+            about: 'CEO & Owner of "Gazit" group, which is specialized in construction, engineering, and capital investment.',
+            who: 'Businessman'
+        }
+    },
+    {
+        key: 'd1', type: 'version',
+        description: {
+            about: 'مدير عام وصاحب مجموعة شركات "جازيت" المختصة في مجال البناء والهندسة والاستثمار.',
+            who: 'صفحة نايف أبو صويص الشخصية'
+        }
+    },
+
 ]
 
 module.exports = {
