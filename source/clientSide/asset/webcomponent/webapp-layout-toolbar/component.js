@@ -7,6 +7,7 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
     const AppMixin = localizationMixin(appMixin(Polymer.ElementMixin(HTMLElement))) // Extend Polymer.Element base class
 
     class Element extends AppMixin {
+        
         static get is() { return 'webapp-layout-toolbar'; }
         static get template() { return Polymer.html`${css}${html}` }
         static get properties() {
@@ -24,19 +25,31 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
         }
 
         static get observers() { return [ /* observer descriptors */
+            "rerenderDiretion(direction)"
         ] }
 
         constructor() {
             super();
         }
-
+        
         connectedCallback() {
             super.connectedCallback();
         }
-
+        
         ready() {
             super.ready();
+            this.toggleDir(this.mode.language)
             if('ontouchstart' in window) this.$.drawer.swipeOpen = true // allow open swipe on drawer for touchscreen devices.
+            let persistentDrawer = this.$.drawer.persistent
+            if (this.$.drawer.persistent != undefined && !this.$.drawer.persistent) {
+                this.$.drawer.open();  
+            }
+        }
+        
+        rerenderDiretion(direction) {
+            let drawer = this.$.drawer
+            drawer.align = direction // not needed as it is directly data-binded.
+            this.$.toolbar.dir = (direction == 'left') ? 'ltr' : 'rtl';
         }
 
         _pageChanged(page, oldView) {
@@ -49,11 +62,8 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
                 let callbackError = this._showPage404;
                 Polymer.importHref(resolvedPageUrl.href, null, callbackError, true);
             }
-            
-            let persistentDrawer = this.$.drawer.persistent
-            if (this.$.drawer.persistent != undefined && !this.$.drawer.persistent) {
-                this.$.drawer.open();  
-            }
+            let drawer = this.$.drawer
+            if(drawer && drawer.close) drawer.close()
         }
         
         // hideSpinner() {

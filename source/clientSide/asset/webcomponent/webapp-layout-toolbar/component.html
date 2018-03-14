@@ -1,7 +1,7 @@
 <app-drawer-layout fullbleed>
 
     <!-- Drawer content -->
-    <app-drawer id="drawer" slot="drawer" align="right">
+    <app-drawer id="drawer" slot="drawer" align="{{direction}}">
         <app-toolbar style="line-height: 20px;font-weight: inherit; min-height: 100px;display: grid;margin: 10px auto;">
             <a style="margin: auto;" href$="{{app.setting.location.routeBasePath}}"><div class="image-cropper"></div></a>
             <span style="text-align: center;margin-top: 9px;">[[localize('uiContent', 'title.long')]]</span>
@@ -16,7 +16,7 @@
 
         <!-- Header toolbar -->
         <app-header slot="header" condenses reveals effects="waterfall">
-            <app-toolbar dir="rtl">
+            <app-toolbar id="toolbar">
                 <paper-icon-button class="menu-drawer-button" icon="menu" drawer-toggle></paper-icon-button>
                 <div class="logo">
                 <a href$="{{app.setting.location.routeBasePath}}/">
@@ -34,7 +34,7 @@
         <!-- Main content --> 
         <!--<paper-spinner id="spinner" active style="padding: 8px;border-radius: 22px; background: white;"></paper-spinner>        -->
         <iron-pages selected="[[page.selectorName]]" attr-for-selected="name" fallback-selection="viewState404" role="main">
-            <view-frontpage name="frontPage" app="[[app]]"></view-frontpage>
+            <view-frontpage name="frontPage" app="[[app]]" mode="{{mode}}"></view-frontpage>
             <view-about name="about"></view-about>
             <view-article name="studyfieldSingleArticle"></view-article>
             <view-underconstruction name="universityPage" fullbleed app="[[app]]"></view-underconstruction>

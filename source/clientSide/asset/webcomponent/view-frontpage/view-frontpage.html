@@ -3,8 +3,11 @@
 <link rel="import" href="../component.package/iron-icons/communication-icons.html">
 <link rel="import" href="../component.package/iron-icons/iron-icons.html">
 
-<script>{
+<script type="module" defer>
+    const SystemJS = window.SystemJS   
+    const Polymer = window.Polymer
+
     /* CSS */ const css = Polymer.htmlLiteral`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`
     /* HTML */ const html = Polymer.htmlLiteral`{%= argument.html %}`
     /* JS */ {%= argument.js %}
-}</script>
+</script>

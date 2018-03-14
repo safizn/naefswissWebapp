@@ -74,6 +74,7 @@ export default (async function() {
                             // return this.resource[language][resourceKey]
                         }
                     },
+                    direction: { type: String, notify: true, reflectToAttribute: true }                
                     // another solution instead of using observers.
                     // localize: { type: Function, 
                     //     computed: 'computeLocalize(mode.language)'
@@ -90,6 +91,7 @@ export default (async function() {
 
             static get observers() { return [
                 'rerenderLocalization(mode.language)', // could be implemented with computed binding also.
+                'toggleDir(mode.language)'
             ] }
 
             constructor() {
@@ -113,7 +115,7 @@ export default (async function() {
                 let content = await fetch(`http://api.localhost/content/${entrypointKey}?${query}`, {
                     method: 'POST',
                     body: JSON.stringify({
-                        extrafield: false
+                        extrafield: true
                     }), 
                     mode: 'cors',
                     cache: 'no-cache',
@@ -134,6 +136,13 @@ export default (async function() {
                 // this.notifyPath('localize', this.localize.bind(this))
                 this._propertiesChanged(this.__data, { localize: this.localize }, {localize: this.localize}) // skip value verification and comparison, execute change effect immidiately. using internal function
             }
+
+            toggleDir(language) {
+                const rightDirectionLanguages = ['Arabic', "Hebrew"]
+                let direction = (rightDirectionLanguages.includes(language)) ? 'right': 'left';
+                this.direction = direction
+                
+            }    
 
             // computeLocalize(language) {
             //     console.log(language)

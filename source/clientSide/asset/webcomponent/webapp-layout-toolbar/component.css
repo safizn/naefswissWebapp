@@ -3,11 +3,19 @@
     --app-secondary-color: black;
 
     display: block;
-  }     
+  }
+  :host([direction~="left"]) {
+    text-align: "left";
+    direction: ltr;
+  }
+  :host([direction~="right"]) {
+    text-align: "right";
+    direction: rtl;
+  }
+  
   app-header {
     color: #fff;
     background-color: var(--app-primary-color);
-    direction: ltr;
   }
   app-header paper-icon-button {
     --paper-icon-button-ink-color: white;
@@ -54,7 +62,6 @@
     /* These mixins (from iron-flex-layout) center the link text. */
     @apply(--layout-horizontal);
     @apply(--layout-center-center);
-    text-decoration: none;
     padding: 0 24px;
   }
 
@@ -89,7 +96,6 @@
   .drawer-list a, slot[name='drawertab']::slotted(a) {
     display: block;
     padding: 0 16px;
-    text-decoration: none;
     color: var(--app-secondary-color);
     line-height: 40px;
   }
