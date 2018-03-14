@@ -1,5 +1,5 @@
 const Polymer = window.Polymer
-export default Superclass => class extends Superclass {
+export default Superclass => class Route extends Superclass {
     static get template() {
         return Polymer.html`
             <!-- Bind to URL - Proxy for window.location for Managing top-level routes -->

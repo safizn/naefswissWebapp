@@ -9,7 +9,7 @@ const App = window.App || {};
 
 ;(async () => {
 
-    const localizationMixin = await localization()
+    const localizationMixin = await localization
     const AppMixin = localizationMixin(appMixin(Polymer.ElementMixin(HTMLElement))) // Extend Polymer.Element base class
     const RouteMixin /* Class */ = routeMixin(AppMixin)
 
@@ -23,7 +23,9 @@ const App = window.App || {};
         
         static get properties() {
             return { /* properties metadata */
-                
+                mode: { type: Object, notify: true, reflectToAttribute: true,
+                    computed: '_mode(app)' 
+                },    
             }
         }
         
@@ -41,8 +43,12 @@ const App = window.App || {};
             this.app.setting.location.routeBasePath = `${this.app.config.PROTOCOL}${this.app.config.HOST}`
             this.app.documentElement = this // register document element to be used as entrypoint to Polymer's binding system.
             console.log(this.app)
+
+            this.addEventListener('localization-language-changed', event => console.log(`🌐 Language changed to: ${event.detail.language}`) );
+            this.addEventListener('localization-language-loaded', event => console.log(`🌐 Loaded resource for: ${event.detail.language}`) );
+        
         }
-        ready() { // invoked the first time added to the dom.
+        async ready() { // invoked the first time added to the dom.
             // Polymer.Element : 
             // • Creates and attaches the element's shadow DOM tree.
             // • Initializes the data system, propagating initial values to data bindings.
@@ -53,6 +59,10 @@ const App = window.App || {};
             // Polymer.RenderStatus.afterNextRender(this, function() {
             //     this.addEventListener('click', this._handleClick);
             // });
+
+            // Load language resources
+            await this.loadLocalizationResource('English')
+            await this.loadLocalizationResource('Arabic')
         }
         async connectedCallback() {
             super.connectedCallback(); // to allow Polymer to hook into the element's lifecycle.
@@ -63,7 +73,16 @@ const App = window.App || {};
         attributeChangedCallback() {
             super.attributeChangedCallback()
         }
-        
+
+        _mode(app) {
+            return {
+                language: app.setting.mode.language,
+                accesibility: {
+                    color: 'light'
+                }
+            }
+        }
+
     }
 
     window.customElements.define(Element.elementName, Element) // Register custom element definition using standard platform API

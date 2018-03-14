@@ -1,7 +1,7 @@
 <!-- Layouts -->
 <iron-pages selected="{{layout}}" attr-for-selected="name" fallback-selection="webapp-layout-toolbar" role="main">
 
-    <webapp-layout-toolbar name="webapp-layout-toolbar" page="{{page}}" route="{{subroute}}" app="[[app]]" text="{{text}}">
+    <webapp-layout-toolbar name="webapp-layout-toolbar" page="{{page}}" route="{{subroute}}" app="[[app]]" mode="{{mode}}" text="{{text}}">
 
         <a class="drawerlink" slot="drawertab" name="frontPage" href$="{{app.setting.location.routeBasePath}}/">[[localize('uiContent', 'title.short')]]</a>
         <a class="drawerlink" slot="drawertab" name="about" href$="{{app.setting.location.routeBasePath}}/contact">[[localize('uiContent', 'title.long')]]</a>
