@@ -7,7 +7,7 @@
             <span style="text-align: center;margin-top: 9px;">[[localize('uiContent', 'title.long')]]</span>
         </app-toolbar>
         <iron-selector selected="[[page.selectorName]]" attr-for-selected="name" class="drawer-list" role="navigation">
-        <slot name="drawertab"></slot>
+            <slot name="drawertab"></slot>
         </iron-selector>
     </app-drawer>
 
@@ -27,7 +27,7 @@
                 <paper-tabs id="headertoolbar" selected="[[page.selectorName]]" attr-for-selected="name" scrollable autoselect autoselect-delay="400">
                 <slot name="toolbartab"></slot>
                 </paper-tabs>
-                <span>[[mode.language]]</span>
+                <span><language-picker language="{{mode.language}}"></language-picker></span>
             </app-toolbar>
         </app-header>
 

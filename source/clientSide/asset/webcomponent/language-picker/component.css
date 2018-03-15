@@ -1,0 +1,25 @@
+
+paper-button {
+    margin: auto;
+    padding: 0 5px;
+    display: grid;
+    justify-content: space-evenly;
+    min-width: 0px;
+    grid-column-gap: 5px;
+    grid-template-columns: 1fr 1fr;
+}
+
+paper-button> span {
+    font-size: 0.8em;
+}
+
+paper-button > iron-icon {
+}
+
+paper-item {
+    text-align: center;
+    cursor: pointer;
+    --paper-item-selected: {
+        background-color: #e0f7fa;
+    }
+}

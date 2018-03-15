@@ -19,7 +19,7 @@
     "paper-tabs": "PolymerElements/paper-tabs",
     "iron-icons": "PolymerElements/iron-icons",
     "paper-header-panel": "PolymerElements/paper-header-panel",
-    "paper-button": "PolymerElements/paper-button",
+    "paper-button": "^2.1.0",
     "paper-card": "PolymerElements/paper-card",
     "neon-animation": "PolymerElements/neon-animation",
     "paper-fab": "PolymerElements/paper-fab",
@@ -31,14 +31,13 @@
     "iron-overlay-behavior": "PolymerElements/iron-overlay-behavior",
     "iron-collapse": "PolymerElements/iron-collapse",
     "iron-fit-behavior": "PolymerElements/iron-fit-behavior",
-    "paper-listbox": "PolymerElements/paper-listbox",
+    "paper-listbox": "^2.1.0",
     "paper-spinner": "PolymerElements/paper-spinner",
     "shadycss": "webcomponents/shadycss",
     "webcomponentsjs": "webcomponents/webcomponentsjs",
-    
-    
     "google-code-prettify": "*",
-    "web-animations-js": "*"
+    "web-animations-js": "*",
+    "paper-menu-button": "^2.1.0"
   },
   "devDependencies": {
     "web-component-tester": "*"

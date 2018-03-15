@@ -1,0 +1,12 @@
+
+<paper-menu-button id="menu" horizontal-align="right"> 
+    <paper-button slot="dropdown-trigger" alt="Language">
+        <span>{{languageCode}}</span>
+        <iron-icon icon="icons:language"></iron-icon>
+    </paper-button>
+    <paper-listbox slot="dropdown-content" attr-for-selected="value" selected="{{language}}" fallback-selection="None">
+        <paper-item value="Arabic">العربية</paper-item>
+        <paper-item value="English">English</paper-item>
+        <paper-item value="Hebrew">עברית</paper-item>
+    </paper-listbox>
+</paper-menu-button>

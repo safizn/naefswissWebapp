@@ -5,7 +5,6 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
 
     const localizationMixin = await localization
     const AppMixin = localizationMixin(appMixin(Polymer.ElementMixin(HTMLElement))) // Extend Polymer.Element base class
-
     class Element extends AppMixin {
         
         static get is() { return 'webapp-layout-toolbar'; }
@@ -13,7 +12,6 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
         static get properties() {
             return { /* properties metadata */ 
                 route: Object,
-                app: { type: Object, notify: true },
                 page: { type: Object, notify: true, reflectToAttribute: true, observer: '_pageChanged', },
                 // showspinner: {
                 //     type: Boolean,
@@ -40,10 +38,11 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
             super.ready();
             this.toggleDir(this.mode.language)
             if('ontouchstart' in window) this.$.drawer.swipeOpen = true // allow open swipe on drawer for touchscreen devices.
-            let persistentDrawer = this.$.drawer.persistent
-            if (this.$.drawer.persistent != undefined && !this.$.drawer.persistent) {
-                this.$.drawer.open();  
-            }
+            let drawer = this.$.drawer
+            drawer.addEventListener('iron-select', (event) => { 
+                if(!drawer.persistent) drawer.close()
+             });
+
         }
         
         rerenderDiretion(direction) {
@@ -62,8 +61,6 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
                 let callbackError = this._showPage404;
                 Polymer.importHref(resolvedPageUrl.href, null, callbackError, true);
             }
-            let drawer = this.$.drawer
-            if(drawer && drawer.close) drawer.close()
         }
         
         // hideSpinner() {
