@@ -20,6 +20,6 @@ paper-item {
     text-align: center;
     cursor: pointer;
     --paper-item-selected: {
-        background-color: #e0f7fa;
+        background-color: #ecf3fe;
     }
 }
