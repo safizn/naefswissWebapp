@@ -69,8 +69,9 @@ export default (async function() {
                         type: Function, notify: true,  
                         value: () => async function (indexdbTable, resourceKey) {
                             let language = this.mode.language // current selected language
-                            let content = await getIndexDB({ indexdbTable, language: language })
-                            return resolveObjectPath({ stringPath: resourceKey, object: content })
+                            let contentObject = await getIndexDB({ indexdbTable, language: language })
+                            let content = resolveObjectPath({ stringPath: resourceKey, object: contentObject })
+                            return (content) ? content : '𝔐𝔦𝔰𝔰𝔦𝔫𝔤 ℭ𝔬𝔫𝔱𝔢𝔫𝔱';
                             // return this.resource[language][resourceKey]
                         }
                     },
@@ -135,6 +136,12 @@ export default (async function() {
                 // this.localize = this.localize.bind(this)
                 // this.notifyPath('localize', this.localize.bind(this))
                 this._propertiesChanged(this.__data, { localize: this.localize }, {localize: this.localize}) // skip value verification and comparison, execute change effect immidiately. using internal function
+
+                // update URL route to include "?lang=<language>" parameter
+                let url = new URL(window.location.href)
+                // If your expected result is "http://foo.bar/?x=42&y=2"
+                url.searchParams.set('language', language);
+                history.replaceState({}, false, url)
             }
 
             toggleDir(language) {
