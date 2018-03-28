@@ -39,7 +39,7 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
         
         _languageCode(language) {
             return this.languageList
-                    .find(l => l.name == language)
+                    .find(languageItem => languageItem.name == language)
                     .code
         }
         

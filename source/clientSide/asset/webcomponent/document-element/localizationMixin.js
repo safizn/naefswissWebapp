@@ -104,35 +104,44 @@ export default (async function() {
                 super.ready()
             }
             
-            async loadLocalizationResource(language) {
+            async loadLocalizationResource({ language, content = null }) {
                 if(this.loadedResource.includes(language)) return;
-
-                let params = {
-                    language: language,
-                    // key: 't1' // get specific version only of a speicific aggregation group.
-                }
-                let query = convertParamsIntoURLEncodedQuery(params)
-                let entrypointKey = 'ui'
-                let content = await fetch(`http://api.localhost/content/${entrypointKey}?${query}`, {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        extrafield: true
-                    }), 
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    headers: new Headers({
-                        'Content-Type': 'application/json'
-                    })
-                }).then(res => res.json())
-
-                await setIndexDB([{ keyname: params.language, value: content[entrypointKey] }])
-
                 this.loadedResource.push(language)
-                this.dispatchEvent(new CustomEvent('localization-language-loaded', {detail: {language: language}}));
+
+                if(!content) { // fetch resource
+                    let params = {
+                        language: language,
+                        // key: 't1' // get specific version only of a speicific aggregation group.
+                    }
+                    let query = convertParamsIntoURLEncodedQuery(params)
+                    let entrypointKey = 'ui'
+                    content = await fetch(`http://api.localhost/content/${entrypointKey}?${query}`, {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            extrafield: true
+                        }), 
+                        mode: 'cors',
+                        cache: 'no-cache',
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    }).then(async response => {
+                        if(!response.ok) throw response.statusText // if status code resuted is not '200' (fetch resolves/passes on 404 for example.)
+                        let wrapperObject = await response.json()
+                        return wrapperObject[entrypointKey] // extract content object (without entrypointKey name)
+                    })
+                }
+                await setIndexDB([{ keyname: language, value: content }])
+                
+                console.log(`🌐 Loaded resource for: ${language}`)                
             }
 
-            rerenderLocalization(language) {
-                this.dispatchEvent(new CustomEvent('localization-language-changed', {detail: {language: language}}));
+            async rerenderLocalization(language) {
+                
+                this.dispatchEvent(new CustomEvent('localization-language-changed', {detail: {language: language}}))
+
+                await this.loadLocalizationResource({ language: language }) // load resource if doesn't exist.
+
                 // this.localize = this.localize.bind(this)
                 // this.notifyPath('localize', this.localize.bind(this))
                 this._propertiesChanged(this.__data, { localize: this.localize }, {localize: this.localize}) // skip value verification and comparison, execute change effect immidiately. using internal function
@@ -142,6 +151,7 @@ export default (async function() {
                 // If your expected result is "http://foo.bar/?x=42&y=2"
                 url.searchParams.set('language', language);
                 history.replaceState({}, false, url)
+
             }
 
             toggleDir(language) {

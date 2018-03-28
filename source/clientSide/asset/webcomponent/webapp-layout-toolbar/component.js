@@ -78,6 +78,6 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
 
     }
     // Register custom element definition using standard platform API
-    customElements.define(Element.is, Element);
+    customElements.define(Element.is, Element)
 
 })() // async

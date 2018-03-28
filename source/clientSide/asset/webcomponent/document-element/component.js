@@ -45,8 +45,6 @@ const App = window.App || {};
             console.log(this.app)
 
             this.addEventListener('localization-language-changed', event => console.log(`🌐 Language changed to: ${event.detail.language}`) );
-            this.addEventListener('localization-language-loaded', event => console.log(`🌐 Loaded resource for: ${event.detail.language}`) );
-        
         }
         async ready() { // invoked the first time added to the dom.
             // Polymer.Element : 
@@ -60,9 +58,8 @@ const App = window.App || {};
             //     this.addEventListener('click', this._handleClick);
             // });
 
-            // Load language resources
-            await this.loadLocalizationResource('English')
-            await this.loadLocalizationResource('Arabic')
+            // Load language resource from server side passed data:
+            await this.loadLocalizationResource({ language: this.app.setting.mode.language, content: this.app.uiContent })
         }
         async connectedCallback() {
             super.connectedCallback(); // to allow Polymer to hook into the element's lifecycle.
@@ -76,7 +73,7 @@ const App = window.App || {};
 
         _mode(app) {
             return {
-                language: app.setting.mode.language,
+                language: this.app.setting.mode.language,
                 accesibility: {
                     color: 'light'
                 }
