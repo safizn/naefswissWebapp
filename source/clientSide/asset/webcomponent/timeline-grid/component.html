@@ -1,0 +1,7 @@
+<div id="gridSupportMessage">Sorry, your browser does not support CSS Grid (You should update your browser). 😅</div>
+<div class="grid">
+    <div class="item title">Achievements</div>
+    <template is="dom-repeat" items="{{achievement}}">
+        <div class="item">[[item.title]][[item.date]]</div>
+    </template>
+</div>

@@ -2,8 +2,8 @@ let data = [
     {   key: 'title', type: 'aggregation', version: ['t1', 't2', 't3']  },
     {   key: 't1', type: 'version',
         title: {
-            name: 'نايف أبو صويص',
-            pageDescription: 'صفحة نايف أبو صويص الشخصية'
+            short: 'نايف أبو صويص',
+            long: 'صفحة نايف أبو صويص الشخصية'
         }
     },
     {   key: 't2', type: 'version',

@@ -158,7 +158,6 @@ export default (async function() {
                 const rightDirectionLanguages = ['Arabic', "Hebrew"]
                 let direction = (rightDirectionLanguages.includes(language)) ? 'right': 'left';
                 this.direction = direction
-                
             }    
 
             // computeLocalize(language) {
