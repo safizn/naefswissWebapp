@@ -4,7 +4,7 @@ import resolveObjectPath from '/asset/javascript/resolveObjectPath.js'
 import convertParamsIntoURLEncodedQuery from '/asset/javascript/convertParamsIntoURLEncodedQuery.js'
 
 let staticClass; // dedup - prevent execution multiple times
-export default (async function() {
+export default async function() {
     let idb = await SystemJS.import('idb')    
 
     async function setIndexDB(resource) {
@@ -22,6 +22,7 @@ export default (async function() {
                 }
                 return db
             })
+        return keysResult
     }
     
     async function getIndexDB({ indexdbTable, language}) {
@@ -60,20 +61,15 @@ export default (async function() {
     // TODO: structure data as object with keys in indexdb, such that data is configured per tem.
     return Superclass => {
         if(staticClass) return staticClass
+        let array = []
         staticClass = class Localization extends Superclass {
                         
             static get properties() {
                 return {
-                    mode: { type: Object, notify: true, reflectToAttribute: true, },
+                    mode: { type: Object, notify: true, reflectToAttribute: false, },
                     localize: { // defining the function in the properties object of Polymer, allows for triggering re-rendering of its content in the template when the function value is set.
                         type: Function, notify: true,  
-                        value: () => async function (indexdbTable, resourceKey) {
-                            let language = this.mode.language // current selected language
-                            let contentObject = await getIndexDB({ indexdbTable, language: language })
-                            let content = resolveObjectPath({ stringPath: resourceKey, object: contentObject })
-                            return (content) ? content : '𝔐𝔦𝔰𝔰𝔦𝔫𝔤 ℭ𝔬𝔫𝔱𝔢𝔫𝔱';
-                            // return this.resource[language][resourceKey]
-                        }
+                        computed: '_localize(mode.language)'
                     },
                     direction: { type: String, notify: true, reflectToAttribute: true }                
                     // another solution instead of using observers.
@@ -92,33 +88,64 @@ export default (async function() {
 
             static get observers() { return [
                 'rerenderLocalization(mode.language)', // could be implemented with computed binding also.
+                'dispatchLanguageEvent(mode.language)',
+                'updateURL(mode.language)',
                 'toggleDir(mode.language)'
             ] }
 
             constructor() {
                 super()
-
             }
             
             async ready() {
                 super.ready()
+                // this._createMethodObserver('rerenderLocalization(mode.language)', true);
+                // this._createComputedProperty('localize', '_localize(mode.language)', true);
             }
             
-            async loadLocalizationResource({ language, content = null }) {
-                if(this.loadedResource.includes(language)) return;
-                this.loadedResource.push(language)
+            _localize(language) {
+                return async function (indexdbTable, resourceKey) {
+                    let contentObject = await getIndexDB({ indexdbTable, language: language })
+                    let content = resolveObjectPath({ stringPath: resourceKey, object: contentObject })
+                    content = (content) ? content : '𝔐𝔦𝔰𝔰𝔦𝔫𝔤 ℭ𝔬𝔫𝔱𝔢𝔫𝔱'; // fallback content
+                    console.log('localize function executed - ' + content)
+                    return content
+                    // return this.resource[language][resourceKey]
+                }
+            }
+            
+            rerenderLocalization(language, content) {
+                // Save fetch promise to language reference
+                if(!(language in staticClass.loadedResource)) {
+                    staticClass.loadedResource[language] = this.loadLocalizationResource({ language: language, content }) // load resource if doesn't exist.
+                    staticClass.loadedResource[language].then(() => {
+                        this.dispatchLanguageLoaded(language, { bubbles: false })
+                    })
+                }
+                // notify changes for each instance 
+                staticClass.loadedResource[language].then(() => {
+                    this.notifyPath('localize', this.localize.bind(this))
+                    // this.localize = this.localize.bind(this) // update all localize template parts - doesn't work for some reason.
+                    // this._propertiesChanged(this.__data, { localize: this.localize }, {localize: this.localize}) // skip value verification and comparison, execute change effect immidiately. using internal function
+                })
 
+            }
+
+            loadLocalizationResource({ language, content = null }) {
+                let contentPromise;
                 if(!content) { // fetch resource
                     let params = {
                         language: language,
+                        option: 'merged',
                         // key: 't1' // get specific version only of a speicific aggregation group.
                     }
                     let query = convertParamsIntoURLEncodedQuery(params)
                     let entrypointKey = 'ui'
-                    content = await fetch(`http://api.localhost/content/${entrypointKey}?${query}`, {
+                    contentPromise = fetch(`http://api.localhost/content/${entrypointKey}?${query}`, {
                         method: 'POST',
                         body: JSON.stringify({
-                            extrafield: true
+                            extrafield: true,
+                            schemaMode: 'nonStrict',
                         }), 
                         mode: 'cors',
                         cache: 'no-cache',
@@ -130,28 +157,28 @@ export default (async function() {
                         let wrapperObject = await response.json()
                         return wrapperObject[entrypointKey] // extract content object (without entrypointKey name)
                     })
+                    .catch(console.error)
+                    .then(content => setIndexDB([{ keyname: language, value: content }]))
+                } else {
+                    contentPromise = setIndexDB([{ keyname: language, value: content }])
                 }
-                await setIndexDB([{ keyname: language, value: content }])
+                return contentPromise
+            }
                 
-                console.log(`🌐 Loaded resource for: ${language}`)                
+            dispatchLanguageLoaded(language, additionalOption = {}) {
+                let eventOption = {detail: {language: language}, bubbles: true, composed: true}
+                this.dispatchEvent(new CustomEvent('localization-language-loaded', Object.assign(eventOption, additionalOption)))
+            }
+            dispatchLanguageEvent(language) {
+                this.dispatchEvent(new CustomEvent('localization-language-changed', {detail: {language: language}}))
             }
 
-            async rerenderLocalization(language) {
-                
-                this.dispatchEvent(new CustomEvent('localization-language-changed', {detail: {language: language}}))
-
-                await this.loadLocalizationResource({ language: language }) // load resource if doesn't exist.
-
-                // this.localize = this.localize.bind(this)
-                // this.notifyPath('localize', this.localize.bind(this))
-                this._propertiesChanged(this.__data, { localize: this.localize }, {localize: this.localize}) // skip value verification and comparison, execute change effect immidiately. using internal function
-
+            updateURL(language) {
                 // update URL route to include "?lang=<language>" parameter
                 let url = new URL(window.location.href)
                 // If your expected result is "http://foo.bar/?x=42&y=2"
                 url.searchParams.set('language', language);
                 history.replaceState({}, false, url)
-
             }
 
             toggleDir(language) {
@@ -177,10 +204,10 @@ export default (async function() {
                     
         }
 
-        staticClass.prototype.loadedResource = [] // Track loaded languages, to prevent loaded same resource twice.
+        staticClass.loadedResource = {} // Track loaded languages, to prevent loaded same resource twice.
 
         return staticClass
     }
 
-})()
+}
 

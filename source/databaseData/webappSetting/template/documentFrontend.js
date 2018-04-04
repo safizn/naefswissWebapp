@@ -28,7 +28,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'universityPage',
-            file: 'view-underconstruction/view-underconstruction.html$' 
+            file: 'view-underconstruction/entrypoint.html$' 
         }
     },
     {
@@ -36,7 +36,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'studyfieldPage',
-            file: 'view-underconstruction/view-underconstruction.html$' 
+            file: 'view-underconstruction/entrypoint.html$' 
         }
     },
     {

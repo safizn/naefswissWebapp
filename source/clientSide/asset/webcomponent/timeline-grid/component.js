@@ -1,9 +1,12 @@
 import appMixin from '/asset/webcomponent/document-element/appMixin.js'
 import convertParamsIntoURLEncodedQuery from '/asset/javascript/convertParamsIntoURLEncodedQuery.js'
+import localization from '/asset/webcomponent/document-element/localizationMixin.js'
 
 ;(async () => {
 
-    const AppMixin = appMixin(Polymer.ElementMixin(HTMLElement))
+    const localizationMixin = await localization()
+    
+    const AppMixin = localizationMixin(appMixin(Polymer.ElementMixin(HTMLElement)))
     class Element extends AppMixin {
         static get is() { return 'timeline-grid'; }
         static get template() { return Polymer.html`${css}${html}` }
@@ -34,12 +37,11 @@ import convertParamsIntoURLEncodedQuery from '/asset/javascript/convertParamsInt
         }
 
         fetchData() {
-            let params = {
-                language: 'Arabic'
-            }
+            let params = { language: this.mode.language }
             let query = convertParamsIntoURLEncodedQuery(params)
             let entrypointKey = 'personalInfo'
-            return fetch(`http://api.localhost/content/${entrypointKey}?${query}`, {
+            let url = `http://api.localhost/content/${entrypointKey}?${query}`
+            return fetch(url, {
                 method: 'POST',
                 body: JSON.stringify({
                     extrafield: true,

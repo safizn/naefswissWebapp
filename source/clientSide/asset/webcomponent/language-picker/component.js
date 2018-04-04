@@ -16,7 +16,7 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
                 },
                 languageCode: {
                     type: String,
-                    computed: '_languageCode(language)'
+                    // computed: '_languageCode(language)'
                 }
             }
         }

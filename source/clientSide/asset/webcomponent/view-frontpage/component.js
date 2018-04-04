@@ -3,7 +3,7 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
 
 ;(async () => {
 
-    const localizationMixin = await localization
+    const localizationMixin = await localization()
     const AppMixin = localizationMixin(appMixin(Polymer.ElementMixin(HTMLElement))) // Extend Polymer.Element base class
 
     class Element extends AppMixin {

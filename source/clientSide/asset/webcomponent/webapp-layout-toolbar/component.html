@@ -4,7 +4,7 @@
     <app-drawer id="drawer" slot="drawer" align="{{direction}}">
         <app-toolbar>
             <a style="margin: auto;" href$="{{app.setting.location.routeBasePath}}"><div class="image-cropper"></div></a>
-            <span style="text-align: center;margin-top: 9px;">[[localize('uiContent', 'title.long')]]</span>
+            <span style="text-align: center;margin-top: 9px;"></span>
         </app-toolbar>
         <iron-selector selected="[[page.selectorName]]" attr-for-selected="name" class="drawer-list" role="navigation">
             <slot name="drawertab"></slot>
@@ -21,7 +21,7 @@
                 <div class="logo">
                 <a href$="{{app.setting.location.routeBasePath}}/">
                     <iron-icon icon="account-circle"></iron-icon>
-                    <span main-title>[[localize('uiContent', 'title.short')]]</span>
+                    <span main-title></span>
                 </a>
                 </div>
                 <paper-tabs id="headertoolbar" selected="[[page.selectorName]]" attr-for-selected="name" scrollable autoselect autoselect-delay="400">
@@ -37,8 +37,8 @@
             <view-frontpage name="frontPage" app="[[app]]" mode="{{mode}}"></view-frontpage>
             <view-about name="about"></view-about>
             <view-article name="studyfieldSingleArticle"></view-article>
-            <view-underconstruction name="universityPage" fullbleed app="[[app]]"></view-underconstruction>
-            <view-underconstruction name="studyfieldPage" fullbleed app="[[app]]"></view-underconstruction>
+            <view-underconstruction name="universityPage" fullbleed  app="[[app]]" mode="{{mode}}"></view-underconstruction>
+            <view-underconstruction name="studyfieldPage" fullbleed  app="[[app]]" mode="{{mode}}"></view-underconstruction>
             <div name="universityPage" fullbleed></div>
             <div name="studyfieldPage" fullbleed></div>
             <registration-single name="registration-single"></registration-single>

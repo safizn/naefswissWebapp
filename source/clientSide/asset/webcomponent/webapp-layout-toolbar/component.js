@@ -3,7 +3,7 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
 
 ;(async () => {
 
-    const localizationMixin = await localization
+    const localizationMixin = await localization()
     const AppMixin = localizationMixin(appMixin(Polymer.ElementMixin(HTMLElement))) // Extend Polymer.Element base class
     class Element extends AppMixin {
         
@@ -23,7 +23,7 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
         }
 
         static get observers() { return [ /* observer descriptors */
-            "rerenderDiretion(direction)"
+            // "rerenderDiretion(direction)"
         ] }
 
         constructor() {
@@ -36,7 +36,7 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
         
         ready() {
             super.ready();
-            this.toggleDir(this.mode.language)
+            // this.toggleDir(this.mode.language)
             if('ontouchstart' in window) this.$.drawer.swipeOpen = true // allow open swipe on drawer for touchscreen devices.
             let drawer = this.$.drawer
             drawer.addEventListener('iron-select', (event) => { 
