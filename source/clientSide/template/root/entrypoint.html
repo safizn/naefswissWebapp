@@ -2,17 +2,20 @@
 <html lang="en">
   <head>
     <base href="{%= Application.extendedSubclass.static['StaticContent'].url %}" target="_top"><!-- base url for all relative urls.  -->
-    <link rel="import" href="/asset/webcomponent/component.package/polymer/polymer-element.html"><!-- location of import is important, as it should be loaded before document-element -->
+    <!-- location of import is important, as it should be loaded before document-element -->
+    <!-- <link rel="import" href="/asset/webcomponent/component.package/polymer/polymer-element.html"> -->
     {% print(templateController.renderedContentString('header', view)) %}
-    <link rel="import" href="/asset/webcomponent/document-element/document-element.html$">
+    <link rel="stylesheet" href="/asset/stylesheet/default.css">
+    <script src="/@webcomponent/document-element/entrypoint.js$renderJSImportWebcomponent" type="module" async></script>
+    <script src="/@javascript/js.package.yarn/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
     {% print(templateController.renderedContentString('bodyOpen', view)) %}
     <document-element>
         <span id="loader" style="direction: ltr; text-align: center; width: 100%; display: block; margin: auto; margin-top: 20px;">⫷ 𝕃𝕠𝕒𝕕𝕚𝕟𝕘... ⫸</span>
         <script> setTimeout(function(){ document.getElementById('loader').style.display = "none"; }, 10000) </script>
-    </document-element>    
+    </document-element>
     {% print(templateController.renderedContentString('bodyClose', view)) %}
   </body>
-  </html>
-  <!-- With ❤ From AppScript.io -->
+</html>
+<!-- With ❤ From AppScript.io -->

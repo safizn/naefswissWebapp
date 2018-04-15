@@ -1,14 +1,9 @@
-<!-- JSPM -->
-<!--<script src="/asset/javascript/js.package/system.js"></script>
-<script> System.config({ baseURL: "/asset/javascript/" }); </script>
-<script src="/asset/javascript/jspm.config.js"></script>-->
-
 <!-- Load Custom Elements es5 adapter - Fixing (supposedly) workaround ES5-style classes cannot properly extend ES6 classes - https://github.com/webcomponents/webcomponentsjs#custom-elements-es5-adapterjs --> 
 <!--<script src="/asset/webcomponent/component.package/webcomponentsjs/custom-elements-es5-adapter.js"></script>
 <script src="/asset/webcomponent/component.package/webcomponentsjs/webcomponents-loader.js"></script>-->
 
 <script async type="module">
-  import deepObjectMerge from "/asset/javascript/deepObjectMerge.js"
+    import deepObjectMerge from "/@javascript/deepObjectMerge.js"
 // SZN App global class -  Initialize the window object 'App' That will contain all utility functions and behaviors for the app
     const AppFrontEndStatic = JSON.parse( decodeURIComponent('{%= encodeURIComponent(JSON.stringify(Application.frontend)) %}') )
     const AppFrontEndPerContext = JSON.parse( decodeURIComponent('{%= encodeURIComponent(JSON.stringify(context.frontendPerContext)) %}') )

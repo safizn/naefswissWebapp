@@ -7,7 +7,7 @@
     const SystemJS = window.SystemJS   
     const Polymer = window.Polymer
 
-    /* CSS */ const css = Polymer.htmlLiteral`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`
-    /* HTML */ const html = Polymer.htmlLiteral`{%= argument.html %}`
+    /* CSS */ const css = html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`
+    /* HTML */ const html = html`{%= argument.html %}`
     /* JS */ {%= argument.js %}
 </script>

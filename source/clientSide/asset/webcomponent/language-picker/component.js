@@ -6,7 +6,7 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
 
     class Element extends AppMixin {
         static get is() { return 'language-picker'; }
-        static get template() { return Polymer.html`${css}${html}` }
+        static get template() { return html`${css}${html}` }
         static get properties() {
             return { /* properties metadata */ 
                 language: {

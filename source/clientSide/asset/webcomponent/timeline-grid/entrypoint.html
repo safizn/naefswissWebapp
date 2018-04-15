@@ -5,11 +5,11 @@
     const Polymer = window.Polymer
 
     /* CSS */ const css = 
-        Polymer.htmlLiteral`
+        html`
             <custom-style><!--for polyfill compatibility-->
                 <style>{%= argument.css %}</style>
             </custom-style>
         `
-    /* HTML */ const html = Polymer.htmlLiteral`{%= argument.html %}`
+    /* HTML */ const html = html`{%= argument.html %}`
     /* JS */ {%= argument.js %}
 </script>

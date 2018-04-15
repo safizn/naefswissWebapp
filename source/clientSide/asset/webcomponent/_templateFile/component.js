@@ -5,7 +5,7 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
     const AppMixin = appMixin(Polymer.ElementMixin(HTMLElement))
     class Element extends AppMixin {
         static get is() { return ''; }
-        static get template() { return Polymer.html`${css}${html}` }
+        static get template() { return html`${css}${html}` }
         static get properties() {
             return { /* properties metadata */ 
             }

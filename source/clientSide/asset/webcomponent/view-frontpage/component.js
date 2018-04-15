@@ -8,18 +8,14 @@ import appMixin from '/asset/webcomponent/document-element/appMixin.js'
 
     class Element extends AppMixin {
         static get is() { return 'view-frontpage'; }
-        static get template() { return Polymer.html`${css}${html}` }
-        static get properties() {
-            return {
-            }
-        }
+        static get template() { return html`${css}${html}` }
+        static get properties() { return {} }
 
         connectedCallback() {
             super.connectedCallback();
             if(this.app.instance.distribution == "es5") this.$.title.style.display = "none"
         }
         
-
     }
     customElements.define(Element.is, Element);
 

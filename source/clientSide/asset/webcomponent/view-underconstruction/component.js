@@ -7,7 +7,7 @@ import localization from '/asset/webcomponent/document-element/localizationMixin
   const AppMixin = localizationMixin(appMixin(Polymer.ElementMixin(HTMLElement)))
   class Element extends AppMixin {
     static get is() { return 'view-underconstruction'; }
-    static get template() { return Polymer.html`${css}${html}` }
+    static get template() { return html`${css}${html}` }
     static get properties() {
       return {
       }

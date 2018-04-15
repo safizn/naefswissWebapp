@@ -1,7 +1,6 @@
-const Polymer = window.Polymer
 const SystemJS = window.SystemJS
-import resolveObjectPath from '/asset/javascript/resolveObjectPath.js'
-import convertParamsIntoURLEncodedQuery from '/asset/javascript/convertParamsIntoURLEncodedQuery.js'
+import resolveObjectPath from '/@javascript/resolveObjectPath.js'
+import convertParamsIntoURLEncodedQuery from '/@javascript/convertParamsIntoURLEncodedQuery.js'
 
 let staticClass; // dedup - prevent execution multiple times
 export default async function() {
@@ -86,12 +85,14 @@ export default async function() {
                 }
             }
 
-            static get observers() { return [
-                'rerenderLocalization(mode.language)', // could be implemented with computed binding also.
-                'dispatchLanguageEvent(mode.language)',
-                'updateURL(mode.language)',
-                'toggleDir(mode.language)'
-            ] }
+            static get observers() {
+                return [
+                    'rerenderLocalization(mode.language)', // could be implemented with computed binding also.
+                    'dispatchLanguageEvent(mode.language)',
+                    'updateURL(mode.language)',
+                    'toggleDir(mode.language)'
+                ]
+            }
 
             constructor() {
                 super()
@@ -108,7 +109,6 @@ export default async function() {
                     let contentObject = await getIndexDB({ indexdbTable, language: language })
                     let content = resolveObjectPath({ stringPath: resourceKey, object: contentObject })
                     content = (content) ? content : '𝔐𝔦𝔰𝔰𝔦𝔫𝔤 ℭ𝔬𝔫𝔱𝔢𝔫𝔱'; // fallback content
-                    console.log('localize function executed - ' + content)
                     return content
                     // return this.resource[language][resourceKey]
                 }

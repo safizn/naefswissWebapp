@@ -1,24 +1,37 @@
-import routeMixin from '/asset/webcomponent/document-element/routeMixin.js'
-import appMixin from '/asset/webcomponent/document-element/appMixin.js'
-import localization from '/asset/webcomponent/document-element/localizationMixin.js'
-import polymerSupportPromiseBinding from '/asset/webcomponent/document-element/polymerSupportPromiseBinding.js'
-polymerSupportPromiseBinding() // add support for async function properties.
 const App = window.App || {}; 
-
+const SystemJS = window.SystemJS
+import routeMixin from '/@webcomponent/document-element/routeMixin.js'
+import appMixin from '/@webcomponent/document-element/appMixin.js'
+import localization from '/@webcomponent/document-element/localizationMixin.js'
+import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
+// import polymerSupportPromiseBinding from '/asset/webcomponent/document-element/polymerSupportPromiseBinding.js'
+// polymerSupportPromiseBinding() // add support for async function properties.
 // const waitForWebComponentsReady = new Promise(resolve => { window.addEventListener('WebComponentsReady', resolve) })
+/** WebComponent **/
+import '/@webcomponent/component.package/@polymer/iron-pages/iron-pages.js'
+import '/@webcomponent/component.package/@polymer/app-route/app-location.js'
+import '/@webcomponent/component.package/@polymer/app-route/app-route.js'
+import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
+// import '/@webcomponent/webapp-layout-toolbar/webapp-layout-toolbar.js$'
 
 ;(async () => {
 
     const localizationMixin = await localization()
-    const AppMixin = localizationMixin(appMixin(Polymer.ElementMixin(HTMLElement))) // Extend Polymer.Element base class
+    const AppMixin = localizationMixin(appMixin(PolymerElement)) // Extend Polymer.Element base class // previously Polymer.ElementMixin(HTMLElement)
     const RouteMixin /* Class */ = routeMixin(AppMixin)
 
-    class Element extends RouteMixin {
+    const component = {
+        css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
+        html: html`{%= argument.html %}`,
+        superclass: RouteMixin
+    }    
+
+    class Element extends component.superclass {
 
         static get elementName() { return 'document-element'; }
         
         static get template() {
-            return Polymer.html`${css}${RouteMixin.template}${html}` 
+            return html`${component.css}${RouteMixin.template}${component.html}` 
         }
         
         static get properties() {

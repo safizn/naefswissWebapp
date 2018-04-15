@@ -1,7 +1,9 @@
-const Polymer = window.Polymer
+const SystemJS = window.SystemJS   
+import { PolymerElement, html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
+
 export default Superclass => class Route extends Superclass {
     static get template() {
-        return Polymer.html`
+        return html`
             <!-- Bind to URL - Proxy for window.location for Managing top-level routes -->
             <app-location route="{{route}}"></app-location>
             <app-route route="{{route}}" pattern="/:pathTopLevel" data="{{routeData}}" tail="{{subroute}}"></app-route>

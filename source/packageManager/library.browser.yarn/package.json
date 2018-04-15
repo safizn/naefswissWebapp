@@ -5,6 +5,7 @@
   "license": "MIT",
   "flat": true,
   "dependencies": {
+    "@babel/standalone": "^7.0.0-beta.44",
     "idb": "^2.0.4",
     "systemjs": "^0.21.0"
   }

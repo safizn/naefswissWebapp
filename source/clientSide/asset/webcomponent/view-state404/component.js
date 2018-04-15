@@ -1,6 +1,6 @@
 class Element extends Polymer.Element {
   static get is() { return 'view-state404'; }
-  static get template() { return Polymer.html`${css}${html}` }
+  static get template() { return html`${css}${html}` }
   static get properties() {
     return {
       baseUrl: {
