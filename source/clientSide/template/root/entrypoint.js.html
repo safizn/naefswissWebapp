@@ -3,12 +3,13 @@
 <script src="/asset/webcomponent/component.package/webcomponentsjs/webcomponents-loader.js"></script>-->
 
 <script async type="module">
-    import deepObjectMerge from "/@javascript/deepObjectMerge.js"
-// SZN App global class -  Initialize the window object 'App' That will contain all utility functions and behaviors for the app
-    const AppFrontEndStatic = JSON.parse( decodeURIComponent('{%= encodeURIComponent(JSON.stringify(Application.frontend)) %}') )
-    const AppFrontEndPerContext = JSON.parse( decodeURIComponent('{%= encodeURIComponent(JSON.stringify(context.frontendPerContext)) %}') )
-    const AppFrontEnd = deepObjectMerge(AppFrontEndStatic, AppFrontEndPerContext) // Deep merge - override static app level setting using/from local request context setting.
-    AppFrontEnd.instance = JSON.parse(decodeURIComponent('{%= encodeURIComponent(JSON.stringify(context.instance)) %}'))
+    // import deepObjectMerge from "/@javascript/deepObjectMerge.js"
+    // SZN App global class -  Initialize the window object 'App' That will contain all utility functions and behaviors for the app
+    // const AppFrontEndStatic = JSON.parse( decodeURIComponent('{%= encodeURIComponent(JSON.stringify(Application.frontend)) %}') )
+    // const AppFrontEndPerContext = JSON.parse( decodeURIComponent('{%= encodeURIComponent(JSON.stringify(context.frontendPerContext)) %}') )
+    // const AppFrontEnd = deepObjectMerge(AppFrontEndStatic, AppFrontEndPerContext) // Deep merge - override static app level setting using/from local request context setting.
+    // AppFrontEnd.instance = JSON.parse(decodeURIComponent('{%= encodeURIComponent(JSON.stringify(context.instance)) %}'))
+    const AppFrontEnd = JSON.parse(decodeURIComponent('{%= encodeURIComponent(JSON.stringify(context.frontend)) %}'))
     class AppClass {}
     window.App = AppFrontEnd || new AppClass() // Global Object that handles the app and other stuff.
 </script>    
