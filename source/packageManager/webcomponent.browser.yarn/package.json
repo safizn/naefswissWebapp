@@ -29,6 +29,7 @@
     "@polymer/paper-item": "next",
     "@polymer/paper-listbox": "next",
     "@polymer/paper-material": "next",
+    "@polymer/paper-menu-button": "^3.0.0-pre.12",
     "@polymer/paper-radio-group": "next",
     "@polymer/paper-spinner": "next",
     "@polymer/paper-tabs": "next",
@@ -44,6 +45,8 @@
     "@webcomponents/webcomponentsjs": "1.1.1",
     "@polymer/iron-iconset-svg": "3.0.0-pre.12",
     "@polymer/iron-selector": "3.0.0-pre.12",
-    "@polymer/paper-dialog-behavior": "3.0.0-pre.12"
+    "@polymer/paper-dialog-behavior": "3.0.0-pre.12",
+    "@polymer/iron-fit-behavior": "3.0.0-pre.12",
+    "@polymer/iron-overlay-behavior": "3.0.0-pre.12"
   }
 }

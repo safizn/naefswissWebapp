@@ -41,7 +41,6 @@ export default Superclass => class Route extends Superclass {
     _routePageChanged(pathTopLevel, pathLevel2) { // Choose page/view using URL path.
         if(typeof pathTopLevel == 'undefined') return; // skip initial `pathTopLevel` value of undefined.
         let documentKey = this.checkConditionTree(pathTopLevel, pathLevel2.replace(/\//g, ""))
-    
         // Document & Template Tree procesing.
         let document = this.app.document.filter(unit => {
             if(unit.key == documentKey) return true

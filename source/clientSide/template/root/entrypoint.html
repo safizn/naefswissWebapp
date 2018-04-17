@@ -6,8 +6,7 @@
     <!-- <link rel="import" href="/asset/webcomponent/component.package/polymer/polymer-element.html"> -->
     {% print(templateController.renderedContentString('header', view)) %}
     <link rel="stylesheet" href="/asset/stylesheet/default.css">
-    <script src="/@webcomponent/document-element/entrypoint.js$renderJSImportWebcomponent" type="module" async></script>
-    <script src="/@javascript/js.package.yarn/@babel/standalone/babel.min.js"></script>
+    <script class="transform" src="/@webcomponent/document-element/entrypoint.js$renderJSImportWebcomponent" type="module" defer></script>
   </head>
   <body>
     {% print(templateController.renderedContentString('bodyOpen', view)) %}

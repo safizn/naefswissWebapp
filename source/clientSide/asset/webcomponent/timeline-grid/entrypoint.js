@@ -1,15 +1,23 @@
-import appMixin from '/asset/webcomponent/document-element/appMixin.js'
-import convertParamsIntoURLEncodedQuery from '/asset/javascript/convertParamsIntoURLEncodedQuery.js'
-import localization from '/asset/webcomponent/document-element/localizationMixin.js'
+import convertParamsIntoURLEncodedQuery from '/@javascript/convertParamsIntoURLEncodedQuery.js'
+import localization from '/@webcomponent/document-element/localizationMixin.js'
+import appMixin from '/@webcomponent/document-element/appMixin.js'
+import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
+import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
+polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 
 ;(async () => {
 
     const localizationMixin = await localization()
-    
-    const AppMixin = localizationMixin(appMixin(Polymer.ElementMixin(HTMLElement)))
-    class Element extends AppMixin {
+    const AppMixin = localizationMixin(appMixin(PolymerElement)) // Extend Polymer.Element base class
+    const component = {
+        css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
+        html: html`{%= argument.html %}`,
+        superclass: AppMixin
+    }    
+
+    class Element extends component.superclass {
         static get is() { return 'timeline-grid'; }
-        static get template() { return html`${css}${html}` }
+        static get template() { return html`${component.css}${component.html}` }
         static get properties() {
             return { /* properties metadata */ 
                 achievement: {

@@ -4,7 +4,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'registration-single',
-            file: 'registration-single/registration-single.html$'
+            file: 'registration-single/entrypoint.js$renderJSImportWebcomponent'
         }
     },
     {
@@ -12,7 +12,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'registration-agency',
-            file: 'registration-agency/registration-agency.html$'
+            file: 'registration-agency/entrypoint.js$renderJSImportWebcomponent'
         }
     },
     {
@@ -20,7 +20,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'viewState404',
-            file: 'view-state404/view-state404.html$'
+            file: 'view-state404/entrypoint.js$renderJSImportWebcomponent'
         }
     },
     {
@@ -28,7 +28,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'universityPage',
-            file: 'view-underconstruction/entrypoint.html$' 
+            file: 'view-underconstruction/entrypoint.js$renderJSImportWebcomponent' 
         }
     },
     {
@@ -36,7 +36,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'studyfieldPage',
-            file: 'view-underconstruction/entrypoint.html$' 
+            file: 'view-underconstruction/entrypoint.js$renderJSImportWebcomponent' 
         }
     },
     {
@@ -44,7 +44,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'countryPage',
-            file: 'view-list-item/view-list-item.html$' 
+            file: 'view-list-item/entrypoint.js$renderJSImportWebcomponent' 
         }
     },
     {
@@ -52,7 +52,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'studyfieldSingleArticle',
-            file: 'view-article/view-article.html$' 
+            file: 'view-article/entrypoint.js$renderJSImportWebcomponent' 
         }
     },
     {
@@ -60,7 +60,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'studyfieldSingleArticle',
-            file: 'view-article/view-article.html$' 
+            file: 'view-article/entrypoint.js$renderJSImportWebcomponent' 
         }
     },
     {
@@ -68,7 +68,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'frontPage',
-            file: 'view-frontpage/view-frontpage.html$' 
+            file: 'view-frontpage/entrypoint.js$renderJSImportWebcomponent' 
         }
     },
     {
@@ -76,7 +76,7 @@ let data = [
         layout: 'webapp-layout-toolbar',
         page: {
             selectorName: 'about',
-            file: 'view-about/view-about.html$' 
+            file: 'view-about/entrypoint.js$renderJSImportWebcomponent' 
         }
     },
 

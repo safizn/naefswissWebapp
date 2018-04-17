@@ -4,15 +4,14 @@ import routeMixin from '/@webcomponent/document-element/routeMixin.js'
 import appMixin from '/@webcomponent/document-element/appMixin.js'
 import localization from '/@webcomponent/document-element/localizationMixin.js'
 import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
-// import polymerSupportPromiseBinding from '/asset/webcomponent/document-element/polymerSupportPromiseBinding.js'
-// polymerSupportPromiseBinding() // add support for async function properties.
+import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
+polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 // const waitForWebComponentsReady = new Promise(resolve => { window.addEventListener('WebComponentsReady', resolve) })
-/** WebComponent **/
 import '/@webcomponent/component.package/@polymer/iron-pages/iron-pages.js'
 import '/@webcomponent/component.package/@polymer/app-route/app-location.js'
 import '/@webcomponent/component.package/@polymer/app-route/app-route.js'
 import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
-// import '/@webcomponent/webapp-layout-toolbar/webapp-layout-toolbar.js$'
+import '/@webcomponent/webapp-layout-toolbar/entrypoint.js$renderJSImportWebcomponent'
 
 ;(async () => {
 
@@ -30,9 +29,7 @@ import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
 
         static get elementName() { return 'document-element'; }
         
-        static get template() {
-            return html`${component.css}${RouteMixin.template}${component.html}` 
-        }
+        static get template() { return html`${component.css}${RouteMixin.template}${component.html}` }
         
         static get properties() {
             return { /* properties metadata */
