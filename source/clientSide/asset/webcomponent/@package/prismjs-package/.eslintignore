@@ -1,7 +1,0 @@
-**/node_modules/
-lib
-build
-prism
-src/prism.js
-header.js
-footer.js
