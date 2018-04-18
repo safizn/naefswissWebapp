@@ -1,5 +1,5 @@
-import { Element as PolymerElement } from '/asset/webcomponent/component.package/@polymer/polymer/polymer-element.js'
-// import { mixinBehaviors } from '/asset/webcomponent/component.package/@polymer/polymer/lib/legacy/class.js';
+import { Element as PolymerElement } from '/asset/webcomponent/@package/@polymer/polymer/polymer-element.js'
+// import { mixinBehaviors } from '/asset/webcomponent/@package/@polymer/polymer/lib/legacy/class.js';
 import css from './.css$convertTextToJSModule'
 import html from './.html$convertTextToJSModule'
 

@@ -1,16 +1,16 @@
 import localization from '/@webcomponent/document-element/localizationMixin.js'
 import appMixin from '/@webcomponent/document-element/appMixin.js'
-import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
+import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
 
-import '/@webcomponent/component.package/@polymer/iron-icons/iron-icons.js'
-import '/@webcomponent/component.package/@polymer/paper-button/paper-button.js'
-import '/@webcomponent/component.package/@polymer/iron-icon/iron-icon.js'
-import '/@webcomponent/component.package/@polymer/paper-listbox/paper-listbox.js'
-import '/@webcomponent/component.package/@polymer/paper-item/paper-item.js'
-import '/@webcomponent/component.package/@polymer/paper-menu-button/paper-menu-button.js'
+import '/@webcomponent/@package/@polymer/iron-icons/iron-icons.js'
+import '/@webcomponent/@package/@polymer/paper-button/paper-button.js'
+import '/@webcomponent/@package/@polymer/iron-icon/iron-icon.js'
+import '/@webcomponent/@package/@polymer/paper-listbox/paper-listbox.js'
+import '/@webcomponent/@package/@polymer/paper-item/paper-item.js'
+import '/@webcomponent/@package/@polymer/paper-menu-button/paper-menu-button.js'
 
 ;(async () => {
 

@@ -1,7 +1,7 @@
 import convertParamsIntoURLEncodedQuery from '/@javascript/convertParamsIntoURLEncodedQuery.js'
 import localization from '/@webcomponent/document-element/localizationMixin.js'
 import appMixin from '/@webcomponent/document-element/appMixin.js'
-import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
+import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'

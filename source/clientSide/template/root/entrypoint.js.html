@@ -1,6 +1,6 @@
 <!-- Load Custom Elements es5 adapter - Fixing (supposedly) workaround ES5-style classes cannot properly extend ES6 classes - https://github.com/webcomponents/webcomponentsjs#custom-elements-es5-adapterjs --> 
-<!--<script src="/asset/webcomponent/component.package/webcomponentsjs/custom-elements-es5-adapter.js"></script>
-<script src="/asset/webcomponent/component.package/webcomponentsjs/webcomponents-loader.js"></script>-->
+<!--<script src="/asset/webcomponent/@package/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+<script src="/asset/webcomponent/@package/webcomponentsjs/webcomponents-loader.js"></script>-->
 
 <script async type="module">
     // import deepObjectMerge from "/@javascript/deepObjectMerge.js"
@@ -20,7 +20,7 @@
 //     // Load Polymer (importing through the bower using the first webcomponent to be imported to the document, which includes `../polymer/polymer.html` import) 
 //     // NOTE: Problem that it is executed after the below code.
 //     // System.import('polymer@2.0-preview/polymer.html!')
-//     // System.import('http://cdn.localhost/asset/webcomponent/component.package/polymer/polymer.html!')
+//     // System.import('http://cdn.localhost/asset/webcomponent/@package/polymer/polymer.html!')
 
 //     // Web performance API
 //     // window.performance && performance.mark && performance.mark('entrypoint.html');
@@ -28,7 +28,7 @@
 //     // Webcomponents Loader resolves all checks and loads polyfills if necessary.
 //     var script = document.createElement('script');
 //     script.async = true;
-//     script.src = '/asset/webcomponent/component.package/webcomponentsjs/webcomponents-loader.js';
+//     script.src = '/asset/webcomponent/@package/webcomponentsjs/webcomponents-loader.js';
 //     // script.onload = afterLoad; // webcomponents-loader.js will load the polyfill, only then should be called "afterLoad" function.
 //     document.head.appendChild(script);        
 
@@ -53,7 +53,7 @@
 //     //     console.info('☕ Polyfill webcomponents. Loading webcomponents javascript.')
 //     //     let script = document.createElement('script');
 //     //     script.async = true;
-//     //     script.src = '/asset/webcomponent/component.package/webcomponentsjs/webcomponents-loader.js';
+//     //     script.src = '/asset/webcomponent/@package/webcomponentsjs/webcomponents-loader.js';
 //     //     // script.onload = afterLoad; // webcomponents-loader.js will load the polyfill, only then should be called "afterLoad" function.
 //     //     document.head.appendChild(script);        
 //     //     // load tag 1.0.0-rc.4

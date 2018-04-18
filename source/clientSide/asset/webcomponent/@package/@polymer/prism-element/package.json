@@ -1,0 +1,29 @@
+{
+  "name": "@polymer/prism-element",
+  "version": "0.0.3",
+  "description": "Prism.js import and syntax highlighting",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/prism-element.git"
+  },
+  "keywords": [
+    "web-components",
+    "polymer",
+    "prism",
+    "molecule"
+  ],
+  "contributors": [
+    "The Polymer Project Authors (https://polymer.github.io/AUTHORS.txt)"
+  ],
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "prismjs-package": "*",
+    "@polymer/polymer": "^1.2.5-npm-test.2"
+  },
+  "devDependencies": {
+    "webcomponents.js": "^0.7.0",
+    "@polymer/iron-component-page": "^0.0.3",
+    "@polymer/paper-styles": "^0.0.3",
+    "web-component-tester": "^4.0.0"
+  }
+}

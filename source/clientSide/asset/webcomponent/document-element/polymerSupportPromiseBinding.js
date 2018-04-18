@@ -1,5 +1,5 @@
-import { translate } from '/@webcomponent/component.package/@polymer/polymer/lib/utils/path.js';
-import { sanitizeDOMValue } from '/@webcomponent/component.package/@polymer/polymer/lib/utils/settings.js';
+import { translate } from '/@webcomponent/@package/@polymer/polymer/lib/utils/path.js';
+import { sanitizeDOMValue } from '/@webcomponent/@package/@polymer/polymer/lib/utils/settings.js';
 
 /** 
  * for polymer V3 !

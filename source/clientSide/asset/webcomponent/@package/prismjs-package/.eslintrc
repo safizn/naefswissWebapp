@@ -1,0 +1,26 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+
+  "globals": {
+    "$": true
+  },
+
+  "rules": {
+    "id-length": 0,
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "no-console": 0,
+    "linebreak-style": 0,
+    "func-names": 0,
+    "import/no-extraneous-dependencies": 0,
+    "react/no-multi-comp": 0,
+    "react/prop-types": 0
+  }
+}

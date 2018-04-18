@@ -1,4 +1,4 @@
-import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
+import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import localization from '/@webcomponent/document-element/localizationMixin.js'

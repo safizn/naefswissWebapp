@@ -1,16 +1,16 @@
 import localization from '/@webcomponent/document-element/localizationMixin.js'
 import appMixin from '/@webcomponent/document-element/appMixin.js'
-import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
+import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
 /** WebComponent **/
-import '/@webcomponent/component.package/@polymer/iron-icons/iron-icons.js'
-import '/@webcomponent/component.package/@polymer/paper-icon-button/paper-icon-button.js'
-import '/@webcomponent/component.package/@polymer/app-layout/app-toolbar/app-toolbar.js'
-import '/@webcomponent/component.package/@polymer/app-layout/app-scroll-effects/app-scroll-effects.js'
-import '/@webcomponent/component.package/@polymer/app-layout/app-header/app-header.js'
-import '/@webcomponent/component.package/@polymer/app-layout/app-header-layout/app-header-layout.js'
+import '/@webcomponent/@package/@polymer/iron-icons/iron-icons.js'
+import '/@webcomponent/@package/@polymer/paper-icon-button/paper-icon-button.js'
+import '/@webcomponent/@package/@polymer/app-layout/app-toolbar/app-toolbar.js'
+import '/@webcomponent/@package/@polymer/app-layout/app-scroll-effects/app-scroll-effects.js'
+import '/@webcomponent/@package/@polymer/app-layout/app-header/app-header.js'
+import '/@webcomponent/@package/@polymer/app-layout/app-header-layout/app-header-layout.js'
 import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
 
 ;(async () => {

@@ -3,7 +3,7 @@
   <head>
     <base href="{%= context.frontend.setting.location.cdnBasePath %}" target="_top"><!-- base url for all relative urls.  -->
     <!-- location of import is important, as it should be loaded before document-element -->
-    <!-- <link rel="import" href="/asset/webcomponent/component.package/polymer/polymer-element.html"> -->
+    <!-- <link rel="import" href="/asset/webcomponent/@package/polymer/polymer-element.html"> -->
     {% print(templateController.renderedContentString('header', view)) %}
     <link rel="stylesheet" href="/asset/stylesheet/default.css">
     <script class="transform" src="/@webcomponent/document-element/entrypoint.js$renderJSImportWebcomponent" type="module" defer></script>

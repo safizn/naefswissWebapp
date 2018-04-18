@@ -1,0 +1,45 @@
+{
+  "name": "prismjs-package",
+  "version": "0.7.30",
+  "description": "prismjs syntax highlighter compiled as npm package",
+  "main": "./lib/index.js",
+  "scripts": {
+    "start": "node devserver.js",
+    "lint": "eslint .",
+    "babel": "babel src --out-dir lib",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sergeyt/prismjs-package"
+  },
+  "keywords": [
+    "prismjs"
+  ],
+  "author": "Sergey Todyshev <stodyshev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sergeyt/prismjs-package/issues"
+  },
+  "homepage": "https://github.com/sergeyt/prismjs-package",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-git": "^2.2.0",
+    "gulp-header": "^1.8.8",
+    "gulp-rename": "^1.2.2",
+    "gulp-wrapper": "^1.0.0",
+    "isomorphic-fetch": "^2.2.1",
+    "jquery": "^3.2.1",
+    "obj-toposort": "^2.0.0",
+    "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
+    "react-devpack": "^0.3.10",
+    "react-dom": "^15.5.4",
+    "run-sequence": "^1.2.2"
+  }
+}

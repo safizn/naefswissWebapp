@@ -1,14 +1,14 @@
 import appMixin from '/@webcomponent/document-element/appMixin.js'
 import convertParamsIntoURLEncodedQuery from '/@javascript/convertParamsIntoURLEncodedQuery.js'
 import localization from '/@webcomponent/document-element/localizationMixin.js'
-import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
+import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
 /** WebComponent **/
-import '/@webcomponent/component.package/@polymer/iron-icons/communication-icons.js'
-import '/@webcomponent/component.package/@polymer/iron-icons/iron-icons.js'
-import '/@webcomponent/component.package/@polymer/app-layout/app-drawer/app-drawer.js'
+import '/@webcomponent/@package/@polymer/iron-icons/communication-icons.js'
+import '/@webcomponent/@package/@polymer/iron-icons/iron-icons.js'
+import '/@webcomponent/@package/@polymer/app-layout/app-drawer/app-drawer.js'
 import '/@webcomponent/timeline-grid/entrypoint.js$renderJSImportWebcomponent'
 import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
 

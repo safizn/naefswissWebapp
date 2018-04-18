@@ -5,7 +5,7 @@
 // // Load babel
 // var script = document.createElement('script');
 // script.async = false;
-// script.src = '/@javascript/js.package.yarn/@babel/standalone/babel.min.js';
+// script.src = '/@javascript/@package/@babel/standalone/babel.min.js';
 // document.head.appendChild(script);        
 
 

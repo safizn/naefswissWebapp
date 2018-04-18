@@ -1,5 +1,5 @@
 const SystemJS = window.SystemJS   
-import { PolymerElement, html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
+import { PolymerElement, html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 
 export default Superclass => class Route extends Superclass {
     static get template() {

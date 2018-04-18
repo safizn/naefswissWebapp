@@ -3,13 +3,13 @@ const SystemJS = window.SystemJS
 import routeMixin from '/@webcomponent/document-element/routeMixin.js'
 import appMixin from '/@webcomponent/document-element/appMixin.js'
 import localization from '/@webcomponent/document-element/localizationMixin.js'
-import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
+import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 // const waitForWebComponentsReady = new Promise(resolve => { window.addEventListener('WebComponentsReady', resolve) })
-import '/@webcomponent/component.package/@polymer/iron-pages/iron-pages.js'
-import '/@webcomponent/component.package/@polymer/app-route/app-location.js'
-import '/@webcomponent/component.package/@polymer/app-route/app-route.js'
+import '/@webcomponent/@package/@polymer/iron-pages/iron-pages.js'
+import '/@webcomponent/@package/@polymer/app-route/app-location.js'
+import '/@webcomponent/@package/@polymer/app-route/app-route.js'
 import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
 import '/@webcomponent/webapp-layout-toolbar/entrypoint.js$renderJSImportWebcomponent'
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'

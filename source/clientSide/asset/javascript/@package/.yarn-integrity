@@ -1,0 +1,22 @@
+{
+  "nodeVersion": "v9.3.0",
+  "modulesFolders": [
+    "../../clientSide/asset/javascript/package"
+  ],
+  "flags": [
+    "flat"
+  ],
+  "linkedModules": [],
+  "topLevelPatterns": [
+    "@babel/standalone@^7.0.0-beta.44",
+    "idb@^2.0.4",
+    "systemjs@^0.21.0"
+  ],
+  "lockfileEntries": {
+    "@babel/standalone@^7.0.0-beta.44": "https://registry.yarnpkg.com/@babel/standalone/-/standalone-7.0.0-beta.44.tgz#5fed09f5263c11f9f79cba3883a6c72af47e5788",
+    "idb@^2.0.4": "https://registry.yarnpkg.com/idb/-/idb-2.1.1.tgz#f21374e058fddf9f3771b7e7d32f981c55fcf1d3",
+    "systemjs@^0.21.0": "https://registry.yarnpkg.com/systemjs/-/systemjs-0.21.3.tgz#76467a34a9a12ead3b11028a27345f7649e46204"
+  },
+  "files": [],
+  "artifacts": {}
+}
