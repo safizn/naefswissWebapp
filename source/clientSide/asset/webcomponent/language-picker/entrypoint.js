@@ -3,6 +3,7 @@ import appMixin from '/@webcomponent/document-element/appMixin.js'
 import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
 import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
+import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
 
 import '/@webcomponent/component.package/@polymer/iron-icons/iron-icons.js'
 import '/@webcomponent/component.package/@polymer/paper-button/paper-button.js'
@@ -21,8 +22,8 @@ import '/@webcomponent/component.package/@polymer/paper-menu-button/paper-menu-b
         superclass: AppMixin
     }
 
+    @defineCustomElement('language-picker')
     class Element extends component.superclass {
-        static get is() { return 'language-picker'; }
         static get template() { return html`${component.css}${component.html}` }
         static get properties() {
             return { /* properties metadata */ 
@@ -82,7 +83,5 @@ import '/@webcomponent/component.package/@polymer/paper-menu-button/paper-menu-b
             code: 'HE'
         }
     ]
-
-    customElements.define(Element.is, Element);
 
 })() // async

@@ -12,6 +12,7 @@ import '/@webcomponent/component.package/@polymer/app-route/app-location.js'
 import '/@webcomponent/component.package/@polymer/app-route/app-route.js'
 import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
 import '/@webcomponent/webapp-layout-toolbar/entrypoint.js$renderJSImportWebcomponent'
+import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
 
 ;(async () => {
 
@@ -24,10 +25,9 @@ import '/@webcomponent/webapp-layout-toolbar/entrypoint.js$renderJSImportWebcomp
         html: html`{%= argument.html %}`,
         superclass: RouteMixin
     }    
-
+    
+    @defineCustomElement('document-element')
     class Element extends component.superclass {
-
-        static get elementName() { return 'document-element'; }
         
         static get template() { return html`${component.css}${RouteMixin.template}${component.html}` }
         
@@ -93,7 +93,5 @@ import '/@webcomponent/webapp-layout-toolbar/entrypoint.js$renderJSImportWebcomp
         }
 
     }
-
-    window.customElements.define(Element.elementName, Element) // Register custom element definition using standard platform API
 
 })() // async 

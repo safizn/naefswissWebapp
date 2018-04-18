@@ -3,6 +3,7 @@ import appMixin from '/@webcomponent/document-element/appMixin.js'
 import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
 import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
+import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
 /** WebComponent **/
 import '/@webcomponent/component.package/@polymer/iron-flex-layout/iron-flex-layout.js'
 import '/@webcomponent/component.package/@polymer/paper-icon-button/paper-icon-button.js'
@@ -21,12 +22,11 @@ import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
         superclass: AppMixin
     }    
 
+    @defineCustomElement('view-about')
     class Element extends component.superclass {
-        static get is() { return 'view-about'; }
         static get template() { return html`${component.css}${component.html}` }
         static get properties() {
         return {}
         }
     }
-    customElements.define(Element.is, Element);
 })() // async

@@ -5,6 +5,8 @@ import localization from '/@webcomponent/document-element/localizationMixin.js'
 import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
 import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
+import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
+
 // const waitForWebComponentsReady = new Promise(resolve => { window.addEventListener('WebComponentsReady', resolve) })
 /** WebComponent **/
 import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
@@ -22,8 +24,8 @@ import '/@webcomponent/component.package/@polymer/iron-icons/iron-icons.js'
         superclass: AppMixin
     }    
 
+    @defineCustomElement('view-frontpage')
     class Element extends component.superclass {
-        static get is() { return 'view-frontpage'; }
         static get template() { return html`${component.css}${component.html}` }
         static get properties() { return {} }
 
@@ -33,6 +35,5 @@ import '/@webcomponent/component.package/@polymer/iron-icons/iron-icons.js'
         }
         
     }
-    customElements.define(Element.is, Element);
 
 })() // async

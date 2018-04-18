@@ -3,6 +3,7 @@ import polymerSupportPromiseBinding from '/@webcomponent/document-element/polyme
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import localization from '/@webcomponent/document-element/localizationMixin.js'
 import appMixin from '/@webcomponent/document-element/appMixin.js'
+import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
 
 import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
 
@@ -16,8 +17,8 @@ import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
       superclass: AppMixin
   }    
 
+  @defineCustomElement('view-state404')
   class Element extends component.superclass {
-    static get is() { return 'view-state404'; }
     static get template() { return html`${component.css}${component.html}` }
     static get properties() {
       return {
@@ -29,5 +30,4 @@ import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
       }
     }
   }
-  customElements.define(Element.is, Element)
 })() // async

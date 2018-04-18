@@ -4,6 +4,7 @@ import appMixin from '/@webcomponent/document-element/appMixin.js'
 import { PolymerElement , html } from '/@webcomponent/component.package/@polymer/polymer/polymer-element.js'
 import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
+import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
 
 ;(async () => {
 
@@ -15,8 +16,8 @@ polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new fe
         superclass: AppMixin
     }    
 
+    @defineCustomElement('timeline-grid')
     class Element extends component.superclass {
-        static get is() { return 'timeline-grid'; }
         static get template() { return html`${component.css}${component.html}` }
         static get properties() {
             return { /* properties metadata */ 
@@ -70,6 +71,5 @@ polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new fe
         }
 
     }
-    customElements.define(Element.is, Element);
 
 })() // async

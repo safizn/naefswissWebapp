@@ -4,6 +4,7 @@ import { PolymerElement , html } from '/@webcomponent/component.package/@polymer
 import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import { importHref } from '/@webcomponent/component.package/@polymer/polymer/lib/utils/import-href.js'
+import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
 /** WebComponent **/
 import '/@webcomponent/component.package/@polymer/app-layout/app-drawer/app-drawer.js'
 import '/@webcomponent/component.package/@polymer/app-layout/app-drawer-layout/app-drawer-layout.js'
@@ -34,9 +35,9 @@ import '/@webcomponent/language-picker/entrypoint.js$renderJSImportWebcomponent'
         superclass: AppMixin
     }    
 
+    @defineCustomElement('webapp-layout-toolbar')
     class Element extends component.superclass {
         
-        static get is() { return 'webapp-layout-toolbar'; }
         static get template() { return html`${component.css}${component.html}` }
         static get properties() {
             return { /* properties metadata */ 
@@ -111,7 +112,5 @@ import '/@webcomponent/language-picker/entrypoint.js$renderJSImportWebcomponent'
         }
 
     }
-    // Register custom element definition using standard platform API
-    customElements.define(Element.is, Element)
 
 })() // async
