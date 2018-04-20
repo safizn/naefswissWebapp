@@ -11,10 +11,15 @@ module.exports = {
     DestinationPath: `${applicationPath}/distribution`,
     dockerImageName: 'naefswiss-webapp',
     domain: 'naifaboswiss.com',
+    hostStorageFolderName: 'naifaboswiss', // remote production folder
+    stackName: 'naifaboswisswebapp',
     entrypoint: {
         build: {
             file: `${appDeploymentLifecyclePath}/entrypoint/build/build.js`,
             argument: {}
+        },
+        production: {
+            file: `${appDeploymentLifecyclePath}/entrypoint/production/deployProduction.js`,
         },
         run: {
             file: `${appDeploymentLifecyclePath}/entrypoint/run/run.js`,
