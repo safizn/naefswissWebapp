@@ -50,3 +50,9 @@ paper-tab[link] a {
     /*font-weight: bold;*/
     text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.42);   
 }
+paper-progress { 
+    width: 100%;
+}
+iron-pages > *:not(:defined), iron-pages > *:not(:defined) * {
+    visibility: hidden;
+}

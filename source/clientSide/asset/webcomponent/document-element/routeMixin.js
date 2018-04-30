@@ -21,26 +21,112 @@ export default Superclass => class Route extends Superclass {
                 notify: true,
                 reflectToAttribute: true,
             },
+            route: {
+                type: Object
+            },
             subroute: {
                 type: Object,
                 notify: true,
                 reflectToAttribute: true,
             },
+            routeConfig: {
+                type: Object,
+                notify: true,
+                // reflectToAttribute: true,
+            }
         }
     }
 
     static get observers() { return [ /* observer descriptors */
-        '_routePageChanged(routeData.pathTopLevel, subroute.path)',
+        '_routePageChanged(route.path)',
         '_routeChanged(route)',
     ] }
+
+    constructor() {
+        super()
+        this.routeConfig = [
+            { // empty path
+                path: '',
+                documentKey: 'frontpage',
+            },
+            {
+                path: 'step',
+                documentKey: 'step',
+            },
+            {
+                path: 'university',
+                documentKey: 'universityPage',
+            },
+            {
+                path: 'contact',
+                documentKey: 'contact',
+            },
+            {
+                path: 'view1',
+                documentKey: 'homePage-view1',
+            },
+            {
+                path: 'view2',
+                documentKey: 'homePage-view2',
+            },
+            {
+                path: 'view3',
+                documentKey: 'homePage-view3',
+            },
+            {
+                path: 'view404',
+                documentKey: 'view-state404',
+            },
+            {
+                path: 'studyfield',
+                documentKey: 'studyfieldPage', // fallback in case children don't meet codition
+                children: [
+                    {
+                        path: 'medicine',
+                        documentKey: 'medicine'
+                    },
+                ]
+            },
+            {
+                path: 'country',
+                documentKey: 'countryPage',
+                children: [
+                    {
+                        path: 'bucharest',
+                        documentKey: 'bucharest'
+                    }
+                ]
+            },
+            {
+                path: 'registration',
+                documentKey: 'registration-agency',
+                children: [
+                    {
+                        path: 'single',
+                        documentKey: 'registration-single'
+                    },
+                    {
+                        path: 'agency',
+                        documentKey: 'registration-agency'
+                    },
+                ]
+            },
+        ]
+
+    }
+
+    ready() { // invoked the first time added to the dom.
+        super.ready()
+    }
 
     _routeChanged(route) {
         // console.log(route)
     }
     
-    _routePageChanged(pathTopLevel, pathLevel2) { // Choose page/view using URL path.
-        if(typeof pathTopLevel == 'undefined') return; // skip initial `pathTopLevel` value of undefined.
-        let documentKey = this.checkConditionTree(pathTopLevel, pathLevel2.replace(/\//g, ""))
+    _routePageChanged(routePath) { // Choose page/view using URL path.
+        let pathLevel = routePath.split( '/' )
+        if(typeof pathLevel[0] == 'undefined') return; // skip initial `pathTopLevel` value of undefined.
+        let documentKey = this.checkConditionTree(pathLevel)
         // Document & Template Tree procesing.
         let document = this.app.document.filter(unit => {
             if(unit.key == documentKey) return true
@@ -53,73 +139,37 @@ export default Superclass => class Route extends Superclass {
         
     }
     
-    checkConditionTree(pathTopLevel, pathLevel2) {
-        let documentKey = ''
-    
-        switch (pathTopLevel) { // Choose appropriate view/page to view
-            case '': // empty path
-                documentKey = 'frontpage'
-            break;
-            case 'step': // empty path
-                documentKey = 'step'
-            break;
-            case 'university':
-                documentKey = 'universityPage'
-            break;
-            case 'contact':
-                documentKey = 'about'
-            break;
-            case 'studyfield':
-                switch (pathLevel2) {
-                    case 'medicine':
-                        documentKey = 'medicine'                            
-                    break;
-                    default:
-                        documentKey = 'studyfieldPage'
-                    break;                                                           
-                }
-            break;
-            case 'country':
-                switch (pathLevel2) {
-                    case 'bucharest':
-                        documentKey = 'bucharest'                            
-                    break;
-                    default:
-                        documentKey = 'countryPage'
-                    break;                                                           
-                }
-            break;
-            case 'registration':
-                switch (pathLevel2) {
-                    case 'single':
-                        documentKey = 'registration-single'                            
-                    break;
-                    case 'agency':
-                        documentKey = 'registration-agency'
-                    break;                                                           
-                    default:
-                        documentKey = 'registration-agency'
-                    break;                                                           
-                }
-            break;
-            case 'view1':
-                documentKey = 'homePage-view1'
-            break;
-            case 'view2':
-                documentKey = 'homePage-view2'
-            break;
-            case 'view3':
-                documentKey = 'homePage-view3'
-            break;
-            default:
-            case 'view404':
-                documentKey = 'view-state404'
-            break;
-            // case undefined: // skop initial `pathTopLevel` value of undefined.
-            //   break;
+    checkConditionTree(pathLevel) { // 
+        pathLevel = pathLevel.filter(item => item) // remove empty items.
+        let documentKey = '' // default value
+
+        function iterateOverRouteConfig({ routeConfig, pathLevel }) {
+            let currentPathLevel = pathLevel.shift() // remove and get first item
+            let chosenRouteConfig;
+            chosenRouteConfig = routeConfig.filter(route => {
+                if(!currentPathLevel) { // in case undefined - compare it as boolean.
+                    return Boolean(route.path) == Boolean(currentPathLevel)
+                } else {
+                    return route.path == currentPathLevel
+                } 
+            })[0]
+            
+            let chosenChildRouteConfig;
+            if(
+                chosenRouteConfig.children && chosenRouteConfig.children.length > 0 &&
+                pathLevel.length > 0 // there is a subpath to compare to.
+            ) {
+                chosenChildRouteConfig = iterateOverRouteConfig({ routeConfig: chosenRouteConfig.children, pathLevel  })
+            }
+            return chosenChildRouteConfig || chosenRouteConfig
         }
+    
+        let chosenRouteConfig = iterateOverRouteConfig({ routeConfig: this.routeConfig, pathLevel  })
+        documentKey = chosenRouteConfig.documentKey
+
         return documentKey
     }  
+
 
 }
 

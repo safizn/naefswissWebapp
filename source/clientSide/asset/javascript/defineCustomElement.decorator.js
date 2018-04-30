@@ -3,4 +3,5 @@ export const defineCustomElement = (tagname) => (target) => { // target = an Ele
     Object.defineProperty(target, 'is', { get() { return tagname } })
     // Register custom element definition using standard platform API
     customElements.define(target.is, target)
+    // customElements.whenDefined(target.is).then(() => { console.log(`Element ${target.is} is defined`) })
 }

@@ -72,11 +72,11 @@ let data = [
         }
     },
     {
-        key: 'about',
+        key: 'contact',
         layout: 'webapp-layout-toolbar',
         page: {
-            selectorName: 'about',
-            file: 'view-about/entrypoint.js$renderJSImportWebcomponent' 
+            selectorName: 'view-contact',
+            file: 'view-contact/entrypoint.js$renderJSImportWebcomponent' 
         }
     },
 

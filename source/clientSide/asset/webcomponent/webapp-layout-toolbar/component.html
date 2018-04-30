@@ -29,11 +29,12 @@
                 </paper-tabs>
                 <span><language-picker language="{{mode.language}}"></language-picker></span>
             </app-toolbar>
+            <paper-progress id="loader" indeterminate></paper-progress>
         </app-header>
 
         <!-- Main content --> 
         <!--<paper-spinner id="spinner" active style="padding: 8px;border-radius: 22px; background: white;"></paper-spinner>        -->
-        <iron-pages selected="[[page.selectorName]]" attr-for-selected="name" fallback-selection="viewState404" role="main">
+        <iron-pages id="pageSelector" attr-for-selected="name" role="main">
             <view-frontpage name="frontPage" app="[[app]]" mode="{{mode}}"></view-frontpage>
             <view-about name="about"></view-about>
             <view-article name="studyfieldSingleArticle"></view-article>
