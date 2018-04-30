@@ -2,7 +2,7 @@
 <paper-progress id="loader" indeterminate></paper-progress>
 <iron-pages id="pageSelector" selected="{{layout}}" attr-for-selected="name" role="main">
     <view-state404 name="viewState404"></view-state404>
-    <webapp-layout-toolbar name="webapp-layout-toolbar" page="{{page}}" route="{{subroute}}" app="[[app]]" mode="{{mode}}" text="{{text}}">
+    <webapp-layout-toolbar name="webapp-layout-toolbar" route="{{route}}" app="[[app]]" mode="{{mode}}" text="{{text}}">
         <a class="drawerlink" slot="drawertab" name="frontPage" href$="{{app.setting.location.routeBasePath}}/">[[localize('uiContent', 'title.short')]]</a>
         <a class="drawerlink" slot="drawertab" name="about" href$="{{app.setting.location.routeBasePath}}/contact">[[localize('uiContent', 'title.long')]]</a>
         <paper-tab slot="toolbartab" link name="studyfieldPage"> <a class="link" href$="{{app.setting.location.routeBasePath}}/studyfield" tabindex="-1">[[localize('uiContent', 'title.short')]]</a> </paper-tab>

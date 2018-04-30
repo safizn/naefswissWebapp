@@ -2,20 +2,8 @@ const SystemJS = window.SystemJS
 import { PolymerElement, html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 
 export default Superclass => class Route extends Superclass {
-    static get template() {
-        return html`
-            <!-- Bind to URL - Proxy for window.location for Managing top-level routes -->
-            <app-location route="{{route}}"></app-location>
-            <app-route route="{{route}}" pattern="/:pathTopLevel" data="{{routeData}}" tail="{{subroute}}"></app-route>
-        `
-    }
     static get properties() {
         return {
-            layout: {
-                type: String,
-                notify: true,
-                reflectToAttribute: true,
-            },
             page: {
                 type: Object,
                 notify: true,
@@ -38,92 +26,24 @@ export default Superclass => class Route extends Superclass {
     }
 
     static get observers() { return [ /* observer descriptors */
-        '_routePageChanged(route.path)',
-        '_routeChanged(route)',
+        '_routePageChanged(route.path, routeConfig)',
+        '_routeChanged(route, routeConfig)',
     ] }
 
     constructor() {
         super()
-        this.routeConfig = [
-            { // empty path
-                path: '',
-                documentKey: 'frontpage',
-            },
-            {
-                path: 'step',
-                documentKey: 'step',
-            },
-            {
-                path: 'university',
-                documentKey: 'universityPage',
-            },
-            {
-                path: 'contact',
-                documentKey: 'contact',
-            },
-            {
-                path: 'view1',
-                documentKey: 'homePage-view1',
-            },
-            {
-                path: 'view2',
-                documentKey: 'homePage-view2',
-            },
-            {
-                path: 'view3',
-                documentKey: 'homePage-view3',
-            },
-            {
-                path: 'view404',
-                documentKey: 'view-state404',
-            },
-            {
-                path: 'studyfield',
-                documentKey: 'studyfieldPage', // fallback in case children don't meet codition
-                children: [
-                    {
-                        path: 'medicine',
-                        documentKey: 'medicine'
-                    },
-                ]
-            },
-            {
-                path: 'country',
-                documentKey: 'countryPage',
-                children: [
-                    {
-                        path: 'bucharest',
-                        documentKey: 'bucharest'
-                    }
-                ]
-            },
-            {
-                path: 'registration',
-                documentKey: 'registration-agency',
-                children: [
-                    {
-                        path: 'single',
-                        documentKey: 'registration-single'
-                    },
-                    {
-                        path: 'agency',
-                        documentKey: 'registration-agency'
-                    },
-                ]
-            },
-        ]
-
     }
 
     ready() { // invoked the first time added to the dom.
         super.ready()
     }
 
-    _routeChanged(route) {
+    _routeChanged(route, routeConfig) {
         // console.log(route)
     }
     
-    _routePageChanged(routePath) { // Choose page/view using URL path.
+    _routePageChanged(routePath, routeConfig) { // Choose page/view using URL path.
+        if(!routeConfig) return; // skip initial change of one of the properties - TODO: Should be a better way to wait for all properties to be ready.
         let pathLevel = routePath.split( '/' )
         if(typeof pathLevel[0] == 'undefined') return; // skip initial `pathTopLevel` value of undefined.
         let documentKey = this.checkConditionTree(pathLevel)
@@ -134,12 +54,12 @@ export default Superclass => class Route extends Superclass {
         })[0]
         
         // document.page.filename = document.page.file.substr(0, document.page.file.indexOf('.'));
-        this.layout = document.layout
+        // this.layout = document.layout
         this.page = document.page
         
     }
     
-    checkConditionTree(pathLevel) { // 
+    checkConditionTree(pathLevel) {
         pathLevel = pathLevel.filter(item => item) // remove empty items.
         let documentKey = '' // default value
 

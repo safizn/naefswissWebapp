@@ -5,6 +5,7 @@ import polymerSupportPromiseBinding from '/@webcomponent/document-element/polyme
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import localization from '/@webcomponent/document-element/localizationMixin.js'
 import appMixin from '/@webcomponent/document-element/appMixin.js'
+import routeMixin from '/@webcomponent/document-element/routeMixin.js'
 import templateMixin from '/@webcomponent/document-element/templateMixin.js'
 /** WebComponent **/
 import '/@webcomponent/@package/@polymer/app-layout/app-drawer/app-drawer.js'
@@ -36,7 +37,7 @@ const component = {
 ;(async () => {
 
     const localizationMixin = await localization()
-    const AppMixin = templateMixin(localizationMixin(appMixin(PolymerElement))) // Extend Polymer.Element base class
+    const AppMixin = routeMixin(templateMixin(localizationMixin(appMixin(PolymerElement)))) // Extend Polymer.Element base class
     component.superclass = AppMixin
 
     @defineCustomElement(component.elementName)
@@ -67,19 +68,88 @@ const component = {
             super();
         }
         
-        connectedCallback() {
-            super.connectedCallback();
-        }
-        
         ready() {
             super.ready();
+            this.routeConfig = [
+                { // empty path
+                    path: '',
+                    documentKey: 'frontpage',
+                },
+                {
+                    path: 'step',
+                    documentKey: 'step',
+                },
+                {
+                    path: 'university',
+                    documentKey: 'universityPage',
+                },
+                {
+                    path: 'contact',
+                    documentKey: 'contact',
+                },
+                {
+                    path: 'view1',
+                    documentKey: 'homePage-view1',
+                },
+                {
+                    path: 'view2',
+                    documentKey: 'homePage-view2',
+                },
+                {
+                    path: 'view3',
+                    documentKey: 'homePage-view3',
+                },
+                {
+                    path: 'view404',
+                    documentKey: 'view-state404',
+                },
+                {
+                    path: 'studyfield',
+                    documentKey: 'studyfieldPage', // fallback in case children don't meet codition
+                    children: [
+                        {
+                            path: 'medicine',
+                            documentKey: 'medicine'
+                        },
+                    ]
+                },
+                {
+                    path: 'country',
+                    documentKey: 'countryPage',
+                    children: [
+                        {
+                            path: 'bucharest',
+                            documentKey: 'bucharest'
+                        }
+                    ]
+                },
+                {
+                    path: 'registration',
+                    documentKey: 'registration-agency',
+                    children: [
+                        {
+                            path: 'single',
+                            documentKey: 'registration-single'
+                        },
+                        {
+                            path: 'agency',
+                            documentKey: 'registration-agency'
+                        },
+                    ]
+                },
+            ]
             // this.toggleDir(this.mode.language)
             if('ontouchstart' in window) this.$.drawer.swipeOpen = true // allow open swipe on drawer for touchscreen devices.
             let drawer = this.$.drawer
             drawer.addEventListener('iron-select', (event) => { 
                 if(!drawer.persistent) drawer.close()
             })
+    
 
+        }
+
+        connectedCallback() {
+            super.connectedCallback();
         }
         
         rerenderDiretion(direction) {

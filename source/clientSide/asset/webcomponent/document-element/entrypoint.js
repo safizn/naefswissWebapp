@@ -1,7 +1,7 @@
 const App = window.App || {}; 
 const SystemJS = window.SystemJS
-import routeMixin from '/@webcomponent/document-element/routeMixin.js'
 import appMixin from '/@webcomponent/document-element/appMixin.js'
+import routeMixin from '/@webcomponent/document-element/routeMixin.js'
 import localization from '/@webcomponent/document-element/localizationMixin.js'
 import templateMixin from '/@webcomponent/document-element/templateMixin.js'
 import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
@@ -20,6 +20,11 @@ const component = {
     elementName: 'document-element',
     css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
     html: html`{%= argument.html %}`,
+    routeTemplate: html`
+        <!-- Bind to URL - Proxy for window.location for Managing top-level routes -->
+        <app-location route="{{route}}"></app-location>
+        <app-route route="{{route}}" pattern="/:pathTopLevel" data="{{routeData}}" tail="{{subroute}}"></app-route>
+    `,
 }    
 
 ;(async () => {
@@ -33,7 +38,7 @@ const component = {
     @defineCustomElement(component.elementName)
     class Element extends component.superclass {
         
-        static get template() { return html`${component.css}${RouteMixin.template}${component.html}` }
+        static get template() { return html`${component.css}${component.routeTemplate}${component.html}` }
         
         static get properties() {
             return { /* properties metadata */
