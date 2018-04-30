@@ -94,13 +94,21 @@ const component = {
             this.templateConfig = {
                 type: 'configurationObject',
                 value: {
-                    selectionKey: 'webapp-layout-toolbar',
+                    insertionPoint: {
+                        selectorId: 'pageSelector'
+                    },
+                    // selectionKey: 'webapp-layout-toolbar', // optional - if not present the element name is used.
                     resource: {
                         path: 'webapp-layout-toolbar/entrypoint.js$renderJSImportWebcomponent'
-                    }
+                    },
+
                 }
             }
-            this.loadTemplate({ resourceRelativePath: this.templateConfig.value.resource.path, selectionKey: this.templateConfig.value.selectionKey })
+            this.loadTemplate({ 
+                resourceRelativePath: this.templateConfig.value.resource.path,
+                selectionKey: this.templateConfig.value.selectionKey,
+                selectorId: this.templateConfig.value.insertionPoint.selectorId
+            })
             
         }
         async connectedCallback() {

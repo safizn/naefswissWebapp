@@ -20,13 +20,15 @@ const baseMixin = Superclass => class Template extends Superclass {
 
     ready() { // invoked the first time added to the dom.
         super.ready()
-        console.log(this.app)
     }
 
-    loadTemplate({ resourceRelativePath, selectionKey } = {}) {  // Load page import on demand. Show 404 page if fails
+    /***
+     * Load a single template into a specific selector element entrypoint.
+     */
+    loadTemplate({ resourceRelativePath, selectionKey, selectorId = 'pageSelector' } = {}) {  // Load page import on demand. Show 404 page if fails
         // let callbackOnload = this.hideSpinner;
         let resourceResolvedObject = new URL(`${resourceRelativePath}`,`${this.app.setting.location.cdnBasePath}/@webcomponent/`)
-        let callbackError = this._showPage404.bind(this);
+        let callbackError = this._showPage404.bind(this, { selectorId });
         let extension = resourceResolvedObject.href.split('.').pop();
         this.activateLoading()
         if(extension == 'html') {
@@ -34,22 +36,27 @@ const baseMixin = Superclass => class Template extends Superclass {
         } else {
             import(resourceResolvedObject).catch(callbackError)
                 .then(async ({ default: module }) => {
-                    
-                    let selectorElement = this.$.pageSelector
+                    let selectorElement = this.$[selectorId]
                     if(module) {
                         let elementName = await module()
-                        if(!selectorElement.querySelector(elementName)) {
-                            let elementTag = document.createElement(elementName)
-                            selectionKey = elementName || selectionKey
-                            elementTag.setAttribute('name', selectionKey)
-                            selectorElement.appendChild(elementTag)
-                        }
+                        selectionKey = selectionKey || elementName
+                        this.createSelectionElement({ selectorElement, elementName, selectionKey })
                     }
-                    
-                    this.deactivateLoading()
                     selectorElement.select(selectionKey)
+                    this.deactivateLoading()
 
                 })
+        }
+    }
+
+    /**
+     * Add element tag to selector element with speciifc properties to work.
+     */
+    createSelectionElement({ selectorElement, elementName, selectionKey }) {
+        if(!selectorElement.querySelector(elementName)) {
+            let elementTag = document.createElement(elementName)
+            elementTag.setAttribute('name', selectionKey)
+            selectorElement.appendChild(elementTag)
         }
     }
 
@@ -60,8 +67,8 @@ const baseMixin = Superclass => class Template extends Superclass {
         this.$.loader.setAttribute("hidden", true)
     }
 
-    _showPage404() {
-        this.$.pageSelector.selected = 'viewState404';
+    _showPage404({ selectorId }) {
+        this.$[selectorId].selected = 'viewState404';
         this.deactivateLoading()
         throw('Failed to load !')
     }

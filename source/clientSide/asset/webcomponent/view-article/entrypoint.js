@@ -16,18 +16,20 @@ import '/@webcomponent/@package/@polymer/app-layout/app-header/app-header.js'
 import '/@webcomponent/@package/@polymer/app-layout/app-header-layout/app-header-layout.js'
 import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
 
+const component = {
+    elementName: 'view-article',
+    css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
+    html: html`{%= argument.html %}`,
+}    
+
 ;(async () => {
 
     const localizationMixin = await localization()
     const AppMixin = localizationMixin(appMixin(PolymerElement)) // Extend Polymer.Element base class // previously Polymer.ElementMixin(HTMLElement)
 
-    const component = {
-        css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
-        html: html`{%= argument.html %}`,
-        superclass: AppMixin
-    }    
+    component.superclass = AppMixin
 
-    @defineCustomElement('view-article')
+    @defineCustomElement(component.elementName)
     class Element extends component.superclass {
         static get template() { return html`${component.css}${component.html}` }
         static get properties() {
@@ -35,3 +37,11 @@ import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
         }
     }
 })() // async 
+
+export default async () => {
+    if(!customElements.get(component.elementName)) { // if element not defined wait till custom element is registered
+        await customElements.whenDefined(component.elementName)
+    }
+
+    return component.elementName
+}

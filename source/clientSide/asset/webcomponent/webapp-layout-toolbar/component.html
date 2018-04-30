@@ -35,17 +35,14 @@
         <!-- Main content --> 
         <!--<paper-spinner id="spinner" active style="padding: 8px;border-radius: 22px; background: white;"></paper-spinner>        -->
         <iron-pages id="pageSelector" attr-for-selected="name" role="main">
+            <view-state404 name="view-state404"></view-state404>
             <view-frontpage name="frontPage" app="[[app]]" mode="{{mode}}"></view-frontpage>
-            <view-about name="about"></view-about>
-            <view-article name="studyfieldSingleArticle"></view-article>
             <view-underconstruction name="universityPage" fullbleed  app="[[app]]" mode="{{mode}}"></view-underconstruction>
             <view-underconstruction name="studyfieldPage" fullbleed  app="[[app]]" mode="{{mode}}"></view-underconstruction>
             <div name="universityPage" fullbleed></div>
             <div name="studyfieldPage" fullbleed></div>
-            <registration-single name="registration-single"></registration-single>
             <registration-agency name="registration-agency" app="[[app]]" style="max-width: 800px; margin: 30px auto;"></registration-agency>
             <view-list-item name="countryPage"  app="[[app]]"></view-list-item>
-            <view-state404 name="viewState404"></view-state404>
             <slot name="page"></slot>
         </iron-pages>
 

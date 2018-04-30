@@ -13,18 +13,19 @@ import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
 import '/@webcomponent/@package/@polymer/iron-icons/communication-icons.js'
 import '/@webcomponent/@package/@polymer/iron-icons/iron-icons.js'
 
+const component = {
+    elementName: 'view-frontpage',
+    css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
+    html: html`{%= argument.html %}`,
+}    
+
 ;(async () => {
 
     const localizationMixin = await localization()
     const AppMixin = localizationMixin(appMixin(PolymerElement)) // Extend Polymer.Element base class
+    component.superclass = AppMixin
 
-    const component = {
-        css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
-        html: html`{%= argument.html %}`,
-        superclass: AppMixin
-    }    
-
-    @defineCustomElement('view-frontpage')
+    @defineCustomElement(component.elementName)
     class Element extends component.superclass {
         static get template() { return html`${component.css}${component.html}` }
         static get properties() { return {} }
@@ -37,3 +38,11 @@ import '/@webcomponent/@package/@polymer/iron-icons/iron-icons.js'
     }
 
 })() // async
+
+export default async () => {
+    if(!customElements.get(component.elementName)) { // if element not defined wait till custom element is registered
+        await customElements.whenDefined(component.elementName)
+    }
+
+    return component.elementName
+}

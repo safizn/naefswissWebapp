@@ -12,17 +12,19 @@ import '/@webcomponent/@package/@polymer/paper-listbox/paper-listbox.js'
 import '/@webcomponent/@package/@polymer/paper-item/paper-item.js'
 import '/@webcomponent/@package/@polymer/paper-menu-button/paper-menu-button.js'
 
+const component = {
+    elementName: 'language-picker',
+    css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
+    html: html`{%= argument.html %}`,
+}
+
 ;(async () => {
 
     const localizationMixin = await localization()
     const AppMixin = localizationMixin(appMixin(PolymerElement)) // Extend Polymer.Element base class
-    const component = {
-        css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
-        html: html`{%= argument.html %}`,
-        superclass: AppMixin
-    }
+    component.superclass = AppMixin
 
-    @defineCustomElement('language-picker')
+    @defineCustomElement(component.elementName)
     class Element extends component.superclass {
         static get template() { return html`${component.css}${component.html}` }
         static get properties() {
@@ -85,3 +87,11 @@ import '/@webcomponent/@package/@polymer/paper-menu-button/paper-menu-button.js'
     ]
 
 })() // async
+
+export default async () => {
+    if(!customElements.get(component.elementName)) { // if element not defined wait till custom element is registered
+        await customElements.whenDefined(component.elementName)
+    }
+
+    return component.elementName
+}

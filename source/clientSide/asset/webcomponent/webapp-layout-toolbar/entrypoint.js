@@ -90,7 +90,11 @@ const component = {
 
         _pageChanged(page, oldView) { // Load page import on demand. Show 404 page if fails
             if (page.selectorName != null) {
-                this.loadTemplate({ resourceRelativePath: page.file, selectionKey: page.selectorName })
+                this.loadTemplate({
+                    resourceRelativePath: page.file,
+                    selectionKey: page.selectorName,
+                    selectorId: 'pageSelector'
+                })
                 console.info(`📄 Page changed to: ${page.selectorName}`)
             }
         }
