@@ -4,9 +4,9 @@
     <app-drawer id="drawer" slot="drawer" align="{{direction}}">
         <app-toolbar>
             <a style="margin: auto;" href$="{{app.setting.location.routeBasePath}}"><div class="image-cropper"></div></a>
-            <span style="text-align: center;margin-top: 9px;"></span>
+            <span id="title">[[localize('uiContent', 'title.short')]]</span>
         </app-toolbar>
-        <iron-selector selected="[[page.selectorName]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <iron-selector id="drawerSelector" attr-for-selected="name" class="drawer-list" role="navigation">
             <slot name="drawertab"></slot>
         </iron-selector>
     </app-drawer>
@@ -24,8 +24,8 @@
                     <span main-title></span>
                 </a>
                 </div>
-                <paper-tabs id="headertoolbar" selected="[[page.selectorName]]" attr-for-selected="name" scrollable autoselect autoselect-delay="400">
-                <slot name="toolbartab"></slot>
+                <paper-tabs id="headertoolbar" attr-for-selected="name" scrollable autoselect autoselect-delay="400">
+                    <slot name="toolbartab"></slot>
                 </paper-tabs>
                 <span><language-picker language="{{mode.language}}"></language-picker></span>
             </app-toolbar>
@@ -35,14 +35,9 @@
         <!-- Main content --> 
         <!--<paper-spinner id="spinner" active style="padding: 8px;border-radius: 22px; background: white;"></paper-spinner>        -->
         <iron-pages id="pageSelector" attr-for-selected="name" role="main">
-            <view-state404 name="view-state404"></view-state404>
-            <view-frontpage name="frontPage" app="[[app]]" mode="{{mode}}"></view-frontpage>
-            <view-underconstruction name="universityPage" fullbleed  app="[[app]]" mode="{{mode}}"></view-underconstruction>
-            <view-underconstruction name="studyfieldPage" fullbleed  app="[[app]]" mode="{{mode}}"></view-underconstruction>
-            <div name="universityPage" fullbleed></div>
-            <div name="studyfieldPage" fullbleed></div>
-            <registration-agency name="registration-agency" app="[[app]]" style="max-width: 800px; margin: 30px auto;"></registration-agency>
-            <view-list-item name="countryPage"  app="[[app]]"></view-list-item>
+            <state404-template name="state404-template" app="[[app]]" mode="{{mode}}"></state404-template>
+            <about-template name="about-template" app="[[app]]" mode="{{mode}}"></about-template>
+            <undermaintenance-template name="undermaintenance-template" fullbleed  app="[[app]]" mode="{{mode}}"></undermaintenance-template>
             <slot name="page"></slot>
         </iron-pages>
 

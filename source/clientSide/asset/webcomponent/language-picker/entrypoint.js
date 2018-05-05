@@ -1,10 +1,11 @@
-import localization from '/@webcomponent/document-element/localizationMixin.js'
-import appMixin from '/@webcomponent/document-element/appMixin.js'
 import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
-import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
+import polymerSupportPromiseBinding from '/@javascript/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
-
+/** Mixin **/
+import localization from '/@webcomponent/mixin/localizationMixin.js'
+import appMixin from '/@webcomponent/mixin/appMixin.js'
+/** Package WebComponent **/
 import '/@webcomponent/@package/@polymer/iron-icons/iron-icons.js'
 import '/@webcomponent/@package/@polymer/paper-button/paper-button.js'
 import '/@webcomponent/@package/@polymer/iron-icon/iron-icon.js'

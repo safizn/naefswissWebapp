@@ -125,7 +125,7 @@ export class Element extends App.mixin(PolymerElement) {
           break;
           default:
           case 'view404':
-              documentKey = 'view-state404'
+              documentKey = 'state404-template'
           break;
           // case undefined: // skop initial `pathTopLevel` value of undefined.
           //   break;

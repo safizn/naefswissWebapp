@@ -1,41 +1,37 @@
-import appMixin from '/@webcomponent/document-element/appMixin.js'
-import convertParamsIntoURLEncodedQuery from '/@javascript/convertParamsIntoURLEncodedQuery.js'
-import localization from '/@webcomponent/document-element/localizationMixin.js'
 import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
-import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
+import polymerSupportPromiseBinding from '/@javascript/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
-/** WebComponent **/
-import '/@webcomponent/@package/@polymer/iron-icons/communication-icons.js'
-import '/@webcomponent/@package/@polymer/iron-icons/iron-icons.js'
-import '/@webcomponent/@package/@polymer/app-layout/app-drawer/app-drawer.js'
-import '/@webcomponent/timeline-grid/entrypoint.js$renderJSImportWebcomponent'
+/** Mixin **/
+import localization from '/@webcomponent/mixin/localizationMixin.js'
+import appMixin from '/@webcomponent/mixin/appMixin.js'
+/** Custom WebComponent **/
 import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
 
 const component = {
-  elementName: 'view-underconstruction',
+  elementName: 'state404-template',
   css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
   html: html`{%= argument.html %}`,
-}    
+}
 
 ;(async () => {
+
   const localizationMixin = await localization()
-  const AppMixin = localizationMixin(appMixin(PolymerElement))
+  const AppMixin = localizationMixin(appMixin(PolymerElement)) // Extend Polymer.Element base class
   component.superclass = AppMixin
 
   @defineCustomElement(component.elementName)
-  class Element extends AppMixin {
+  class Element extends component.superclass {
     static get template() { return html`${component.css}${component.html}` }
     static get properties() {
       return {
+        baseUrl: {
+          type: String,
+          reflectToAttribute: true,
+          value: `${App.config.PROTOCOL}${App.config.HOST}`
+        },
       }
     }
-
-    connectedCallback() {
-      super.connectedCallback();
-      if(this.app.instance.distribution == "es5") this.$.title.style.display = "none"
-    }
-    
   }
 })() // async
 

@@ -1,20 +1,23 @@
 const App = window.App || {}; 
 const SystemJS = window.SystemJS
-import appMixin from '/@webcomponent/document-element/appMixin.js'
-import routeMixin from '/@webcomponent/document-element/routeMixin.js'
-import localization from '/@webcomponent/document-element/localizationMixin.js'
-import templateMixin from '/@webcomponent/document-element/templateMixin.js'
 import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
-import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
+import polymerSupportPromiseBinding from '/@javascript/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 // const waitForWebComponentsReady = new Promise(resolve => { window.addEventListener('WebComponentsReady', resolve) })
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
+/** Mixin **/
+import appMixin from '/@webcomponent/mixin/appMixin.js'
+import routeMixin from '/@webcomponent/mixin/routeMixin.js'
+import localization from '/@webcomponent/mixin/localizationMixin.js'
+import templateMixin from '/@webcomponent/mixin/templateMixin.js'
+/** Package WebComponent **/
 import '/@webcomponent/@package/@polymer/iron-pages/iron-pages.js'
 import '/@webcomponent/@package/@polymer/app-route/app-location.js'
 import '/@webcomponent/@package/@polymer/app-route/app-route.js'
 import '/@webcomponent/@package/@polymer/paper-progress/paper-progress.js'
+/** Custom WebComponent **/
+import '/@webcomponent/state404-template/entrypoint.js$renderJSImportWebcomponent'
 import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
-import '/@webcomponent/view-state404/entrypoint.js$renderJSImportWebcomponent'
 
 const component = {
     elementName: 'document-element',
@@ -96,25 +99,21 @@ const component = {
             // });
 
             // template configuration: 
-            this.templateConfig = {
-                type: 'configurationObject',
-                value: {
-                    insertionPoint: {
-                        selectorId: 'pageSelector'
-                    },
-                    // selectionKey: 'webapp-layout-toolbar', // optional - if not present the element name is used.
-                    resource: {
-                        path: 'webapp-layout-toolbar/entrypoint.js$renderJSImportWebcomponent'
-                    },
-
+            this.templateConfig = [
+                {
+                    key: '298728957',
+                    type: 'configurationObject',
+                    data: {
+                        insertionPoint: {
+                            selectorId: 'pageSelector'
+                        },
+                        resource: {
+                            path: 'toolbar-layout-template/entrypoint.js$renderJSImportWebcomponent'
+                        },
+                    }
                 }
-            }
-            this.loadTemplate({ 
-                resourceRelativePath: this.templateConfig.value.resource.path,
-                selectionKey: this.templateConfig.value.selectionKey,
-                selectorId: this.templateConfig.value.insertionPoint.selectorId
-            })
-            
+            ]
+            this.templateKey = '298728957'         
         }
         async connectedCallback() {
             super.connectedCallback(); // to allow Polymer to hook into the element's lifecycle.

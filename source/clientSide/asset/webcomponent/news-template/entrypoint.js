@@ -1,20 +1,21 @@
 const App = window.App || {}; 
 const SystemJS = window.SystemJS
-import appMixin from '/@webcomponent/document-element/appMixin.js'
-import localization from '/@webcomponent/document-element/localizationMixin.js'
 import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
-import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
+import polymerSupportPromiseBinding from '/@javascript/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
-
 // const waitForWebComponentsReady = new Promise(resolve => { window.addEventListener('WebComponentsReady', resolve) })
-/** WebComponent **/
-import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
+/** Mixin **/
+import appMixin from '/@webcomponent/mixin/appMixin.js'
+import localization from '/@webcomponent/mixin/localizationMixin.js'
+/** Package WebComponent **/
 import '/@webcomponent/@package/@polymer/iron-icons/communication-icons.js'
 import '/@webcomponent/@package/@polymer/iron-icons/iron-icons.js'
+/** Custom WebComponent **/
+import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
 
 const component = {
-    elementName: 'view-frontpage',
+    elementName: 'news-template',
     css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
     html: html`{%= argument.html %}`,
 }    

@@ -14,8 +14,8 @@ let data = [
     },
     {   key: 't3', type: 'version',
         title: {
-            short: 'نايف أبو صويص',
-            long: 'صفحة نايف أبو صويص الشخصية'
+            short: 'נאיף אבו סויס',
+            long: 'אתר נאיף אבו סויס האישי'
         }
     },
 
@@ -39,6 +39,76 @@ let data = [
             who: 'Businessman'
         }
     },
+
+    {   key: 'navigation', type: 'aggregation', version: ['n1', 'n2', 'n3'] },
+    {
+        key: 'n1', type: 'version',
+        navigation: {
+            aboutMe: 'نبذة عني',
+            contact: 'تواصل معي',
+            news: 'أخبار ومقالات',
+            projects: 'مشاريع',
+            resume: 'السيرة الذاتية',
+        }
+    },
+    {   key: 'n2', type: 'version',
+        navigation: {
+            aboutMe: 'About Me',
+            contact: 'Contact',
+            news: 'News & Articles',
+            projects: 'Projects',
+            resume: 'Resume',
+        }
+    },
+    {   key: 'n3', type: 'version',
+        navigation: {
+            aboutMe: 'אודות',
+            contact: 'צור קשר',
+            news: 'חדשות ומאמרים',
+            projects: 'פרויקטים',
+            resume: 'קורות חיים',
+        }
+    },
+
+    {   key: 'status', type: 'aggregation', version: ['s1', 's2', 's3'] },
+    {
+        key: 's1', type: 'version',
+        status: {
+            notFound: {
+                title: '😨 عذراً، لم يتم العثور على الصفحة المطلوبة ! ',
+                description: 'ربما تم نقلها أو لم تعد متوفرة. يرجى الرجوع للصفحة الرئيسية'
+            },
+            underconstruction: {
+                title: '🚧 الموقع تحت الصيانة',
+                description: 'يرجى العودة لاحقاً.'
+            },
+        }
+    },
+    {   key: 's2', type: 'version',
+        status: {
+            notFound: {
+                title: "😨 Oops, the page doesn't exist !",
+                description: 'Please, return to the homepage.'
+            },
+            underconstruction: {
+                title: '🚧 The site is under maintenance',
+                description: 'We sincerely apologize for the inconvenience. We will be back soon !'
+            },
+        }
+    },
+    {   key: 's3', type: 'version',
+        status: {
+            notFound: {
+                title: '😨 אופס! נראה שהגעת לעמוד לא קיים',
+                description: 'תוכל לחזור לעמוד הבית.'
+            },
+            underconstruction: {
+                title: '🚧 האתר תחת תחזוקה',
+                description: 'אנו מצטערים על אי הנוחות, ומקווים לסיים את הטיפול בקרוב.'
+            },
+        }
+    },
+
 
 ]
 

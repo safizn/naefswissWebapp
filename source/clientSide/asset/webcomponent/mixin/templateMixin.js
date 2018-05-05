@@ -1,6 +1,6 @@
 const SystemJS = window.SystemJS   
 import { PolymerElement, html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
-import '/@webcomponent/view-state404/entrypoint.js$renderJSImportWebcomponent'
+import '/@webcomponent/state404-template/entrypoint.js$renderJSImportWebcomponent'
 
 const baseMixin = Superclass => class Template extends Superclass {
     static get properties() { return {
@@ -8,10 +8,19 @@ const baseMixin = Superclass => class Template extends Superclass {
             type: Object, 
             notify: true, 
             reflectToAttribute: true,
-        },    
+        },
+        templateKey: {
+            type: Object,
+            notify: true,
+            // reflectToAttribute: true,
+        },
+        fallbackTemplateKey: {
+            type: String,
+        }
     } }
 
     static get observers() { return [ /* observer descriptors */
+        'filterTemplateConfig(templateKey)',
     ] }
 
     constructor() {
@@ -20,6 +29,50 @@ const baseMixin = Superclass => class Template extends Superclass {
 
     ready() { // invoked the first time added to the dom.
         super.ready()
+    }
+
+    // Template key observer
+    filterTemplateConfig(templateKey) {
+        if(!templateKey && this.fallbackTemplateKey) templateKey = this.fallbackTemplateKey // fallback key.
+        else if(!templateKey) return;
+            
+        // Document & Template Tree procesing.
+        let templateConfiguration = this.templateConfig.filter(unit => unit.key == templateKey)[0]
+        this.renderTemplateConfig({ templateConfiguration })
+    }
+
+    renderTemplateConfig({templateConfiguration, parentConfig = null}) {
+        switch (templateConfiguration.type) {
+            case 'linkSelector':
+                this.selectLink({
+                    selectorId: templateConfiguration.data.selectorId,
+                    selectionKey: templateConfiguration.data.selectionKey || parentConfig.data.insertionPoint.selectionKey
+                })
+            break;
+            case 'importConfigurationObject':           
+            default:
+                this.loadTemplate({
+                    resourceRelativePath: templateConfiguration.data.resource.path,
+                    selectionKey: templateConfiguration.data.insertionPoint.selectionKey,
+                    selectorId: templateConfiguration.data.insertionPoint.selectorId
+                })
+                console.info(`📄 Template configuration changed to: ${templateConfiguration.key} in ${this.tagName || this.constructor.is}`)
+            break;
+        }
+
+        if(templateConfiguration.children) {
+            for(let node of templateConfiguration.children) {
+                if(typeof node == 'string') {
+                    node = this.templateConfig.filter(unit => unit.key == node)[0]
+                }
+                this.renderTemplateConfig({templateConfiguration: node, parentConfig: templateConfiguration})
+            }
+        }
+    }
+
+    selectLink({ selectorId, selectionKey }) {
+        let selectorElement = this.$[selectorId]
+        selectorElement.select(selectionKey)
     }
 
     /***

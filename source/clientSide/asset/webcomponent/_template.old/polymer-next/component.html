@@ -97,7 +97,7 @@
             <view-view1 slot="page" name="view-view1"></view-view1>
             <view-view2 slot="page" name="view-view2"></view-view2>
             <view-view3 slot="page" name="view-view3"></view-view3>
-            <view-state404 slot="page" name="view-state404"></view-state404>
+            <state404-template slot="page" name="state404-template"  app="[[app]]" mode="{{mode}}"></state404-template>
         {%=`</${argument['layoutElement']}>` %}
         <!-- <webapp-layout-list name="webapp-layout-list" page="{{page}}" route="{{subroute}}" app="[[app]]">
             <a slot="tab" name="view-view1" href$="{{app.setting.location.routeBasePath}}/view1">مقدمة عن التعليم في رومانيا</a>
@@ -106,7 +106,7 @@
             <view-view1 slot="page" name="view-view1"></view-view1>
             <view-view2 slot="page" name="view-view2"></view-view2>
             <view-view3 slot="page" name="view-view3"></view-view3>
-            <view-state404 slot="page" name="view-state404"></view-state404>
+            <state404-template slot="page" name="state404-template"></state404-template>
         </webapp-layout-list> -->
         <webapp-layout-toolbar name="webapp-layout-toolbar" page="{{page}}" route="{{subroute}}" app="[[app]]">
         </webapp-layout-toolbar>

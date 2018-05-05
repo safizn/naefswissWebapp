@@ -1,9 +1,12 @@
-import localization from '/@webcomponent/document-element/localizationMixin.js'
-import appMixin from '/@webcomponent/document-element/appMixin.js'
+const App = window.App || {}; 
+const SystemJS = window.SystemJS
+import appMixin from '/@webcomponent/mixin/appMixin.js'
+import localization from '/@webcomponent/mixin/localizationMixin.js'
 import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
-import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
+import polymerSupportPromiseBinding from '/@javascript/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
+
 /** WebComponent **/
 import '/@webcomponent/@package/@polymer/iron-icons/iron-icons.js'
 import '/@webcomponent/@package/@polymer/paper-icon-button/paper-icon-button.js'
@@ -14,7 +17,7 @@ import '/@webcomponent/@package/@polymer/app-layout/app-header-layout/app-header
 import '/@webcomponent/shared-styles.html$convertSharedStylesToJS'
 
 const component = {
-    elementName: 'view-list-item',
+    elementName: 'projects-template',
     css: html`<custom-style><!--for polyfill compatibility--><style include="shared-styles">{%= argument.css %}</style></custom-style>`,
     html: html`{%= argument.html %}`,
 }    
@@ -22,21 +25,18 @@ const component = {
 ;(async () => {
 
     const localizationMixin = await localization()
-    const AppMixin = localizationMixin(appMixin(PolymerElement)) // Extend Polymer.Element base class
+    const AppMixin = localizationMixin(appMixin(PolymerElement)) // Extend Polymer.Element base class // previously Polymer.ElementMixin(HTMLElement)
+
     component.superclass = AppMixin
 
     @defineCustomElement(component.elementName)
     class Element extends component.superclass {
-
         static get template() { return html`${component.css}${component.html}` }
         static get properties() {
-        return {
-            app: Object,
-        }
+        return {}
         }
     }
-
-})() // async
+})() // async 
 
 export default async () => {
     if(!customElements.get(component.elementName)) { // if element not defined wait till custom element is registered

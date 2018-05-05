@@ -9,9 +9,10 @@
     // const AppFrontEndPerContext = JSON.parse( decodeURIComponent('{%= encodeURIComponent(JSON.stringify(context.frontendPerContext)) %}') )
     // const AppFrontEnd = deepObjectMerge(AppFrontEndStatic, AppFrontEndPerContext) // Deep merge - override static app level setting using/from local request context setting.
     // AppFrontEnd.instance = JSON.parse(decodeURIComponent('{%= encodeURIComponent(JSON.stringify(context.instance)) %}'))
-    const AppFrontEnd = JSON.parse(decodeURIComponent('{%= encodeURIComponent(JSON.stringify(context.frontend)) %}'))
-    class AppClass {}
-    window.App = AppFrontEnd || new AppClass() // Global Object that handles the app and other stuff.
+    // const AppFrontEnd = JSON.parse(decodeURIComponent(`{%= encodeURIComponent(JSON.stringify(context.frontend)) %}`)) // must use backticks because single qoute doesn't get encoded using encodeURI/encodeURIComponent, while backticks are serialized if used inside the transmitted string.
+    // class AppClass {}
+    // window.App = AppFrontEnd || new AppClass() // Global Object that handles the app and other stuff.
+    window.App = JSON.parse(decodeURIComponent(`{%= encodeURIComponent(JSON.stringify(context.frontend)) %}`)) // must use backticks because single qoute doesn't get encoded using encodeURI/encodeURIComponent, while backticks are serialized if used inside the transmitted string.
 </script>    
 
 <script>    

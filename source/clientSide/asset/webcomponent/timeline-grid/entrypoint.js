@@ -1,10 +1,11 @@
-import convertParamsIntoURLEncodedQuery from '/@javascript/convertParamsIntoURLEncodedQuery.js'
-import localization from '/@webcomponent/document-element/localizationMixin.js'
-import appMixin from '/@webcomponent/document-element/appMixin.js'
 import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
-import polymerSupportPromiseBinding from '/@webcomponent/document-element/polymerSupportPromiseBinding.js' // add support for async function properties.
-polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
+import convertParamsIntoURLEncodedQuery from '/@javascript/convertParamsIntoURLEncodedQuery.js'
+import polymerSupportPromiseBinding from '/@javascript/polymerSupportPromiseBinding.js' // add support for async function properties.
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
+polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features
+/** Mixin **/
+import localization from '/@webcomponent/mixin/localizationMixin.js'
+import appMixin from '/@webcomponent/mixin/appMixin.js'
 
 const component = {
     elementName: 'timeline-grid',

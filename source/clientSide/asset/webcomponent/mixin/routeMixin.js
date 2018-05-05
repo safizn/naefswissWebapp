@@ -1,14 +1,11 @@
+// TODO: Rename to stateCondition.
+
 const SystemJS = window.SystemJS   
 import { PolymerElement, html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 
 export default Superclass => class Route extends Superclass {
     static get properties() {
         return {
-            page: {
-                type: Object,
-                notify: true,
-                reflectToAttribute: true,
-            },
             route: {
                 type: Object
             },
@@ -42,26 +39,23 @@ export default Superclass => class Route extends Superclass {
         // console.log(route)
     }
     
+    /**
+     * To take effect routeMixin should be used with templateMixin.
+     */
     _routePageChanged(routePath, routeConfig) { // Choose page/view using URL path.
         if(!routeConfig) return; // skip initial change of one of the properties - TODO: Should be a better way to wait for all properties to be ready.
         let pathLevel = routePath.split( '/' )
         if(typeof pathLevel[0] == 'undefined') return; // skip initial `pathTopLevel` value of undefined.
-        let documentKey = this.checkConditionTree(pathLevel)
-        // Document & Template Tree procesing.
-        let document = this.app.document.filter(unit => {
-            if(unit.key == documentKey) return true
-            return false
-        })[0]
+        let templateKey = this.checkConditionTree(pathLevel)
         
-        // document.page.filename = document.page.file.substr(0, document.page.file.indexOf('.'));
-        // this.layout = document.layout
-        this.page = document.page
-        
+        this.templateKey = templateKey        
     }
     
     checkConditionTree(pathLevel) {
         pathLevel = pathLevel.filter(item => item) // remove empty items.
-        let documentKey = '' // default value
+        let templateKey = '' // default value
+    
+        let chosenRouteConfig = iterateOverRouteConfig({ routeConfig: this.routeConfig, pathLevel  })
 
         function iterateOverRouteConfig({ routeConfig, pathLevel }) {
             let currentPathLevel = pathLevel.shift() // remove and get first item
@@ -71,9 +65,11 @@ export default Superclass => class Route extends Superclass {
                     return Boolean(route.path) == Boolean(currentPathLevel)
                 } else {
                     return route.path == currentPathLevel
-                } 
+                }
             })[0]
             
+            if(!chosenRouteConfig) return null
+
             let chosenChildRouteConfig;
             if(
                 chosenRouteConfig.children && chosenRouteConfig.children.length > 0 &&
@@ -83,11 +79,10 @@ export default Superclass => class Route extends Superclass {
             }
             return chosenChildRouteConfig || chosenRouteConfig
         }
-    
-        let chosenRouteConfig = iterateOverRouteConfig({ routeConfig: this.routeConfig, pathLevel  })
-        documentKey = chosenRouteConfig.documentKey
 
-        return documentKey
+        templateKey = (chosenRouteConfig) ? chosenRouteConfig.templateKey : null;
+
+        return templateKey
     }  
 
 

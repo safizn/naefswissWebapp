@@ -1,11 +1,12 @@
 <!-- Layouts -->
 <paper-progress id="loader" indeterminate></paper-progress>
 <iron-pages id="pageSelector" selected="{{layout}}" attr-for-selected="name" role="main">
-    <view-state404 name="viewState404"></view-state404>
-    <webapp-layout-toolbar name="webapp-layout-toolbar" route="{{route}}" app="[[app]]" mode="{{mode}}" text="{{text}}">
-        <a class="drawerlink" slot="drawertab" name="frontPage" href$="{{app.setting.location.routeBasePath}}/">[[localize('uiContent', 'title.short')]]</a>
-        <a class="drawerlink" slot="drawertab" name="about" href$="{{app.setting.location.routeBasePath}}/contact">[[localize('uiContent', 'title.long')]]</a>
-        <paper-tab slot="toolbartab" link name="studyfieldPage"> <a class="link" href$="{{app.setting.location.routeBasePath}}/studyfield" tabindex="-1">[[localize('uiContent', 'title.short')]]</a> </paper-tab>
-        <paper-tab slot="toolbartab" link name="countryPage"><a class="link" href$="{{app.setting.location.routeBasePath}}/country/bucharest" tabindex="-1">[[localize('uiContent', 'title.short')]]</a></paper-tab>
-    </webapp-layout-toolbar>
+    <state404-template name="viewState404" app="[[app]]" mode="{{mode}}"></state404-template>
+    <toolbar-layout-template name="toolbar-layout-template" route="{{route}}" app="[[app]]" mode="{{mode}}" text="{{text}}">
+        <a class="drawerlink" slot="drawertab" name="about-template" href$="{{app.setting.location.routeBasePath}}/">[[localize('uiContent', 'navigation.aboutMe')]]</a>
+        <a class="drawerlink" slot="drawertab" name="contact-template" href$="{{app.setting.location.routeBasePath}}/contact">[[localize('uiContent', 'navigation.contact')]]</a>
+        <paper-tab slot="toolbartab" link name="news-template"> <a class="link" href$="{{app.setting.location.routeBasePath}}/news" tabindex="-1">[[localize('uiContent', 'navigation.news')]]</a> </paper-tab>
+        <paper-tab slot="toolbartab" link name="projects-template"><a class="link" href$="{{app.setting.location.routeBasePath}}/projects" tabindex="-1">[[localize('uiContent', 'navigation.projects')]]</a></paper-tab>
+        <paper-tab slot="toolbartab" link name="resume-template"><a class="link" href$="{{app.setting.location.routeBasePath}}/resume" tabindex="-1">[[localize('uiContent', 'navigation.resume')]]</a></paper-tab>
+    </toolbar-layout-template>
 </iron-pages>
