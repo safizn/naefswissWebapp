@@ -1,14 +1,22 @@
 const   projectPath = "/project",
         applicationPath = `${projectPath}/application`,
-        appDeploymentLifecyclePath = `${applicationPath}/dependency/appDeploymentLifecycle`
+        appDeploymentLifecyclePath = `${applicationPath}/dependency/appDeploymentLifecycle`,
+        SourceCodePath = `${applicationPath}/source`,
+        DestinationPath = `${applicationPath}/distribution`
+
 
 module.exports = {
-    projectPath, 
-    appDeploymentLifecyclePath,
+    directory: {
+        projectPath, 
+        appDeploymentLifecyclePath,
+        SourceCodePath,
+        DestinationPath,
+        gulpPath: `${appDeploymentLifecyclePath}/entrypoint/build`,
+        babelPath: `${appDeploymentLifecyclePath}/babel_javascriptTranspilation.js`,
+        serverSidePath: `${SourceCodePath}/serverSide`,
+        clientSidePath: `${SourceCodePath}/clientSide`,
+    },
     databaseVersion: 1,
-    GulpPath: `${appDeploymentLifecyclePath}/entrypoint/build`, // TODO: is it actually needed. remove if possible.
-    SourceCodePath: `${applicationPath}/source`,
-    DestinationPath: `${applicationPath}/distribution`,
     dockerImageName: 'naefswiss-webapp',
     domain: 'naifaboswiss.com',
     hostStorageFolderName: 'naifaboswiss', // remote production folder
@@ -27,5 +35,15 @@ module.exports = {
         test: {
             file: `${appDeploymentLifecyclePath}/entrypoint/test/test.js`,
         },
+    },
+    build: {
+        clientSide: {
+            native: {
+                prefix: 'nativeClientSide'
+            },
+            polyfill: {
+                prefix: 'polyfillClientSide'
+            }
+        }
     }
 }

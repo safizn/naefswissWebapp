@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /opt/yarn/bin/yarn.js add @polymer/paper-progress
+  /usr/local/bin/node /opt/yarn/bin/yarn.js install -y
 
 PATH: 
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -47,12 +47,13 @@ npm manifest:
       "@polymer/paper-listbox": "next",
       "@polymer/paper-material": "next",
       "@polymer/paper-menu-button": "^3.0.0-pre.12",
+      "@polymer/paper-progress": "^3.0.0-pre.12",
       "@polymer/paper-radio-group": "next",
       "@polymer/paper-spinner": "next",
       "@polymer/paper-tabs": "next",
       "@polymer/polymer": "next",
       "@webcomponents/shadycss": "next",
-      "@webcomponents/webcomponentsjs": "next",
+      "@webcomponents/webcomponentsjs": "next"
     },
     "resolutions": {
       "@polymer/iron-flex-layout": "3.0.0-pre.12",
@@ -422,10 +423,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.1.1.tgz#50caffdf8a901e5357532b7d85e776637a56446a"
 
 Trace: 
-  SyntaxError: /project/application/source/packageManager/webcomponent.browser.yarn/package.json: Unexpected token } in JSON at position 1375
-      at JSON.parse (<anonymous>)
-      at /opt/yarn/lib/cli.js:770:59
+  Error: Can't answer a question unless a user TTY
+      at ConsoleReporter.select (/opt/yarn/lib/cli.js:87456:59)
+      at /opt/yarn/lib/cli.js:22372:43
       at Generator.next (<anonymous>)
       at step (/opt/yarn/lib/cli.js:92:30)
-      at /opt/yarn/lib/cli.js:103:13
-      at <anonymous>
+      at /opt/yarn/lib/cli.js:110:14
+      at new Promise (<anonymous>)
+      at new F (/opt/yarn/lib/cli.js:29389:28)
+      at /opt/yarn/lib/cli.js:89:12
+      at Install.flatten (/opt/yarn/lib/cli.js:22412:7)
+      at /opt/yarn/lib/cli.js:22207:52
