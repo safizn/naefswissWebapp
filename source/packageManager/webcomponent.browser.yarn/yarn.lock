@@ -23,7 +23,7 @@
   version "3.0.0-pre.17"
   resolved "https://registry.yarnpkg.com/@polymer/font-roboto/-/font-roboto-3.0.0-pre.17.tgz#9503a6b937d3cd19c26074b689da5f659e02fc0f"
 
-"@polymer/iron-a11y-keys-behavior@3.0.0-pre.12", "@polymer/iron-a11y-keys-behavior@3.0.0-pre.17", "@polymer/iron-a11y-keys-behavior@^3.0.0-pre.17", "@polymer/iron-a11y-keys-behavior@^3.0.0-pre.18":
+"@polymer/iron-a11y-keys-behavior@3.0.0-pre.12", "@polymer/iron-a11y-keys-behavior@3.0.0-pre.17", "@polymer/iron-a11y-keys-behavior@^3.0.0-pre.17", "@polymer/iron-a11y-keys-behavior@^3.0.0-pre.19":
   version "3.0.0-pre.17"
   resolved "https://registry.yarnpkg.com/@polymer/iron-a11y-keys-behavior/-/iron-a11y-keys-behavior-3.0.0-pre.17.tgz#deaaf5832400caaba6b8cb872c973786aebee78e"
   dependencies:
@@ -60,7 +60,7 @@
     "@polymer/neon-animation" "^3.0.0-pre.17"
     "@polymer/polymer" "^3.0.0-pre.13"
 
-"@polymer/iron-fit-behavior@3.0.0-pre.12", "@polymer/iron-fit-behavior@^3.0.0-pre.17", "@polymer/iron-fit-behavior@^3.0.0-pre.18", "@polymer/iron-fit-behavior@next":
+"@polymer/iron-fit-behavior@3.0.0-pre.12", "@polymer/iron-fit-behavior@^3.0.0-pre.17", "@polymer/iron-fit-behavior@^3.0.0-pre.19", "@polymer/iron-fit-behavior@next":
   version "3.0.0-pre.12"
   resolved "https://registry.yarnpkg.com/@polymer/iron-fit-behavior/-/iron-fit-behavior-3.0.0-pre.12.tgz#c6aa70a768cda9ca34c5f564d3237953a5e70c37"
   dependencies:
@@ -163,7 +163,7 @@
   dependencies:
     "@polymer/polymer" "^3.0.0-pre.13"
 
-"@polymer/iron-resizable-behavior@3.0.0-pre.12", "@polymer/iron-resizable-behavior@3.0.0-pre.17", "@polymer/iron-resizable-behavior@^3.0.0-pre.17", "@polymer/iron-resizable-behavior@^3.0.0-pre.18":
+"@polymer/iron-resizable-behavior@3.0.0-pre.12", "@polymer/iron-resizable-behavior@3.0.0-pre.17", "@polymer/iron-resizable-behavior@^3.0.0-pre.17", "@polymer/iron-resizable-behavior@^3.0.0-pre.19":
   version "3.0.0-pre.17"
   resolved "https://registry.yarnpkg.com/@polymer/iron-resizable-behavior/-/iron-resizable-behavior-3.0.0-pre.17.tgz#e5e391c2dee84ba57b88ecd425ee2ee61c34f893"
   dependencies:

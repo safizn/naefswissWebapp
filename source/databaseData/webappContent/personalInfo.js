@@ -53,7 +53,7 @@ let data = [
 
 ]
 
-module.exports = {
+export default {
     databaseTableName: 'personalInfo',
     data: data,
     index: ['key']

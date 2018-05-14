@@ -1,10 +1,10 @@
 
 export default async () => {
-    let middlewareArray = await import('./webappSetting/middleware')
-    let templateArray = await import('./webappSetting/template')
-    let conditionArray = await import('./webappSetting/condition')
-    let oAuthArray = await import('./webappSetting/oAuth')
-    let schemaArray = await import('./webappSetting/schema')
+    let middlewareArray = (await import('./webappSetting/middleware')).default
+    let templateArray = (await import('./webappSetting/template')).default
+    let conditionArray = (await import('./webappSetting/condition')).default
+    let oAuthArray = (await import('./webappSetting/oAuth')).default
+    let schemaArray = (await import('./webappSetting/schema')).default
     
     let webappSetting = [].concat.apply([], [
         middlewareArray, 
@@ -17,12 +17,12 @@ export default async () => {
     return {
         webappSetting, 
         webappContent: [
-            await import('./webappContent/personalInfo.js'),
-            await import('./webappContent/ui.js'),
-            await import('./webappContent/article.js'),
-            await import('appscript/databaseData/content/language.js'),
-            await import('appscript/databaseData/content/relationship.js'),
-            await import('appscript/databaseData/content/country.js')
+            (await import('./webappContent/personalInfo.js')).default,
+            (await import('./webappContent/ui.js')).default,
+            (await import('./webappContent/article.js')).default,
+            (await import('appscript/databaseData/content/language.js')).default,
+            (await import('appscript/databaseData/content/relationship.js')).default,
+            (await import('appscript/databaseData/content/country.js')).default
         ]
     }
 }

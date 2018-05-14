@@ -22,7 +22,7 @@ switch (process.env.DEPLOYMENT) {
         const babelJSCompilerPath = path.normalize(`${configuration.directory.appDeploymentLifecyclePath}/babel_javascriptTranspilation.js/entrypoint.js`)
         const babelJSCompiler = require(babelJSCompilerPath)
         babelJSCompiler({
-            babelConfigurationFile: 'runtime.BabelConfig.js'
+            babelConfigurationFile: 'serverRuntime.BabelConfig.js'
         })
     break;
 }

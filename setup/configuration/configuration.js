@@ -36,7 +36,7 @@ module.exports = {
             file: `${appDeploymentLifecyclePath}/entrypoint/test/test.js`,
         },
     },
-    build: {
+    distribution: {
         clientSide: {
             native: {
                 prefix: 'nativeClientSide'

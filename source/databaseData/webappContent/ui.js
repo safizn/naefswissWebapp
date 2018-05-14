@@ -112,7 +112,7 @@ let data = [
 
 ]
 
-module.exports = {
+export default {
     databaseTableName: 'ui',
     data: data,
     index: ['key']
