@@ -13,3 +13,4 @@ npm-debug.log
 source/serverSide/yarn-error\.log
 *.package
 @package
+yarn-error.log
