@@ -4,19 +4,28 @@ const   projectPath = "/project",
         SourceCodePath = `${applicationPath}/source`,
         distributionPath = `${applicationPath}/distribution`
 
+const   clientSide = {
+            folderName: 'clientSide',
+        },
+        serverSide = {
+            folderName: `serverSide`
+        }
+
+const distribution = {
+    clientSide: {
+        native: {
+            prefix: 'nativeClientSide'
+        },
+        polyfill: {
+            prefix: 'polyfillClientSide'
+        }
+    },
+    serverSide: {
+        folderName: serverSide.folderName
+    }
+}
 
 module.exports = {
-    directory: {
-        projectPath, 
-        appDeploymentLifecyclePath,
-        SourceCodePath,
-        DestinationPath: distributionPath, // deprecated distributionBasePath - TODO: rename and use instead distribution basePath
-        distributionPath,
-        gulpPath: `${appDeploymentLifecyclePath}/entrypoint/build`,
-        babelPath: `${appDeploymentLifecyclePath}/babel_javascriptTranspilation.js`,
-        serverSidePath: `${SourceCodePath}/serverSide`,
-        clientSidePath: `${SourceCodePath}/clientSide`,
-    },
     databaseVersion: 1,
     dockerImageName: 'naefswiss-webapp',
     domain: 'naifaboswiss.com',
@@ -37,17 +46,18 @@ module.exports = {
             file: `${appDeploymentLifecyclePath}/entrypoint/test/test.js`,
         },
     },
-    distribution: {
-        clientSide: {
-            native: {
-                prefix: 'nativeClientSide'
-            },
-            polyfill: {
-                prefix: 'polyfillClientSide'
-            }
-        },
-        serverSide: {
-            path: `${distributionPath}/serverSide`
-        }
+    distribution,
+    directory: {
+        projectPath, 
+        appDeploymentLifecyclePath,
+        SourceCodePath,
+        DestinationPath: distributionPath, // deprecated distributionBasePath - TODO: rename and use instead distribution basePath
+        distributionPath,
+        gulpPath: `${appDeploymentLifecyclePath}/entrypoint/build`,
+        babelPath: `${appDeploymentLifecyclePath}/babel_javascriptTranspilation.js`,
+        serverSidePath: `${SourceCodePath}/${serverSide.folderName}`,
+        clientSidePath: `${SourceCodePath}/${clientSide.folderName}`,
+        clientSide,
+        serverSide
     },
 }
