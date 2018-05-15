@@ -141,7 +141,7 @@ export default async function() {
                     }
                     let query = convertParamsIntoURLEncodedQuery(params)
                     let entrypointKey = 'ui'
-                    contentPromise = fetch(`http://api.localhost/content/${entrypointKey}?${query}`, {
+                    contentPromise = fetch(`${this.app.setting.location.apiBasePath}/content/${entrypointKey}?${query}`, {
                         method: 'POST',
                         body: JSON.stringify({
                             extrafield: true,

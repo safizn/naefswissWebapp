@@ -64,6 +64,7 @@ const component = {
 
             // Values are altered when server renderint to front-end (slashes are added).
             this.app.setting.location.routeBasePath = window.location.origin || `${this.app.config.PROTOCOL}${this.app.config.HOST}` // previously was specified using server config, but this way the links will work on any origin.
+            this.app.setting.location.apiBasePath = `${this.app.config.PROTOCOL}api.${this.app.config.HOST}`
             this.app.documentElement = this // register document element to be used as entrypoint to Polymer's binding system.
 
             this.addEventListener('localization-language-changed', event => console.log(`🌐 Language changed to: ${event.detail.language}`) );

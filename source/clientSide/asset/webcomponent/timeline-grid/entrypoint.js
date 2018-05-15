@@ -51,7 +51,7 @@ const component = {
             let params = { language: this.mode.language }
             let query = convertParamsIntoURLEncodedQuery(params)
             let entrypointKey = 'personalInfo'
-            let url = `http://api.localhost/content/${entrypointKey}?${query}`
+            let url = `${this.app.setting.location.apiBasePath}/content/${entrypointKey}?${query}`
             return fetch(url, {
                 method: 'POST',
                 body: JSON.stringify({
