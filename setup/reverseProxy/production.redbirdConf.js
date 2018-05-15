@@ -3,7 +3,7 @@
 
 module.exports = function reverseProxy() {
     let domain = 'naifaboswiss.com'
-    let containerGroupName = 'naefswisswebapp'
+    let containerGroupName = 'naifaboswisswebapp'
     
     let proxyConfig = [
         {
