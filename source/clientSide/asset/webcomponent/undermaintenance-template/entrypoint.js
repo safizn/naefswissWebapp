@@ -35,7 +35,7 @@ const component = {
 
     connectedCallback() {
       super.connectedCallback();
-      if(this.app.instance.distribution == "es5") this.$.title.style.display = "none"
+      if(this.app.instance.distribution == "polyfill") this.$.title.style.display = "none"
     }
     
   }

@@ -2,7 +2,7 @@ const   projectPath = "/project",
         applicationPath = `${projectPath}/application`,
         appDeploymentLifecyclePath = `${applicationPath}/dependency/appDeploymentLifecycle`,
         SourceCodePath = `${applicationPath}/source`,
-        DestinationPath = `${applicationPath}/distribution`
+        distributionPath = `${applicationPath}/distribution`
 
 
 module.exports = {
@@ -10,7 +10,8 @@ module.exports = {
         projectPath, 
         appDeploymentLifecyclePath,
         SourceCodePath,
-        DestinationPath,
+        DestinationPath: distributionPath, // deprecated distributionBasePath - TODO: rename and use instead distribution basePath
+        distributionPath,
         gulpPath: `${appDeploymentLifecyclePath}/entrypoint/build`,
         babelPath: `${appDeploymentLifecyclePath}/babel_javascriptTranspilation.js`,
         serverSidePath: `${SourceCodePath}/serverSide`,
@@ -44,6 +45,9 @@ module.exports = {
             polyfill: {
                 prefix: 'polyfillClientSide'
             }
+        },
+        serverSide: {
+            path: `${distributionPath}/serverSide`
         }
-    }
+    },
 }
