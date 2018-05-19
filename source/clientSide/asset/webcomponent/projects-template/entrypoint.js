@@ -1,5 +1,4 @@
 const App = window.App || {}; 
-const SystemJS = window.SystemJS
 import appMixin from '/@webcomponent/mixin/appMixin.js'
 import localization from '/@webcomponent/mixin/localizationMixin.js'
 import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'

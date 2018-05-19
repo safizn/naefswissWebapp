@@ -1,11 +1,9 @@
-const SystemJS = window.SystemJS
 import resolveObjectPath from '/@javascript/resolveObjectPath.js'
 import convertParamsIntoURLEncodedQuery from '/@javascript/convertParamsIntoURLEncodedQuery.js'
 
 let staticClass; // dedup - prevent execution multiple times
 export default async function() {
-    let idb = await SystemJS.import('idb')    
-
+    let idb = (await import('/@javascript/idbPackage.manualNativeModuleExport.js')).default
     async function setIndexDB(resource) {
         let databaseName = 'webappContent',
         databaseVersion = 1,

@@ -1,4 +1,3 @@
-const SystemJS = window.SystemJS   
 import { PolymerElement, html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 import '/@webcomponent/state404-template/entrypoint.js$renderJSImportWebcomponent'
 

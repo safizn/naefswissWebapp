@@ -1,5 +1,4 @@
 const App = window.App || {}; 
-const SystemJS = window.SystemJS
 import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 import polymerSupportPromiseBinding from '/@javascript/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features

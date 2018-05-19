@@ -1,6 +1,5 @@
 // TODO: Rename to stateCondition.
 
-const SystemJS = window.SystemJS   
 import { PolymerElement, html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
 
 export default Superclass => class Route extends Superclass {
