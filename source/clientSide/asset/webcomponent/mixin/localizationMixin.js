@@ -107,7 +107,7 @@ export default async function() {
                     let contentObject = await getIndexDB({ indexdbTable, language: language })
                     let content = resolveObjectPath({ stringPath: resourceKey, object: contentObject })
                     content = (content) ? content : '𝔐𝔦𝔰𝔰𝔦𝔫𝔤 ℭ𝔬𝔫𝔱𝔢𝔫𝔱'; // fallback content
-                    return content
+                    return content 
                     // return this.resource[language][resourceKey]
                 }
             }
