@@ -1,5 +1,5 @@
 import { PolymerElement , html } from '/@webcomponent/@package/@polymer/polymer/polymer-element.js'
-import { importHref } from '/@webcomponent/@package/@polymer/polymer/lib/utils/import-href.js'
+// import { importHref } from '/@webcomponent/@package/@polymer/polymer/lib/utils/import-href.js'
 import { defineCustomElement } from '/@javascript/defineCustomElement.decorator.js'
 import polymerSupportPromiseBinding from '/@javascript/polymerSupportPromiseBinding.js' // add support for async function properties.
 polymerSupportPromiseBinding(PolymerElement) // wrap with proxy providing new features

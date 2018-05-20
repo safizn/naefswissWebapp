@@ -84,7 +84,9 @@ const baseMixin = Superclass => class Template extends Superclass {
         let extension = resourceResolvedObject.href.split('.').pop();
         this.activateLoading()
         if(extension == 'html') {
-            importHref(resourceResolvedObject.href, this.deactivateLoading, callbackError, true)
+            // in polymer 3 - module "importHref" is removed. Use dynamic import instead. https://www.polymer-project.org/3.0/docs/upgrade
+            // importHref(, this.deactivateLoading, callbackError, true)
+            import(resourceResolvedObject.href).then(null, callbackError)
         } else {
             import(resourceResolvedObject).catch(callbackError)
                 .then(async ({ default: module }) => {
