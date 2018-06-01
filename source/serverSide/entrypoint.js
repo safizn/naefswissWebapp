@@ -2,6 +2,11 @@ const moduleSystem = require('module')
 const path = require('path')
 const configuration = require('../../setup/configuration/configuration.js')
 
+/** Set any environment variables before loading rest of the modules - this is done only in the entrypoint, since babel transforms the code */
+process.env.SZN_DEBUG = true // show/hide console messages.
+process.env.DEBUG = 'oidc-provider:*'
+
+
 const appRootPath = path.normalize(__dirname)
 // add root path (app base path) to the resolved module paths.
 // Define server base path. Hackish way to make sure the path is always consistent. Base path in Nodejs is where the closest parent node_modules is located to the initiated js script.
