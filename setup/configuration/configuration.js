@@ -31,20 +31,28 @@ module.exports = {
     domain: 'naifaboswiss.com',
     hostStorageFolderName: 'naifaboswiss', // remote production folder
     stackName: 'naifaboswisswebapp',
-    entrypoint: {
-        build: {
-            file: `${appDeploymentLifecyclePath}/entrypoint/build/build.js`,
-            argument: {}
-        },
-        production: {
-            file: `${appDeploymentLifecyclePath}/entrypoint/production/deployProduction.js`,
-        },
-        run: {
-            file: `${appDeploymentLifecyclePath}/entrypoint/run/run.js`,
-        },
-        test: {
-            file: `${appDeploymentLifecyclePath}/entrypoint/test/test.js`,
-        },
+    script: {
+        hostMachine: {
+            path: './setup/script/hostMachine' // relative to applicaiton repository root.
+        }, 
+        container: [ // entrypoint configuration map, paths are relative to external app.
+            {
+                key: 'build',
+                path: `${appDeploymentLifecyclePath}/entrypoint/build/build.js`,
+            },
+            {
+                key: 'production',
+                path: `${appDeploymentLifecyclePath}/entrypoint/production/deployProduction.js`,
+            },
+            {
+                key: 'run',
+                path: `${appDeploymentLifecyclePath}/entrypoint/run/run.js`,
+            },
+            {
+                key: 'test',
+                path: `${appDeploymentLifecyclePath}/entrypoint/test/test.js`,
+            }
+        ]
     },
     distribution,
     directory: {
