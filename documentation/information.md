@@ -1,1 +1,2 @@
-SZN
+# naefswissWebapp
+Personal webapp

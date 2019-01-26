@@ -1,2 +1,1 @@
-# naefswissWebapp
-Personal webapp
+./documentation/information.md

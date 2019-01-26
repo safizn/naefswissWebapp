@@ -1,7 +1,7 @@
 const   path = require('path'),
         configuration = require('../../setup/configuration/configuration.js'),
         { addModuleResolutionPath } = require('./utility/addModuleResolutionPath.js'),
-        babelJSTranspilerPath = path.normalize(`${configuration.directory.appDeploymentLifecyclePath}/babel_javascriptTranspilation.js/entrypoint.js`)
+        babelJSTranspilerPath = path.normalize(`${configuration.directory.deploymentScriptPath}/babel_javascriptTranspilation.js/entrypoint.js`)
 
 /** Set any environment variables before loading rest of the modules - this is done only in the entrypoint, since babel transforms the code */
 process.env.SZN_DEBUG = true // show/hide console messages.

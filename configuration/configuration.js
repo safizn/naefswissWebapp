@@ -1,12 +1,11 @@
 const path = require('path')
-
 const   projectPath = "/project",
         applicationPath = `${projectPath}/application`,
         SourceCodePath = `${applicationPath}/source`,
         distributionPath = `${applicationPath}/distribution`
 const resolvedModule = {
-    get appDeploymentLifecyclePath() { return path.dirname( require.resolve(`@dependency/appDeploymentLifecycle/package.json`) )  },
-    get javascriptTestRunnerPath() { return path.dirname( require.resolve(`@dependency/javascriptTestRunner/package.json`) ) }
+    get deploymentScript() { return path.dirname( require.resolve(`@dependency/deploymentScript/package.json`) )  },
+    get javascriptTestRunner() { return path.dirname( require.resolve(`@dependency/javascriptTestRunner/package.json`) ) }
 }
         
 const   clientSide = {
@@ -36,50 +35,46 @@ module.exports = {
     domain: 'naifaboswiss.com',
     hostStorageFolderName: 'naifaboswiss', // remote production folder
     stackName: 'naifaboswisswebapp',
-    script: {
-        hostMachine: [
-            { // example for module path
-                type: 'module',
-                key: 'containerManager',
-                path: './setup/node_modules/@dependency/appDeploymentManager/setup/script/bin/containerManager.js'
-            },
-            {
-                type: 'directory',
-                path: './setup/script/hostMachine' // relative to applicaiton repository root.
-            }
-        ],
-        container: [ // entrypoint configuration map, paths are relative to external app.
-            {
-                key: 'build',
-                path: `${resolvedModule.appDeploymentLifecyclePath}/entrypoint/build/build.js`,
-            },
-            {
-                key: 'production',
-                path: `${resolvedModule.appDeploymentLifecyclePath}/entrypoint/production/deployProduction.js`,
-            },
-            {
-                key: 'run',
-                path: `${resolvedModule.appDeploymentLifecyclePath}/entrypoint/run/run.js`,
-            },
-            {
-                key: 'test',
-                path: `${resolvedModule.javascriptTestRunnerPath}/setup/script/bin/javascriptTestRunner.js`,
-            }
-        ]
-    },
+    script: [
+        {
+            type: 'module',
+            key: 'containerManager',
+            path: './setup/node_modules/@dependency/appDeploymentManager/setup/script/bin/containerManager.js'
+        },
+        {
+            type: 'directory',
+            path: './setup/script/hostMachine' // relative to applicaiton repository root.
+        },
+        {
+            key: 'build',
+            path: `${resolvedModule.deploymentScript}/entrypoint/build/build.js`,
+        },
+        {
+            key: 'production',
+            path: `${resolvedModule.deploymentScript}/entrypoint/production/deployProduction.js`,
+        },
+        {
+            key: 'run',
+            path: `${resolvedModule.deploymentScript}/entrypoint/run/run.js`,
+        },
+        {
+            key: 'test',
+            path: `${resolvedModule.javascriptTestRunner}/setup/script/bin/javascriptTestRunner.js`,
+        }
+    ],
     distribution,
     directory: {
         application: {
-            hostAbsolutePath: path.resolve(`${__dirname}/../..`),
+            rootPath: path.resolve(`${__dirname}/..`),
             containerAbsolutePath: `${projectPath}/application`
         },
         projectPath, 
-        appDeploymentLifecyclePath: resolvedModule.appDeploymentLifecyclePath,
+        deploymentScriptPath: resolvedModule.deploymentScript,
         SourceCodePath,
         DestinationPath: distributionPath, // deprecated distributionBasePath - TODO: rename and use instead distribution basePath
         distributionPath,
-        gulpPath: `${resolvedModule.appDeploymentLifecyclePath}/entrypoint/build`,
-        babelPath: `${resolvedModule.appDeploymentLifecyclePath}/babel_javascriptTranspilation.js`,
+        gulpPath: `${resolvedModule.deploymentScript}/entrypoint/build`,
+        babelPath: `${resolvedModule.deploymentScript}/babel_javascriptTranspilation.js`,
         serverSidePath: `${SourceCodePath}/${serverSide.folderName}`,
         clientSidePath: `${SourceCodePath}/${clientSide.folderName}`,
         clientSide,
