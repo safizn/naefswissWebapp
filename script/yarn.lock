@@ -631,9 +631,9 @@
   version "1.0.0"
   resolved "https://github.com/AppScriptIO/deploymentScript#75d2559f4da07f6a3fef0a55b547818ed00c1556"
 
-"@dependency/appDeploymentManager@https://github.com/AppScriptIO/appDeploymentManager":
+"@dependency/scriptManager@https://github.com/AppScriptIO/scriptManager":
   version "1.0.0"
-  resolved "https://github.com/AppScriptIO/appDeploymentManager#315c053cf5247896779c9e34c45d0d7c0386faf1"
+  resolved "https://github.com/AppScriptIO/scriptManager#315c053cf5247896779c9e34c45d0d7c0386faf1"
   dependencies:
     "@dependency/JSModuleTypeCheck" "https://github.com/AppScriptIO/JSModuleTypeCheck"
     "@dependency/addModuleResolutionPath" "https://github.com/AppScriptIO/addModuleResolutionPath"
@@ -649,9 +649,9 @@
     slash "^2.0.0"
     upath "^1.1.0"
 
-"@dependency/hostCLIAdapter@https://github.com/AppScriptIO/hostCLIAdapter":
+"@dependency/scriptManager@https://github.com/AppScriptIO/scriptManager":
   version "1.0.0"
-  resolved "https://github.com/AppScriptIO/hostCLIAdapter#20d3eab89f4cc56c5e464ec079284bdf985dab79"
+  resolved "https://github.com/AppScriptIO/scriptManager#20d3eab89f4cc56c5e464ec079284bdf985dab79"
   dependencies:
     "@dependency/javascriptTranspilation" "https://github.com/AppScriptIO/javascriptTranspilation"
     "@dependency/parseKeyValuePairSeparatedBySymbol" "https://github.com/AppScriptIO/parseKeyValuePairSeparatedBySymbol"

@@ -39,7 +39,7 @@ module.exports = {
         {
             type: 'module',
             key: 'containerManager',
-            path: './setup/node_modules/@dependency/appDeploymentManager/setup/script/bin/containerManager.js'
+            path: './setup/node_modules/@dependency/scriptManager/setup/script/bin/containerManager.js'
         },
         {
             type: 'directory',

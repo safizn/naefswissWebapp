@@ -4,8 +4,7 @@
     "scripts": {},
     "dependencies": {
         "@dependency/deploymentScript": "https://github.com/AppScriptIO/deploymentScript",
-        "@dependency/appDeploymentManager": "https://github.com/AppScriptIO/appDeploymentManager",
-        "@dependency/hostCLIAdapter": "https://github.com/AppScriptIO/hostCLIAdapter",
+        "@dependency/scriptManager": "https://github.com/AppScriptIO/scriptManager",
         "@dependency/javascriptTestRunner": "https://github.com/AppScriptIO/javascriptTestRunner"
     },
     "main": "./entrypoint.js"
