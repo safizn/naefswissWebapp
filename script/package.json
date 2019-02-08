@@ -1,11 +1,11 @@
 {
-    "name": "@root/setup",
-    "version": "1.0.0",
+    "name": "@root/script",
+    "version": "0.0.0",
     "scripts": {},
     "dependencies": {
         "@dependency/deploymentScript": "https://github.com/AppScriptIO/deploymentScript",
         "@dependency/scriptManager": "https://github.com/AppScriptIO/scriptManager",
         "@dependency/javascriptTestRunner": "https://github.com/AppScriptIO/javascriptTestRunner"
     },
-    "main": "./entrypoint.js"
+    "main": ""
 }

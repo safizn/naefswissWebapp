@@ -64,8 +64,8 @@ module.exports = {
     ],
     distribution,
     directory: {
+        root: path.resolve(`${__dirname}/..`),
         application: {
-            rootPath: path.resolve(`${__dirname}/..`),
             containerAbsolutePath: `${projectPath}/application`
         },
         projectPath, 
