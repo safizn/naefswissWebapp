@@ -1,6 +1,5 @@
 const path = require('path')
 const   projectPath = "/project",
-        applicationPath = `${projectPath}/application`,
         SourceCodePath = `${applicationPath}/source`,
         distributionPath = `${applicationPath}/distribution`
 const resolvedModule = {
