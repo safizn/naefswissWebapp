@@ -1,5 +1,10 @@
 const path = require('path')
+<<<<<<< Updated upstream
 const   projectPath = "/project",
+=======
+const projectPath = "/project",
+        applicationPath = `${projectPath}/application`,
+>>>>>>> Stashed changes
         SourceCodePath = `${applicationPath}/source`,
         distributionPath = `${applicationPath}/distribution`
 const resolvedModule = {
@@ -29,11 +34,35 @@ const distribution = {
 }
 
 module.exports = {
+    directory: {
+        root: path.resolve(`${__dirname}/..`),
+        application: {
+            containerAbsolutePath: `${projectPath}/application`
+        },
+        projectPath, 
+        deploymentScriptPath: resolvedModule.deploymentScript,
+        SourceCodePath,
+        DestinationPath: distributionPath, // deprecated distributionBasePath - TODO: rename and use instead distribution basePath
+        distributionPath,
+        gulpPath: `${resolvedModule.deploymentScript}/entrypoint/build`,
+        babelPath: `${resolvedModule.deploymentScript}/babel_javascriptTranspilation.js`,
+        serverSidePath: `${SourceCodePath}/${serverSide.folderName}`,
+        clientSidePath: `${SourceCodePath}/${clientSide.folderName}`,
+        clientSide,
+        serverSide
+    },
+    distribution,
+    container: {
+        dockerImageName: 'naefswiss-webapp',
+        stackName: 'naifaboswisswebapp',
+    },
+    reverseProxy: {
+        domain: 'naifaboswiss.com',
+    },
+    production: {
+        hostStorageFolderName: 'naifaboswiss', // remote production folder
+    },
     databaseVersion: 1,
-    dockerImageName: 'naefswiss-webapp',
-    domain: 'naifaboswiss.com',
-    hostStorageFolderName: 'naifaboswiss', // remote production folder
-    stackName: 'naifaboswisswebapp',
     script: [
         {
             type: 'module',
@@ -61,6 +90,7 @@ module.exports = {
             path: `${resolvedModule.javascriptTestRunner}/setup/script/bin/javascriptTestRunner.js`,
         }
     ],
+<<<<<<< Updated upstream
     distribution,
     directory: {
         root: path.resolve(`${__dirname}/..`),
@@ -80,3 +110,6 @@ module.exports = {
         serverSide
     },
 }
+=======
+}
+>>>>>>> Stashed changes

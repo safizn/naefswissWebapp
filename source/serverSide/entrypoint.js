@@ -1,5 +1,5 @@
 const   path = require('path'),
-        configuration = require('../../setup/configuration/configuration.js'),
+        configuration = require('../../configuration'),
         { addModuleResolutionPath } = require('./utility/addModuleResolutionPath.js'),
         babelJSTranspilerPath = path.normalize(`${configuration.directory.deploymentScriptPath}/babel_javascriptTranspilation.js/entrypoint.js`)
 
