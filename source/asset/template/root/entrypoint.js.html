@@ -1,0 +1,84 @@
+<!-- Load Custom Elements es5 adapter - Fixing (supposedly) workaround ES5-style classes cannot properly extend ES6 classes - https://github.com/webcomponents/webcomponentsjs#custom-elements-es5-adapterjs --> 
+<!--<script src="/asset/webcomponent/@package/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+<script src="/asset/webcomponent/@package/webcomponentsjs/webcomponents-loader.js"></script>-->
+
+<script async type="module">
+    // import deepObjectMerge from "/@javascript/deepObjectMerge.js"
+    // SZN App global class -  Initialize the window object 'App' That will contain all utility functions and behaviors for the app
+    // const AppFrontEndStatic = JSON.parse( decodeURIComponent('{%= encodeURIComponent(JSON.stringify(Application.frontend)) %}') )
+    // const AppFrontEndPerContext = JSON.parse( decodeURIComponent('{%= encodeURIComponent(JSON.stringify(context.frontendPerContext)) %}') )
+    // const AppFrontEnd = deepObjectMerge(AppFrontEndStatic, AppFrontEndPerContext) // Deep merge - override static app level setting using/from local request context setting.
+    // AppFrontEnd.instance = JSON.parse(decodeURIComponent('{%= encodeURIComponent(JSON.stringify(context.instance)) %}'))
+    // const AppFrontEnd = JSON.parse(decodeURIComponent(`{%= encodeURIComponent(JSON.stringify(context.frontend)) %}`)) // must use backticks because single qoute doesn't get encoded using encodeURI/encodeURIComponent, while backticks are serialized if used inside the transmitted string.
+    // class AppClass {}
+    // window.App = AppFrontEnd || new AppClass() // Global Object that handles the app and other stuff.
+    window.App = JSON.parse(decodeURIComponent(`{%= encodeURIComponent(JSON.stringify(context.frontend)) %}`)) // must use backticks because single qoute doesn't get encoded using encodeURI/encodeURIComponent, while backticks are serialized if used inside the transmitted string.
+</script>    
+
+<script>    
+// // Polymer settings, Polyfill
+// {
+//     // Load Polymer (importing through the bower using the first webcomponent to be imported to the document, which includes `../polymer/polymer.html` import) 
+//     // NOTE: Problem that it is executed after the below code.
+//     // System.import('polymer@2.0-preview/polymer.html!')
+//     // System.import('http://cdn.localhost/asset/webcomponent/@package/polymer/polymer.html!')
+
+//     // Web performance API
+//     // window.performance && performance.mark && performance.mark('entrypoint.html');
+
+//     // Webcomponents Loader resolves all checks and loads polyfills if necessary.
+//     var script = document.createElement('script');
+//     script.async = true;
+//     script.src = '/asset/webcomponent/@package/webcomponentsjs/webcomponents-loader.js';
+//     // script.onload = afterLoad; // webcomponents-loader.js will load the polyfill, only then should be called "afterLoad" function.
+//     document.head.appendChild(script);        
+
+//     // // Load webcomponentsjs polyfill if browser does not support native Web Components
+//     // function afterLoad() {
+//     //     // For native Imports, manually fire WebComponentsReady so user code
+//     //     // can use the same code path for native and polyfill'd imports.
+//     //     if (!window.HTMLImports) {
+//     //         window.dispatchEvent(
+//     //             new CustomEvent('WebComponentsReady', {bubbles: true})
+//     //         );
+//     //     }
+//     // };
+
+//     // let webComponentsSupported = (
+//     //     'registerElement' in document &&
+//     //     'import' in document.createElement('link') &&
+//     //     'content' in document.createElement('template')
+//     // );
+    
+//     // if (!webComponentsSupported) {
+//     //     console.info('☕ Polyfill webcomponents. Loading webcomponents javascript.')
+//     //     let script = document.createElement('script');
+//     //     script.async = true;
+//     //     script.src = '/asset/webcomponent/@package/webcomponentsjs/webcomponents-loader.js';
+//     //     // script.onload = afterLoad; // webcomponents-loader.js will load the polyfill, only then should be called "afterLoad" function.
+//     //     document.head.appendChild(script);        
+//     //     // load tag 1.0.0-rc.4
+//     //     // JSPM Causes `detected as amd but didn't execute correctly.` which needs configuration. Using bower istead.
+//     //     // System.import('webcomponentsjs/webcomponents-lite.js')
+//     // } else {
+//     //     console.info('☕ Native webcomponents. Dispaching \'WebComponentsReady\' event manually.')
+//     //     window.addEventListener('load', () => { // inorder for the event listener to be registered before dispatching it.
+//     //         afterLoad();
+//     //     })
+//     // }
+// }
+</script>    
+
+<!-- <script src="http://localhost:8087/socket.io/socket.io.js"></script>
+<script>
+  var socket = io('http://localhost:8087');
+  socket.on('connect', function(){
+      console.log('Connected !!')
+  });
+  socket.on('event', function(data){
+    console.log(data)
+
+  });
+  socket.on('disconnect', function(){});
+</script> -->
+
