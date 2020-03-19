@@ -3,9 +3,9 @@
     "version": "0.0.0",
     "scripts": {},
     "dependencies": {
-        "@dependency/deploymentScript": "https://github.com/AppScriptIO/deploymentScript",
-        "@dependency/scriptManager": "https://github.com/AppScriptIO/scriptManager",
-        "@dependency/javascriptTestRunner": "https://github.com/AppScriptIO/javascriptTestRunner"
+        "@deployment/deploymentScript": "https://github.com/AppScriptIO/deploymentScript",
+        "@deployment/scriptManager": "https://github.com/AppScriptIO/scriptManager",
+        "@deployment/javascriptTestRunner": "https://github.com/AppScriptIO/javascriptTestRunner"
     },
     "main": ""
 }

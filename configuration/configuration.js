@@ -8,8 +8,8 @@ const projectPath = "/project",
         SourceCodePath = `${applicationPath}/source`,
         distributionPath = `${applicationPath}/distribution`
 const resolvedModule = {
-    get deploymentScript() { return path.dirname( require.resolve(`@dependency/deploymentScript/package.json`) )  },
-    get javascriptTestRunner() { return path.dirname( require.resolve(`@dependency/javascriptTestRunner/package.json`) ) }
+    get deploymentScript() { return path.dirname( require.resolve(`@deployment/deploymentScript/package.json`) )  },
+    get javascriptTestRunner() { return path.dirname( require.resolve(`@deployment/javascriptTestRunner/package.json`) ) }
 }
         
 const   clientSide = {
@@ -67,7 +67,7 @@ module.exports = {
         {
             type: 'module',
             key: 'containerManager',
-            path: './setup/node_modules/@dependency/scriptManager/setup/script/bin/containerManager.js'
+            path: './setup/node_modules/@deployment/scriptManager/setup/script/bin/containerManager.js'
         },
         {
             type: 'directory',
